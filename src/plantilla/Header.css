@@ -1,0 +1,44 @@
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+
+nav ul {
+    font-weight: bold;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    background-color: white;
+    list-style: none;
+    padding: 10px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+nav ul ul li {
+    margin: 10px 0;
+}
+
+nav ul ul li a {
+    color: black;
+}
+
+nav ul li:hover > ul {
+    display: block;
+}
