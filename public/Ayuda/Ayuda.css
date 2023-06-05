@@ -1,0 +1,70 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos para el contenedor principal */
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  /* Estilos para el encabezado */
+  header {
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  header nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  header nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Estilos para el contenido principal */
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .main-content h2 {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el pie de página */
+  footer {
+    background-color: #007BFF;
+    color: white;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+  }
+  

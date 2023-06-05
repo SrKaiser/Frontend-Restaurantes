@@ -22,6 +22,9 @@ const Header = ({ isAuthenticated }) => {
                         <Link to="/restaurantes" >Lista de Restaurantes</Link>
                     </li>
                     )}
+                    <li>
+                        <a href="/Ayuda/Ayuda.html">Obtener ayuda</a>
+                    </li>
                 </ul>
             </nav>
         </header>
