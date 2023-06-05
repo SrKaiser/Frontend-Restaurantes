@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opiniones-rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opiniones-rest
+  template:
+    metadata:
+      labels:
+        app: opiniones-rest
+    spec:
+      containers:
+      - name: opiniones-rest
+        image: angeltox/proyecto-arso-opiniones-rest:latest
+        ports:
+        - containerPort: 5193
+        env:
+        - name: MONGODB_CONNECTION_STRING
+          value: mongodb://mongo:27017
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opiniones-rest
+spec:
+  type: NodePort
+  selector:
+    app: opiniones-rest
+  ports:
+      - protocol: TCP
+        port: 5193
+        targetPort: 5193

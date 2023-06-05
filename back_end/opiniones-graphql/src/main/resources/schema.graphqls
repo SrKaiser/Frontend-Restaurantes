@@ -1,0 +1,31 @@
+type Query {
+  obtenerOpinion(id: ID!): Opinion
+  obtenerOpiniones: [Opinion]!
+}
+
+type Mutation {
+  crearOpinion(recurso: String!): String!
+  anadirValoracion(id: ID!, valoracion: ValoracionInput!): Boolean!
+  eliminarOpinion(id: ID!): Boolean!
+}
+
+type Opinion {
+  id: ID!
+  nombreRecurso: String!
+  valoraciones: [Valoracion]!
+  numeroValoraciones: Int!
+  calificacionMedia: Float!
+}
+
+type Valoracion {
+  correoElectronico: String!
+  fecha: String!
+  calificacion: Int!
+  comentario: String
+}
+
+input ValoracionInput {
+  correoElectronico: String!
+  calificacion: Int!
+  comentario: String
+}

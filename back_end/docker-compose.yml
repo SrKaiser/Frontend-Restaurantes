@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  pasarela:
+    build:
+      context: .
+      dockerfile: Dockerfile-pasarela
+    ports:
+      - 8090:8090
+    environment:
+      - zuul.routes.restaurantes.url=http://restaurantes-rest:8080/api/restaurantes
+      - zuul.routes.opiniones.url=http://opiniones-rest:5193/api/opiniones
+
+  restaurantes-rest:
+    build:
+      context: .
+      dockerfile: Dockerfile-restaurantes-rest
+    ports:
+      - 8080:8080
+
+  opiniones-rest:
+    build:
+      context: .
+      dockerfile: Dockerfile-opiniones-rest
+    ports:
+      - 5193:5193
+      - 7054:7054
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb://mongo:27017
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongodb_data_container:/data/db
+    ports:
+      - 27017:27017
+      
+volumes:
+  mongodb_data_container:

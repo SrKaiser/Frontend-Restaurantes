@@ -1,0 +1,139 @@
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\appsettings.json
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\opiniones-rest.exe
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\opiniones-rest.deps.json
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\opiniones-rest.runtimeconfig.json
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\opiniones-rest.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\opiniones-rest.pdb
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\DnsClient.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libsnappy64.so
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libzstd.so
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libsnappy64.dylib
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libzstd.dylib
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\libzstd.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\snappy32.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\snappy64.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.AssemblyReference.cache
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.AssemblyInfoInputs.cache
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.AssemblyInfo.cs
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.CoreCompileInputs.cache
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\scopedcss\bundle\opiniones-rest.styles.css
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.CopyComplete
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\refint\opiniones-rest.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.pdb
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\opiniones-rest.genruntimeconfig.cache
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\obj\Debug\net6.0\ref\opiniones-rest.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\NodaTime.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.AssemblyReference.cache
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.AssemblyInfoInputs.cache
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.AssemblyInfo.cs
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.CoreCompileInputs.cache
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\refint\opiniones-rest.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.pdb
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\appsettings.json
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.exe
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.deps.json
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.runtimeconfig.json
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.pdb
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\DnsClient.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\NodaTime.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libsnappy64.so
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libzstd.so
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libsnappy64.dylib
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libzstd.dylib
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\libzstd.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\snappy32.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\snappy64.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\scopedcss\bundle\opiniones-rest.styles.css
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.CopyComplete
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.genruntimeconfig.cache
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\obj\Debug\net6.0\ref\opiniones-rest.dll
+C:\Users\César Pagán\Documents\GitHub\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\Kaiser\Documents\GitHub\arso-proyecto\opiniones-rest\bin\Debug\net6.0\System.Threading.Channels.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\appsettings.json
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.exe
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.deps.json
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.runtimeconfig.json
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\opiniones-rest.pdb
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\DnsClient.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\NodaTime.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\System.Threading.Channels.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libsnappy64.so
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libzstd.so
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libsnappy64.dylib
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libzstd.dylib
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\libzstd.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\snappy32.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\snappy64.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.AssemblyReference.cache
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.AssemblyInfoInputs.cache
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.AssemblyInfo.cs
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.CoreCompileInputs.cache
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\scopedcss\bundle\opiniones-rest.styles.css
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.csproj.CopyComplete
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\refint\opiniones-rest.dll
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.pdb
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\opiniones-rest.genruntimeconfig.cache
+C:\Users\angel\Documents\ARSO\proyecto-arso\opiniones-rest\obj\Debug\net6.0\ref\opiniones-rest.dll

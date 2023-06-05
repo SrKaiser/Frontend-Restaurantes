@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MdDelete, MdRateReview, MdLocalDining, MdPlace, MdAddLocation, MdRemoveRedEye } from 'react-icons/md';
 import "./ListaDeRestaurantes.css";
 import "./CrearOpinion.css";
@@ -11,6 +12,8 @@ const getCookie = (name) => {
 }
 
 function ListaDeRestaurantes() {
+  const navigate = useNavigate();
+
   const [restaurantes, setRestaurantes] = useState([]);
   
    useEffect(() => {
@@ -160,7 +163,9 @@ function ListaDeRestaurantes() {
                   <button className="button button-wide"><MdAddLocation /> Añadir Sitios Turísticos</button>
                 </td>
                 <td>
-                  <button className="button button-wide"><MdRemoveRedEye  /> Ver Opiniones</button>
+                <button className="button button-wide" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
+                  <MdRemoveRedEye /> Ver Opiniones
+                </button>
                   <button className="button button-wide" onClick={() => {
                     setModalVisible(true);
                     setIdRestaurante(restaurante.id);
@@ -169,7 +174,12 @@ function ListaDeRestaurantes() {
                   </button>
                 </td>
                 <td>
-                  <button className="button button-wide"><MdLocalDining /> Ver Platos</button>
+                <button 
+                  className="button button-wide" 
+                  onClick={() => navigate(`/platos?id=${restaurante.id}`)}
+                >
+                  <MdLocalDining /> Ver Platos
+                </button>
                 </td>
                 <td>
                   <button className="button-delete" onClick={() => deleteRestaurant(restaurante.id)}>

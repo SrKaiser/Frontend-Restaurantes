@@ -1,0 +1,16 @@
+# Imagen base
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
+WORKDIR /app
+COPY ./opiniones-rest/*.csproj ./
+RUN dotnet restore
+COPY ./opiniones-rest/ ./
+RUN dotnet publish -c Release -o out
+
+# Generar imagen para ejecutar la aplicación
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build-env /app/out .
+
+ENV ASPNETCORE_URLS=http://*:7054;http://*:5193
+ENTRYPOINT ["dotnet", "opiniones-rest.dll"]

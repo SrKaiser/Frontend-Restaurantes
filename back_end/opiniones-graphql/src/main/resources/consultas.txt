@@ -1,0 +1,48 @@
+mutation {
+  crearOpinion(recurso: "Recurso2") 
+}
+
+mutation {
+  anadirValoracion(id: "6453f684881e7205e10db69b", valoracion: {
+    correoElectronico: "usuario@example.com",
+    calificacion: 4,
+    comentario: "Un recurso interesante"
+  })
+}
+
+mutation {
+  eliminarOpinion(id: "6453f0b3a83f3a6a2c1e49ea")
+}
+
+query {
+  obtenerOpinion(id: "6453f0b3a83f3a6a2c1e49ea") {
+    id
+    nombreRecurso
+    numeroValoraciones
+    calificacionMedia
+    valoraciones {
+      correoElectronico
+      fecha
+      calificacion
+      comentario
+    }
+  }
+}
+
+query {
+  obtenerOpiniones {
+    id
+    nombreRecurso
+    numeroValoraciones
+    calificacionMedia
+    valoraciones {
+      correoElectronico
+      fecha
+      calificacion
+      comentario
+    }
+  }
+}
+
+
+
