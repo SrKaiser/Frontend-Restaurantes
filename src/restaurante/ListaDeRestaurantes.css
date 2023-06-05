@@ -1,0 +1,116 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    padding: 0 20px; /* añade un poco de espacio en los lados para evitar que la tabla toque los bordes de la ventana */
+}
+
+.filters-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+  
+.filter-inputs {
+    margin: 0 10px;
+}
+  
+.filter-inputs label {
+    margin-right: 10px;
+}
+  
+.filter-inputs input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.filter-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border: none;
+  margin-left: 10px;
+}
+
+.filter-button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+
+.table {
+    width: 100%;
+    max-width: 1000px; /* puedes ajustar esto para controlar cuánto espacio puede ocupar la tabla como máximo */
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 3px solid #ddd;
+}
+
+.table th {
+    background-color: #273fca;
+    color: white;
+}
+
+.button {
+    background-color: #36aec4;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-delete {
+    background-color: #a51010;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: white; 
+    color: black; 
+   border: 2px solid #36aec4; 
+}
+
+.button-delete:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #a51010;
+}
+
+.button-wide {
+    width: 200px;
+  }
+  

@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const Header = ({ isAuthenticated }) => {
 
     return (
         <header>
-            <h1>Mi aplicación de Restaurantes</h1>
+            <h1>DishDiscover</h1>
             <nav>
                 <ul>
                     <li>
                         <Link to ="/">Inicio</Link>
                     </li>
+                    {isAuthenticated && (
                     <li>
-                        <span onClick={() => setIsOpen(!isOpen)}>
-                            Gestión de Restaurantes
-                        </span>
-                        {isOpen && (
-                            <ul>
-                                <li><Link to="/alta" onClick={() => setIsOpen(false)}>Alta Restaurante</Link></li>
-                                {/* Aquí puedes agregar más opciones al menú desplegable */}
-                            </ul>
-                        )}
+                        <li>
+                            <Link to="/altaRestaurante" >Alta Restaurante</Link>    
+                        </li>
                     </li>
+                    )}
+                    {isAuthenticated && (
+                    <li>
+                        <li>
+                            <Link to="/restaurantes" >Lista de Restaurantes</Link>
+                        </li>
+                    </li>
+                    )}
                 </ul>
             </nav>
         </header>
