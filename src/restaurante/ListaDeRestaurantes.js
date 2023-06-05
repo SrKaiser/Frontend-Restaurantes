@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MdDelete, MdRateReview, MdLocalDining, MdPlace, MdAddLocation, MdRemoveRedEye } from 'react-icons/md';
+import { MdDelete, MdRateReview, MdLocalDining, MdPlace, MdAddLocation, MdRemoveRedEye, MdRestaurant, MdEdit } from 'react-icons/md';
 import "./ListaDeRestaurantes.css";
 import "./CrearOpinion.css";
+import "../plato/EditarPlato.css";
 import StarRatings from 'react-star-ratings';
 
 const getCookie = (name) => {
@@ -15,9 +16,9 @@ function ListaDeRestaurantes() {
   const navigate = useNavigate();
 
   const [restaurantes, setRestaurantes] = useState([]);
-  
-   useEffect(() => {
-    const url = 'http://localhost:8090/restaurantes'; 
+
+  useEffect(() => {
+    const url = 'http://localhost:8090/restaurantes';
 
     fetch(url)
       .then(response => {
@@ -46,7 +47,7 @@ function ListaDeRestaurantes() {
   }
 
   // Función que se ejecuta cuando el botón "Enviar Opinión" se hace clic
-  const handleSubmit = (restauranteId) => {
+  const handleOpinion = (restauranteId) => {
     // Obtener los datos del restaurante
     fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
       .then(response => response.json())
@@ -66,17 +67,17 @@ function ListaDeRestaurantes() {
             comentario: opinionText
           })
         })
-        .then(response => {
-          if (response.ok) {
-            // Actualizar la lista de restaurantes si la valoración se añadió correctamente
-            alert("Opinión añadida con éxito");
-            fetch('http://localhost:8090/restaurantes')
+          .then(response => {
+            if (response.ok) {
+              // Actualizar la lista de restaurantes si la valoración se añadió correctamente
+              fetch('http://localhost:8090/restaurantes')
               .then(response => response.json())
               .then(data => setRestaurantes(data));
-          } else {
-            throw new Error(`Error al añadir la valoración: ${response.status}`);
-          }
-        });
+              alert("Opinión añadida con éxito");
+            } else {
+              throw new Error(`Error al añadir la valoración: ${response.status}`);
+            }
+          });
       })
       .catch(error => console.error('Ha habido un error:', error))
       .finally(() => {
@@ -87,12 +88,48 @@ function ListaDeRestaurantes() {
       });
   };
 
-  const deleteRestaurant = async (restauranteId) => {
+  /* Para controlar la creación de un plato*/
+  const [createModalVisible, setCreateModalVisible] = useState(false);
+  const [nombre, setNombre] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [precio, setPrecio] = useState(0);
+
+  const handleCreate = () => {
+    fetch(`http://localhost:8090/restaurantes/${idRestaurante}/platos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nombre: nombre,
+        descripcion: descripcion,
+        precio: precio,
+      }),
+    }).then(response => {
+      if (response.ok) {
+        setRestaurantes(restaurantesFiltrados);
+        handleCreateClose();
+        alert("Plato creado con éxito");
+      } else {
+        throw new Error('Error al crear el plato');
+      }
+    });
+  };
+
+  const handleCreateClose = () => {
+    setDescripcion("");
+    setPrecio(0);
+    setNombre("");
+    setCreateModalVisible(false);
+};
+
+  /* Para borrar un restaurante*/
+  const deleteRestaurante = async (restauranteId) => {
     try {
       const response = await fetch(`http://localhost:8090/restaurantes/${restauranteId}`, {
         method: 'DELETE',
       });
-  
+
       if (response.ok) {
         // Actualizar la lista de restaurantes si la eliminación fue exitosa
         const updatedRestaurantes = restaurantes.filter((restaurante) => restaurante.id !== restauranteId);
@@ -115,7 +152,7 @@ function ListaDeRestaurantes() {
   const handleFiltroClick = () => {
     setFiltroNombre(nombreParcial);
   };
-  
+
   /* Para filtrar los restaurantes */
   const restaurantesFiltrados = restaurantes.filter((restaurante) => {
 
@@ -123,25 +160,26 @@ function ListaDeRestaurantes() {
     if (filtroNombre && !restaurante.nombre.includes(filtroNombre)) {
       return false;
     }
-  
+
     return true;
-  });  
+  });
 
   return (
-      <div className="container">
-        <h3 > Búsqueda por filtros </h3>
-        <div className="filters-container">
-          <div className="filter-inputs">
-            <label htmlFor="nombre-parcial-input">Nombre: </label>
-            <input 
-              id="nombre-parcial-input" 
-              type="text" 
-              value={nombreParcial} 
-              onChange={handleNombreParcialChange} 
-            />
-            <button className="filter-button" onClick={handleFiltroClick}>Filtrar</button>
-          </div>
+    <div className="container">
+      <h3 > Búsqueda por filtros </h3>
+      <div className="filters-container">
+        <div className="filter-inputs">
+          <label htmlFor="nombre-parcial-input">Nombre: </label>
+          <input
+            id="nombre-parcial-input"
+            type="text"
+            value={nombreParcial}
+            onChange={handleNombreParcialChange}
+          />
+          <button className="filter-button" onClick={handleFiltroClick}>Filtrar</button>
         </div>
+      </div>
+      <div className="table-container">
         <table className="table">
           <thead>
             <tr>
@@ -150,7 +188,7 @@ function ListaDeRestaurantes() {
               <th>Sitios Turísticos</th>
               <th>Opiniones</th>
               <th>Platos</th>
-              <th>Borrar Restaurante</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -163,9 +201,9 @@ function ListaDeRestaurantes() {
                   <button className="button button-wide"><MdAddLocation /> Añadir Sitios Turísticos</button>
                 </td>
                 <td>
-                <button className="button button-wide" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
-                  <MdRemoveRedEye /> Ver Opiniones
-                </button>
+                  <button className="button button-wide" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
+                    <MdRemoveRedEye /> Ver Opiniones
+                  </button>
                   <button className="button button-wide" onClick={() => {
                     setModalVisible(true);
                     setIdRestaurante(restaurante.id);
@@ -174,15 +212,19 @@ function ListaDeRestaurantes() {
                   </button>
                 </td>
                 <td>
-                <button 
-                  className="button button-wide" 
-                  onClick={() => navigate(`/platos?id=${restaurante.id}`)}
-                >
-                  <MdLocalDining /> Ver Platos
-                </button>
+                  <button
+                    className="button button-wide"
+                    onClick={() => navigate(`/platos?id=${restaurante.id}`)}
+                  >
+                    <MdLocalDining /> Ver Platos
+                  </button>
+                  <button className="button button-wide" onClick={() => {setCreateModalVisible(true); setIdRestaurante(restaurante.id);}}>
+                    <MdRestaurant  /> Crear plato
+                  </button>
                 </td>
                 <td>
-                  <button className="button-delete" onClick={() => deleteRestaurant(restaurante.id)}>
+                  <button className="button-edit"><MdEdit /></button>
+                  <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
                     <MdDelete />
                   </button>
                 </td>
@@ -190,8 +232,9 @@ function ListaDeRestaurantes() {
             ))}
           </tbody>
         </table>
-          {modalVisible && 
-          <div className="overlay">
+      </div>
+      {modalVisible &&
+        <div className="overlay">
           <div className="modal">
             <h2>Registra una opinión</h2>
             <StarRatings
@@ -207,15 +250,41 @@ function ListaDeRestaurantes() {
               half={true}
             />
             <p></p>
-            <textarea className="textarea" rows="10" cols="70" placeholder="Escribe tu opinión aquí..." value={opinionText} onChange={event => setOpinionText(event.target.value)}/>
-            <button className="button" onClick={() => handleSubmit(idRestaurante)}>Enviar Opinión</button>
-            <button className="button" onClick={() =>  {setOpinionText("");
-                                                       setRating(0);
-                                                       setModalVisible(false);}}>Cancelar</button>
+            <textarea className="textarea" rows="10" cols="70" placeholder="Escribe tu opinión aquí..." value={opinionText} onChange={event => setOpinionText(event.target.value)} />
+            <button className="button" onClick={() => handleOpinion(idRestaurante)}>Enviar Opinión</button>
+            <button className="button" onClick={() => {
+              setOpinionText("");
+              setRating(0);
+              setModalVisible(false);
+            }}>Cancelar</button>
           </div>
-        </div> 
-        }
         </div>
+      }
+      {createModalVisible && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Crear un nuevo plato</h2>
+            <label>
+              Nombre:
+              <input type="text" name="nombre" value={nombre} onChange={event => setNombre(event.target.value)} />
+            </label>
+            <label>
+              Descripción:
+              <textarea name="descripcion" value={descripcion} onChange={event => setDescripcion(event.target.value)} />
+            </label>
+            <label>
+              Precio:
+              <input type="number" name="precio" value={precio} onChange={event => setPrecio(event.target.value)} />
+            </label>
+            <p></p>
+            <button className="button" onClick={handleCreate}>Crear</button>
+            <button className="button" onClick={() => {
+              handleCreateClose();
+            }}>Cancelar</button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

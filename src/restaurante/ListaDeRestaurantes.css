@@ -1,10 +1,11 @@
 .container {
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 80%;
+    width: 100%;
     padding: 0 20px; /* añade un poco de espacio en los lados para evitar que la tabla toque los bordes de la ventana */
 }
 
@@ -51,10 +52,13 @@
   border: 2px solid #4CAF50;
 }
 
+.table-container {
+    overflow-x: auto;
+    max-width: 100%;
+}
 
 .table {
-    width: 100%;
-    max-width: 1000px; /* puedes ajustar esto para controlar cuánto espacio puede ocupar la tabla como máximo */
+    width: 1000px;
     border-collapse: collapse;
     margin-top: 10px;
     margin-bottom: 10px;

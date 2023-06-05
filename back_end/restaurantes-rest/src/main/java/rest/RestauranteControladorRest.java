@@ -101,15 +101,6 @@ public class RestauranteControladorRest {
             return Response.status(Response.Status.BAD_REQUEST).entity("Solicitud incorrecta").build();
         }
         
-        // Solo se activa para el proyecto de DAW
-		try {
-			servicioRestaurante.activarOpiniones(id);
-		} catch (RepositorioException e) {
-			return Response.status(Response.Status.BAD_REQUEST).entity("ID no válido").build();
-		} catch (EntidadNoEncontrada e) {
-			return Response.status(Response.Status.NOT_FOUND).entity("Restaurante no encontrado").build();
-		}
-       
     	// "X-Forwarded-Host" contiene la URL original de la pasarela
         String pasarelaUrl = request.getHeader("X-Forwarded-Host");
 
@@ -268,7 +259,7 @@ public class RestauranteControladorRest {
         @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Parámetros no válidos")
     })
     @Consumes(MediaType.APPLICATION_JSON)
-    // curl -i -X PUT -H "Content-Type: application/json" -d '{"nombre": "nombre", "descripcion": "NuevaDescripcion", "precio": NuevoPrecio}' http://localhost:8080/api/restaurantes/ID_DEL_RESTAURANTE/platos
+    // curl -i -X PUT -H "Content-Type: application/json" -d '{"nombre": "nombre", "descripcion": "NuevaDescripcion", "precio": NuevoPrecio}' http://localhost:8080/api/restaurantes/ID_DEL_RESTAURANTE/update-plato
     public Response updatePlato(@ApiParam(value = "ID del restaurante", required = true) @PathParam("id") String idRestaurante,
                                 Plato plato) {
         boolean resultado;

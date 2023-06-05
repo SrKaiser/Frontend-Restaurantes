@@ -1,4 +1,4 @@
- package pasarela.zuul;
+package pasarela.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

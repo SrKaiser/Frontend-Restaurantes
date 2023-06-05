@@ -22,12 +22,29 @@ const AltaRestaurante = () => {
       })
       .then(response => {
         if (response.ok) {
-          alert("Restaurante añadido con éxito");
-          setNombre("");
-          setFechaAlta("");
-          setCiudad("");
-          setLatitud("");
-          setLongitud("");
+          response.text().then(url => {
+            const id = url.split('/').pop();
+            
+            fetch(`http://localhost:8090/restaurantes/${id}/activar-opiniones`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+            .then(response => {
+              if (response.ok) {
+                alert(`Restaurante añadido con éxito. ID del restaurante: ${id}. Servicio de opiniones activado.`);
+              } else {
+                throw new Error(`Error al activar el servicio de opiniones: ${response.status}`);
+              }
+            });
+    
+            setNombre("");
+            setFechaAlta("");
+            setCiudad("");
+            setLatitud("");
+            setLongitud("");
+          });
         } else {
           throw new Error(`Error al añadir crear el restaurante: ${response.status}`);
         }

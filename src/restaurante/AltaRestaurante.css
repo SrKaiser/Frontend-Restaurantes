@@ -5,7 +5,8 @@
     flex-grow: 1;
     overflow: auto; /* para permitir el desplazamiento si el contenido supera la altura disponible */
     background-color: #fafafa;
-    padding: 40px;
+    padding: 0px;
+    overflow-x: hidden;
   }
 
 .container {

@@ -1,0 +1,69 @@
+.titulo {
+  text-align: center;
+  font-size: 32px;
+  color: #080808;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.platos-table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 0 auto; 
+  }
+  
+  .platos-table th, .platos-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .platos-table th {
+    background-color: #1bd4d4;
+    color: white;
+  }
+  
+  .edit-button, .delete-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .button-edit {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .button-delete {
+    background-color: #a51010;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-edit:hover {
+    background-color: white; 
+    color: black; 
+   border: 2px solid #4CAF50;
+}
+
+.button-delete:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #a51010;
+}
+  

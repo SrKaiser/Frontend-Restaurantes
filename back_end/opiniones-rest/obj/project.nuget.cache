@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "L7/DoqLlxxQJya3tm1ltlRcKtiD0Etpsgx2yHpQM8hZ/bnKxrUUxl53QRMec/aCF4x0K6CnIuWQqJ6FrNY7F3g==",
+  "dgSpecHash": "m56ZiLGqJBQmLrvA/2aWqS7scwN1H/Pt1BQHxIkcLm75dxEAjJMnqR2y6DdF0SCz2nS+ek0mdrYJWCL/lfxMxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kaiser\\Documents\\GitHub\\Proyecto ArSo\\proyecto-arso\\opiniones-rest\\opiniones-rest.csproj",
+  "projectFilePath": "C:\\Users\\Kaiser\\Documents\\GitHub\\proyecto-daw\\back_end\\opiniones-rest\\opiniones-rest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kaiser\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
     "C:\\Users\\Kaiser\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

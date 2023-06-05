@@ -1,0 +1,59 @@
+.edit-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2em;
+    width: 40%;
+    border-radius: 8px;
+}
+
+.edit-modal textarea {
+    resize: none;
+    width: 100%;
+}
+
+.edit-modal label {
+    display: block;
+    margin-top: 1em;
+    font-weight: bold;
+  }
+
+.edit-modal input,
+.edit-modal textarea {
+    width: 100%;
+    margin-top: 0.5em;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: "Arial", sans-serif; 
+  }
+
+.edit-modal button {
+    margin-top: 1em;
+}
+
+.edit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.edit-modal button {
+    background-color: #1bd4d4;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+

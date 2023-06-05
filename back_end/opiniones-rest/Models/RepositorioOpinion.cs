@@ -13,8 +13,8 @@ namespace Opinion.Repositorio
 
         public RepositorioOpinion()
         {
-            //var connectionString = "mongodb://arso:arso@ac-v8ez3vj-shard-00-00.kzwz6ia.mongodb.net:27017,ac-v8ez3vj-shard-00-01.kzwz6ia.mongodb.net:27017,ac-v8ez3vj-shard-00-02.kzwz6ia.mongodb.net:27017/?ssl=true&replicaSet=atlas-b3t6zg-shard-0&authSource=admin&retryWrites=true&w=majority";
-            var connectionString = "mongodb://mongo:27017";
+            var connectionString = "mongodb://arso:arso@ac-v8ez3vj-shard-00-00.kzwz6ia.mongodb.net:27017,ac-v8ez3vj-shard-00-01.kzwz6ia.mongodb.net:27017,ac-v8ez3vj-shard-00-02.kzwz6ia.mongodb.net:27017/?ssl=true&replicaSet=atlas-b3t6zg-shard-0&authSource=admin&retryWrites=true&w=majority";
+            // var connectionString = "mongodb://mongo:27017";
             var settings = MongoClientSettings.FromConnectionString(connectionString);
             var client = new MongoClient(settings);
             var database = client.GetDatabase("proyecto-arso");

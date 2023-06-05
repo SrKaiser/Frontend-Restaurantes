@@ -1063,11 +1063,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kaiser\\Documents\\GitHub\\Proyecto ArSo\\proyecto-arso\\opiniones-rest\\opiniones-rest.csproj",
+      "projectUniqueName": "C:\\Users\\Kaiser\\Documents\\GitHub\\proyecto-daw\\back_end\\opiniones-rest\\opiniones-rest.csproj",
       "projectName": "opiniones-rest",
-      "projectPath": "C:\\Users\\Kaiser\\Documents\\GitHub\\Proyecto ArSo\\proyecto-arso\\opiniones-rest\\opiniones-rest.csproj",
+      "projectPath": "C:\\Users\\Kaiser\\Documents\\GitHub\\proyecto-daw\\back_end\\opiniones-rest\\opiniones-rest.csproj",
       "packagesPath": "C:\\Users\\Kaiser\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kaiser\\Documents\\GitHub\\Proyecto ArSo\\proyecto-arso\\opiniones-rest\\obj\\",
+      "outputPath": "C:\\Users\\Kaiser\\Documents\\GitHub\\proyecto-daw\\back_end\\opiniones-rest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kaiser\\AppData\\Roaming\\NuGet\\NuGet.Config"
