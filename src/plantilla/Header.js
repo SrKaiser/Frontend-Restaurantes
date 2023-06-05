@@ -10,20 +10,16 @@ const Header = ({ isAuthenticated }) => {
             <nav>
                 <ul>
                     <li>
-                        <Link to ="/">Inicio</Link>
+                        <Link to="/">Inicio</Link>
                     </li>
                     {isAuthenticated && (
                     <li>
-                        <li>
-                            <Link to="/altaRestaurante" >Alta Restaurante</Link>    
-                        </li>
+                        <Link to="/altaRestaurante" >Alta Restaurante</Link>
                     </li>
                     )}
                     {isAuthenticated && (
                     <li>
-                        <li>
-                            <Link to="/restaurantes" >Lista de Restaurantes</Link>
-                        </li>
+                        <Link to="/restaurantes" >Lista de Restaurantes</Link>
                     </li>
                     )}
                 </ul>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./AltaRestaurante.css";
 
 const AltaRestaurante = () => {
@@ -10,26 +9,30 @@ const AltaRestaurante = () => {
     const [longitud, setLongitud] = useState("");
   
     const enviarDatos = async () => {
-      try {
-        const response = await axios.post("/api/restaurantes", {
-          nombre,
-          fechaAlta,
-          ciudad,
-          coordenadas: `${latitud},${longitud}`,
-        });
-
-      if (response.status === 200) {
-        alert("Restaurante añadido con éxito");
-        setNombre("");
-        setFechaAlta("");
-        setCiudad("");
-        setLatitud("");
-        setLongitud("");
-      }
-    } catch (error) {
-      console.error("Hubo un error al añadir el restaurante", error);
-    }
-  };
+      fetch(`http://localhost:8090/restaurantes/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: nombre,
+          latitud: latitud,
+          longitud: longitud
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("Restaurante añadido con éxito");
+          setNombre("");
+          setFechaAlta("");
+          setCiudad("");
+          setLatitud("");
+          setLongitud("");
+        } else {
+          throw new Error(`Error al añadir crear el restaurante: ${response.status}`);
+        }
+      });
+    };
 
   return (
     <div className="container">

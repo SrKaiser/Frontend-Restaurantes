@@ -1,30 +1,40 @@
-import React, { useEffect } from 'react';
-import Cookies from 'js-cookie';
+import React, {useEffect} from 'react';
 import './Inicio.css';
 
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 const Inicio = ({ isAuthenticated, setIsAuthenticated }) => {
-    
-    // El código para obtener el token de la cookie se coloca aquí
+
     useEffect(() => {
-        // Obtiene el token de la cookie
-        const token = Cookies.get('jwt');
-
-        if (token) {
-            // Almacena el token en el localStorage del navegador
-            localStorage.setItem('token', token);
-            console.log(token);
-
-            // Establece el estado de autenticación a verdadero
+        fetch('http://localhost:8090/login/oauth2/code/github', {
+            credentials: 'include' // Incluir cookies en la solicitud
+        })
+        .then((response) => {
+            // Aquí vamos a verificar la respuesta antes de procesarla
+            if (!response.ok) {
+                throw new Error('Error de autenticación');
+            }
+            const user = getCookie('user');
+            const role = getCookie('role');
+            
+            console.log('User:', user);
+            console.log('Role:', role);
             setIsAuthenticated(true);
-        }
-    }, [setIsAuthenticated]); // Ejecuta solo cuando se carga el componente
+            return response;
+        }) 
+        .catch((error) => {
+            console.error('Ha habido un error:', error);
+        });
+    }, []);
+
 
     const handleLogin = () => {
-        setIsAuthenticated(true);
-    }
-
-    const handleLogout = () => {
-        setIsAuthenticated(false);
+        window.location = "http://localhost:8090/oauth2/authorization/github";
+        
     }
 
     return (
@@ -36,7 +46,8 @@ const Inicio = ({ isAuthenticated, setIsAuthenticated }) => {
                 {!isAuthenticated ?
                     <button onClick={handleLogin} className="loginButton">Iniciar Sesión</button>
                     :
-                    <button onClick={handleLogout} className="loginButton">Cerrar Sesión</button>
+                    <button onClick={() => setIsAuthenticated(false)} className="loginButton">Cerrar Sesión</button>
+
                 }
             </div>
         </div>
