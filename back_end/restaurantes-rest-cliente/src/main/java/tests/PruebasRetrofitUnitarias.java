@@ -29,33 +29,33 @@ public class PruebasRetrofitUnitarias {
 
 	@Test
     public void pruebaCrearRestaurante() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia"));
         assertNotNull(idRestaurante);
         servicioRetrofit.borrarRestaurante(idRestaurante);
     }
 	
 	@Test
 	public void pruebaCrearRestauranteSinNombre() {
-	    String response = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("", 10.0, 20.0));
+	    String response = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("", 10.0, 20.0, "Murcia"));
 	    assertNull(response);
 	}
 
 	@Test
 	public void pruebaCrearRestauranteLatitudFueraDeRango() {
-		String response = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 100.0, 20.0));
+		String response = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 100.0, 20.0, "Murcia"));
 	    assertNull(response);
 	}
 
 	@Test
 	public void pruebaCrearRestauranteLongitudFueraDeRango() {
-		String response = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 200.0));
+		String response = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 200.0, "Murcia"));
 	    assertNull(response);
 	}
 
 	
 	@Test
     public void pruebaObtenerRestaurante() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia"));
         Restaurante restaurante = servicioRetrofit.obtenerRestaurante(idRestaurante);
         assertEquals("Prueba", restaurante.getNombre());  
         assertEquals(10.0, restaurante.getLatitud(), 0.001); 
@@ -73,8 +73,8 @@ public class PruebasRetrofitUnitarias {
 	
 	@Test
     public void pruebaActualizarRestaurante() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
-        SolicitudRestaurante restauranteActualizado = new SolicitudRestaurante("PruebaActualizada", 20.0, 30.0);
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia"));
+        SolicitudRestaurante restauranteActualizado = new SolicitudRestaurante("PruebaActualizada", 20.0, 30.0, "Murcia");
         servicioRetrofit.updateRestaurante(idRestaurante, restauranteActualizado);
         Restaurante restaurante = servicioRetrofit.obtenerRestaurante(idRestaurante);
         assertEquals("PruebaActualizada", restaurante.getNombre());  
@@ -87,14 +87,14 @@ public class PruebasRetrofitUnitarias {
 	@Test
 	public void pruebaActualizarRestauranteNoExistente() {
 	    String idRestauranteNoExistente = "id_no_existente";
-	    SolicitudRestaurante actualizacionRestaurante = new SolicitudRestaurante("Prueba", 10.0, 20.0);
+	    SolicitudRestaurante actualizacionRestaurante = new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia");
 	    boolean response = servicioRetrofit.updateRestaurante(idRestauranteNoExistente, actualizacionRestaurante);
 	    assertFalse(response);
 	}
 	
 	@Test
     public void pruebaObtenerSitiosTuristicos() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("McDonalds",  37.25241153058483, -3.6102678802605594));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("McDonalds",  37.25241153058483, -3.6102678802605594, "Murcia"));
         List<SitioTuristico> sitios = servicioRetrofit.obtenerSitiosTuristicosCercanos(idRestaurante);
         assertNotNull(sitios);
         assertFalse(sitios.isEmpty());
@@ -110,7 +110,7 @@ public class PruebasRetrofitUnitarias {
 	
 	@Test
     public void pruebaEstablecerSitiosTuristicos() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("McDonalds",  37.25241153058483, -3.6102678802605594));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("McDonalds",  37.25241153058483, -3.6102678802605594, "Murcia"));
         List<SitioTuristico> sitios = servicioRetrofit.obtenerSitiosTuristicosCercanos(idRestaurante);
         servicioRetrofit.setSitiosTuristicosDestacados(idRestaurante, sitios);
         
@@ -132,7 +132,7 @@ public class PruebasRetrofitUnitarias {
 	
 	@Test
     public void pruebaAddPlato() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia"));
         Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5, true);
         servicioRetrofit.addPlato(idRestaurante, nuevoPlato);
         
@@ -155,7 +155,7 @@ public class PruebasRetrofitUnitarias {
 
 	@Test
     public void pruebaActualizarPlato() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia"));
         Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5, true);
         servicioRetrofit.addPlato(idRestaurante, nuevoPlato);
         Plato platoActualizado = new Plato("Plato 1", "Descripción actualizada", 15.0, true);
@@ -179,7 +179,7 @@ public class PruebasRetrofitUnitarias {
 
 	@Test
     public void pruebaBorrarPlato() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia"));
         Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5, true);
         servicioRetrofit.addPlato(idRestaurante, nuevoPlato);
         servicioRetrofit.removePlato(idRestaurante, "Plato 1");
@@ -201,8 +201,8 @@ public class PruebasRetrofitUnitarias {
 
 	@Test
     public void pruebaListarRestaurantes() {
-        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
-        String idRestaurante2 = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba 2", 50.0, 70.0));
+        String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0, "Murcia"));
+        String idRestaurante2 = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba 2", 50.0, 70.0, "Murcia"));
         List<ResumenRestaurante> restaurantes = servicioRetrofit.listarRestaurantes();
         
         assertNotNull(restaurantes);

@@ -15,6 +15,8 @@ public class Restaurante {
 	private double latitud;
 	@JsonProperty("longitud")
 	private double longitud;
+	@JsonProperty("ciudad")
+	private String ciudad;
 	@JsonProperty("sitiosTuristicos")
 	private List<SitioTuristico> sitiosTuristicos;
 	@JsonProperty("platos")
@@ -140,6 +142,14 @@ public class Restaurante {
 
 	public void setOpinionId(String opinionId) {
 		this.opinionId = opinionId;
+	}
+	
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
 	@Override

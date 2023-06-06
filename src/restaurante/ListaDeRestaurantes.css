@@ -6,76 +6,106 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    padding: 0 20px; /* añade un poco de espacio en los lados para evitar que la tabla toque los bordes de la ventana */
-}
 
-.filters-container {
+  }
+
+  h3 {
+    margin-left: 107px;
+  }
+  
+  
+  .filters-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column; /* Cambio a columna para tener los elementos uno debajo del otro */
     justify-content: center;
+    align-items: flex-start; /* Alineación al inicio para respetar el alineamiento de cada elemento individual */
+    width: 100%;
     margin-bottom: 20px;
-}
+    padding: 10px; /* Espacio adicional para los elementos interiores */
+  }
   
-.filter-inputs {
-    margin: 0 10px;
-}
+  .filter-inputs {
+    width: 100%; /* Uso del espacio completo */
+  }
   
-.filter-inputs label {
-    margin-right: 10px;
-}
+  .filter-inputs .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribución del espacio entre los elementos */
+    margin-bottom: 10px;
+    padding-inline: 100px;
+  }
   
-.filter-inputs input {
+  .filter-inputs .row label {
+    margin-left: 10px;
+    width: 150px; /* Ancho fijo para las etiquetas */
+    text-align: left; /* Alineación a la izquierda */
+  }
+  
+  .filter-inputs input,
+  .filter-inputs select {
+    flex-grow: 1; /* Uso del espacio restante */
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
-}
-
-.filter-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 24px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  transition-duration: 0.4s;
-  border: none;
-  margin-left: 10px;
-}
-
-.filter-button:hover {
-  background-color: white;
-  color: black;
-  border: 2px solid #4CAF50;
-}
-
-.table-container {
+  }
+  
+  .range-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .range-value {
+    margin-left: 10px;
+  }
+  
+  .filter-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 24px;
+    text-align: end;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border: none;
+    margin-left: 10px;
+  }
+  
+  .filter-button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+  }
+  
+  .table-container {
     overflow-x: auto;
     max-width: 100%;
-}
-
-.table {
+  }
+  
+  .table {
     width: 1000px;
     border-collapse: collapse;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.table th, .table td {
+  }
+  
+  .table th,
+  .table td {
     padding: 10px;
     text-align: center;
     border-bottom: 3px solid #ddd;
-}
-
-.table th {
+  }
+  
+  .table th {
     background-color: #273fca;
     color: white;
-}
-
-.button {
+  }
+  
+  .button {
     background-color: #4775d8;
     border: none;
     color: white;
@@ -87,9 +117,9 @@
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-}
-
-.button-delete {
+  }
+  
+  .button-delete {
     background-color: #a51010;
     border: none;
     color: white;
@@ -100,21 +130,21 @@
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-}
-
-.button:hover {
-    background-color: white; 
-    color: black; 
-   border: 2px solid #36aec4; 
-}
-
-.button-delete:hover {
-    background-color: white; 
-    color: black; 
+  }
+  
+  .button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #36aec4;
+  }
+  
+  .button-delete:hover {
+    background-color: white;
+    color: black;
     border: 2px solid #a51010;
-}
-
-.button-wide {
+  }
+  
+  .button-wide {
     width: 200px;
   }
   

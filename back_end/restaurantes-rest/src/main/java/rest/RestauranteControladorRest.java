@@ -90,6 +90,7 @@ public class RestauranteControladorRest {
     	String nombre = nuevoRestaurante.getNombre();
         double latitud = nuevoRestaurante.getLatitud();
         double longitud = nuevoRestaurante.getLongitud();
+        String ciudad = nuevoRestaurante.getCiudad();
     	
         String idGestor;
         if (this.securityContext.getUserPrincipal() == null)
@@ -97,7 +98,7 @@ public class RestauranteControladorRest {
         else idGestor = this.securityContext.getUserPrincipal().getName();
         String id;
         try {
-            id = servicioRestaurante.altaRestaurante(nombre, latitud, longitud, idGestor);
+            id = servicioRestaurante.altaRestaurante(nombre, latitud, longitud, ciudad, idGestor);
         } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Solicitud incorrecta").build();
         }
@@ -130,10 +131,11 @@ public class RestauranteControladorRest {
         String nombre = actualizacionRestaurante.getNombre();
         double latitud = actualizacionRestaurante.getLatitud();
         double longitud = actualizacionRestaurante.getLongitud();
+        String ciudad = actualizacionRestaurante.getCiudad();
 
         boolean updated;
 		try {
-			updated = servicioRestaurante.actualizarRestaurante(id, nombre, latitud, longitud);
+			updated = servicioRestaurante.actualizarRestaurante(id, nombre, latitud, longitud, ciudad);
 			return Response.status(Response.Status.OK).entity(updated).build();
 		} catch (RepositorioException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("ID no válido").build();

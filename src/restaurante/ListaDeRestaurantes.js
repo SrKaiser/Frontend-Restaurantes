@@ -11,6 +11,18 @@ const getCookie = (name) => {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+  var R = 6371; // Radio de la tierra en KM
+  var dLat = (lat2 - lat1) * Math.PI / 180;
+  var dLon = (lon2 - lon1) * Math.PI / 180;
+  var a =
+    0.5 - Math.cos(dLat) / 2 +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * (1 - Math.cos(dLon)) / 2;
+
+  return R * 2 * Math.asin(Math.sqrt(a));
+}
+
+
 function ListaDeRestaurantes() {
   const navigate = useNavigate();
 
@@ -216,6 +228,7 @@ function ListaDeRestaurantes() {
         nombre: editNombre,
         latitud: editLatitud,
         longitud: editLongitud,
+        ciudad: editCiudad,
       }),
     }).then(response => {
       if (response.ok) {
@@ -237,255 +250,370 @@ function ListaDeRestaurantes() {
         .then(response => response.json())
         .then(restaurante => {
           const opinionId = restaurante.opinionId;
-          console.log(opinionId);
-  
+
           // Borrar la opinion
           fetch(`http://localhost:8090/opiniones/${opinionId}`, {
             method: 'DELETE',
           })
-          .then(response => {
-            if (response.ok) {
-              // Borrar el restaurante
-              fetch(`http://localhost:8090/restaurantes/${restauranteId}`, {
-                method: 'DELETE',
-              })
-              .then(response => {
-                if (response.ok) {
-                  // Actualizar la lista de restaurantes si la eliminación fue exitosa
-                  const updatedRestaurantes = restaurantes.filter((restaurante) => restaurante.id !== restauranteId);
-                  setRestaurantes(updatedRestaurantes);
-                  alert("Restaurante y sus opiniones eliminadas con éxito");
-                } else {
-                  throw new Error(`Error al eliminar el restaurante: ${response.status}`);
-                }
-              }); 
-            } else {
-              throw new Error(`Error al eliminar la opinion: ${response.status}`);
-            }
-          }); 
+            .then(response => {
+              if (response.ok) {
+                // Borrar el restaurante
+                fetch(`http://localhost:8090/restaurantes/${restauranteId}`, {
+                  method: 'DELETE',
+                })
+                  .then(response => {
+                    if (response.ok) {
+                      // Actualizar la lista de restaurantes si la eliminación fue exitosa
+                      const updatedRestaurantes = restaurantes.filter((restaurante) => restaurante.id !== restauranteId);
+                      setRestaurantes(updatedRestaurantes);
+                      alert("Restaurante y sus opiniones eliminadas con éxito");
+                    } else {
+                      throw new Error(`Error al eliminar el restaurante: ${response.status}`);
+                    }
+                  });
+              } else {
+                throw new Error(`Error al eliminar la opinion: ${response.status}`);
+              }
+            });
         });
     } catch (error) {
       console.error('Ha habido un error:', error);
     }
   };
-  
 
 
-      /* Para controlar los inputs de la filtración */
-      const [filtroNombre, setFiltroNombre] = useState('');
-      const [nombreParcial, setNombreParcial] = useState('');
-      const handleNombreParcialChange = (event) => {
-        setNombreParcial(event.target.value);
-      };
-      const handleFiltroClick = () => {
-        setFiltroNombre(nombreParcial);
-      };
 
-      /* Para filtrar los restaurantes */
-      const restaurantesFiltrados = restaurantes.filter((restaurante) => {
+  /* Para controlar los inputs de la filtración */
+  const [filtroNombre, setFiltroNombre] = useState('');
+  const [nombreParcial, setNombreParcial] = useState('');
 
-        // Filtro por nombre parcial
-        if (filtroNombre && !restaurante.nombre.includes(filtroNombre)) {
-          return false;
-        }
+  const [filtroCiudad, setFiltroCiudad] = useState('');
+  const [ciudadParcial, setCiudadParcial] = useState('');
 
-        return true;
-      });
+  const [filtroValoracion, setFiltroValoracion] = useState(0);
+  const [valoracionParcial, setValoracionParcial] = useState(0);
 
-      return (
-        <div className="container">
-          <h3 > Búsqueda por filtros </h3>
-          <div className="filters-container">
-            <div className="filter-inputs">
-              <label htmlFor="nombre-parcial-input">Nombre: </label>
+  const [busquedaLatitud, setBusquedaLatitud] = useState(0);
+  const [busquedaLongitud, setBusquedaLongitud] = useState(0);
+  const [busquedaRadio, setBusquedaRadio] = useState(0);
+
+  const [filtroLatitud, setFiltroLatitud] = useState(0);
+  const [filtroLongitud, setFiltroLongitud] = useState(0);
+  const [filtroRadio, setFiltroRadio] = useState(0);
+
+
+  const handleNombreParcialChange = (event) => {
+    setNombreParcial(event.target.value);
+  };
+
+  const handleCiudadParcialChange = (event) => {
+    setCiudadParcial(event.target.value);
+  };
+
+  const handleValoracionChange = (event) => {
+    setValoracionParcial(Number(event.target.value));
+  };
+
+
+  const handleFiltroClick = () => {
+    setFiltroNombre(nombreParcial);
+    setFiltroCiudad(ciudadParcial);
+    setFiltroValoracion(valoracionParcial);
+
+    // Solo se aplica el filtro si los tres campos están llenos
+    if (busquedaLatitud !== 0 && busquedaLongitud !== 0 && busquedaRadio !== 0) {
+      setFiltroLatitud(busquedaLatitud);
+      setFiltroLongitud(busquedaLongitud);
+      setFiltroRadio(busquedaRadio);
+    } else if (busquedaLatitud === 0 && busquedaLongitud === 0 && busquedaRadio === 0) {
+      setFiltroLatitud(0);
+      setFiltroLongitud(0);
+      setFiltroRadio(0);
+    } else {
+      // Si no, resetea el filtro de ubicación
+      alert("Si quieres filtrar por coordenadas, por favor, rellena los 3 campos necesarios, de lo contrario no funcionará");
+      setFiltroLatitud(0);
+      setFiltroLongitud(0);
+      setFiltroRadio(0);
+    }
+  };
+
+  // Obtiene una lista de todas las ciudades, sin duplicados
+  const ciudades = [...new Set(restaurantes.map((restaurante) => restaurante.ciudad))];
+
+  /* Para filtrar los restaurantes */
+  const restaurantesFiltrados = restaurantes.filter((restaurante) => {
+
+    // Filtro por nombre parcial
+    if (filtroNombre && !restaurante.nombre.includes(filtroNombre)) {
+      return false;
+    }
+
+    // Filtro por ciudad
+    if (filtroCiudad && restaurante.ciudad !== filtroCiudad) {
+      return false;
+    }
+
+    // Filtro por valoración
+    if (restaurante.calificacionMedia < filtroValoracion) {
+      return false;
+    }
+
+    // Filtro por ubicación
+    if (filtroRadio > 0 && calcularDistancia(filtroLatitud, filtroLongitud, restaurante.latitud, restaurante.longitud) > filtroRadio) {
+      return false;
+    }
+
+    return true;
+  });
+
+  return (
+    <div className="container">
+      <h3 > Búsqueda por filtros </h3>
+      <div className="container">
+        <div className="filters-container">
+          <div className="filter-inputs">
+            <div className="row">
+              <label htmlFor="nombre-parcial-input">Nombre:</label>
               <input
                 id="nombre-parcial-input"
                 type="text"
                 value={nombreParcial}
                 onChange={handleNombreParcialChange}
               />
+              <label htmlFor="filtro-ciudad-input">Ciudad:</label>
+              <select id="filtro-ciudad-input" value={ciudadParcial} onChange={handleCiudadParcialChange}>
+                <option value="">Todas</option>
+                {ciudades.map((ciudad, index) => (
+                  <option key={index} value={ciudad}>{ciudad}</option>
+                ))}
+              </select>
+              <label htmlFor="filtro-valoracion-input">Valoración mínima:</label>
+              <div className="range-container">
+                <input
+                  id="filtro-valoracion-input"
+                  type="range"
+                  min="0"
+                  max="10"
+                  step="1"
+                  value={valoracionParcial}
+                  onChange={handleValoracionChange}
+                />
+                <span className="range-value">{valoracionParcial}</span>
+              </div>
+            </div>
+            <h3>Filtro por coordenadas</h3>
+            <div className="row">
+              <label htmlFor="busqueda-latitud-input">Latitud de búsqueda:</label>
+              <input
+                id="busqueda-latitud-input"
+                type="number"
+                value={busquedaLatitud}
+                onChange={event => setBusquedaLatitud(Number(event.target.value))}
+              />
+              <label htmlFor="busqueda-longitud-input">Longitud de búsqueda:</label>
+              <input
+                id="busqueda-longitud-input"
+                type="number"
+                value={busquedaLongitud}
+                onChange={event => setBusquedaLongitud(Number(event.target.value))}
+              />
+              <label htmlFor="busqueda-radio-input">Radio de búsqueda (Km):</label>
+              <input
+                id="busqueda-radio-input"
+                type="number"
+                value={busquedaRadio}
+                onChange={event => setBusquedaRadio(Number(event.target.value))}
+              />
+            </div>
+            <div className="row">
               <button className="filter-button" onClick={handleFiltroClick}>Filtrar</button>
             </div>
           </div>
-          <div className="table-container">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Calificación</th>
-                  <th>Sitios Turísticos</th>
-                  <th>Opiniones</th>
-                  <th>Platos</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {restaurantesFiltrados.map((restaurante, index) => (
-                  <tr key={index}>
-                    <td>{restaurante.nombre}</td>
-                    <td>{restaurante.calificacionMedia}</td>
-                    <td>
-                      <button className="button button-wide" onClick={() => navigate(`/sitios-turisticos?id=${restaurante.id}`)}>
-                        <MdPlace /> Ver Sitios Turísticos
-                      </button>
-                      <button className="button button-wide" onClick={() => { setAddSiteModalVisible(true); setIdRestaurante(restaurante.id); }}>
-                        <MdAddLocation /> Añadir Sitios Turísticos
-                      </button>
-                    </td>
-                    <td>
-                      <button className="button button-wide" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
-                        <MdRemoveRedEye /> Ver Opiniones
-                      </button>
-                      <button className="button button-wide" onClick={() => {
-                        setOpinionModalVisible(true);
-                        setIdRestaurante(restaurante.id);
-                      }}>
-                        <MdRateReview /> Crear Opinión
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="button button-wide"
-                        onClick={() => navigate(`/platos?id=${restaurante.id}`)}
-                      >
-                        <MdLocalDining /> Ver Platos
-                      </button>
-                      <button className="button button-wide" onClick={() => { setcreateModalVisiblePlato(true); setIdRestaurante(restaurante.id); }}>
-                        <MdRestaurant /> Crear plato
-                      </button>
-                    </td>
-                    <td>
-                      <button className="button-edit" onClick={() => {
-                        setSelectedRestaurante(restaurante);
-                        setEditNombre(restaurante.nombre);
-                        setEditLatitud(restaurante.latitud);
-                        setEditLongitud(restaurante.longitud);
-                        setEditModalVisible(true);
-                      }}><MdEdit /></button>
-                      <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
-                        <MdDelete />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          {addSiteModalVisible && (
-            <div className="edit-modal-overlay">
-              <div className="edit-modal">
-                <h2>Añadir Sitios Turísticos</h2>
-                <label>
-                  Radio de búsqueda en kilómetros:
-                  <input type="number" value={radio} onChange={event => setRadio(event.target.value)} />
-                </label>
-                <label>
-                  Máxima cantidad de Sitios Turísticos:
-                  <input type="number" value={maximoSitios} onChange={event => setMaximoSitios(event.target.value)} />
-                </label>
-                <p></p>
-                <button className="button" onClick={() => handleAddSite(idRestaurante)}>Añadir</button>
-                <button className="button" onClick={() => {
-                  setRadio(0);
-                  setMaximoSitios(0);
-                  setAddSiteModalVisible(false);
-                }}>Cancelar</button>
-              </div>
-            </div>
-          )}
-          {opinionModalVisible && (
-            <div className="edit-modal-overlay">
-              <div className="edit-modal">
-                <h2>Nueva Valoración</h2>
-                <div className="star-rating">
-                  <StarRatings
-                    rating={rating}
-                    starRatedColor="gold"
-                    changeRating={changeRating}
-                    numberOfStars={10}
-                    name="rating"
-                    starDimension="25px"
-                    starSpacing="5px"
-                    starHoverColor="gold"
-                    starEmptyColor="gray"
-                    half={true}
-                  />
-                </div>
-                <textarea
-                  rows="10"
-                  cols="70"
-                  placeholder="Escribe tu opinión aquí..."
-                  value={opinionText}
-                  onChange={(event) => setOpinionText(event.target.value)}
-                />
-                <p></p>
-                <button className="button" onClick={handleOpinion}>Valorar</button>
-                <button className="button" onClick={() => {
-                  setOpinionText("");
-                  setRating(0);
-                  setOpinionModalVisible(false);
-                }}>Cancelar</button>
-              </div>
-            </div>
-          )}
-
-          {createModalVisiblePlato && (
-            <div className="edit-modal-overlay">
-              <div className="edit-modal">
-                <h2>Crear un nuevo plato</h2>
-                <label>
-                  Nombre:
-                  <input type="text" name="nombre" value={nombre} onChange={event => setNombre(event.target.value)} />
-                </label>
-                <label>
-                  Descripción:
-                  <textarea name="descripcion" value={descripcion} onChange={event => setDescripcion(event.target.value)} />
-                </label>
-                <label>
-                  Precio:
-                  <input type="number" name="precio" value={precio} onChange={event => setPrecio(event.target.value)} />
-                </label>
-                <label>
-                  Disponibilidad:
-                  <select name="disponibilidad" value={disponibilidad} onChange={event => setDisponibilidad(event.target.value === 'true')}>
-                    <option value={true}>Disponible</option>
-                    <option value={false}>No disponible</option>
-                  </select>
-                </label>
-                <p></p>
-                <button className="button" onClick={handleCreatePlato}>Crear</button>
-                <button className="button" onClick={handleCreatePlatoClose}>Cancelar</button>
-              </div>
-            </div>
-          )}
-          {editModalVisible && (
-            <div className="edit-modal-overlay">
-              <div className="edit-modal">
-                <h2>Editar Restaurante</h2>
-                <label>
-                  Nombre:
-                  <input type="text" name="nombre" value={editNombre} onChange={event => setEditNombre(event.target.value)} />
-                </label>
-                <label>
-                  Ciudad:
-                  <input type="text" name="latitud" value={editCiudad} onChange={event => setEditCiudad(event.target.value)} />
-                </label>
-                <label>
-                  Latitud:
-                  <input type="text" name="latitud" value={editLatitud} onChange={event => setEditLatitud(event.target.value)} />
-                </label>
-                <label>
-                  Longitud:
-                  <input type="text" name="longitud" value={editLongitud} onChange={event => setEditLongitud(event.target.value)} />
-                </label>
-                <p></p>
-                <button className="button" onClick={handleEdit}>Guardar Cambios</button>
-                <button className="button" onClick={() => setEditModalVisible(false)}>Cancelar</button>
-              </div>
-            </div>
-          )}
         </div>
-      );
-    }
+      </div>
 
-              export default ListaDeRestaurantes;
+
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Calificación</th>
+              <th>Sitios Turísticos</th>
+              <th>Opiniones</th>
+              <th>Platos</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {restaurantesFiltrados.map((restaurante, index) => (
+              <tr key={index}>
+                <td>{restaurante.nombre}</td>
+                <td>{restaurante.calificacionMedia}</td>
+                <td>
+                  <button className="button button-wide" onClick={() => navigate(`/sitios-turisticos?id=${restaurante.id}`)}>
+                    <MdPlace /> Ver Sitios Turísticos
+                  </button>
+                  <button className="button button-wide" onClick={() => { setAddSiteModalVisible(true); setIdRestaurante(restaurante.id); }}>
+                    <MdAddLocation /> Añadir Sitios Turísticos
+                  </button>
+                </td>
+                <td>
+                  <button className="button button-wide" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
+                    <MdRemoveRedEye /> Ver Opiniones
+                  </button>
+                  <button className="button button-wide" onClick={() => {
+                    setOpinionModalVisible(true);
+                    setIdRestaurante(restaurante.id);
+                  }}>
+                    <MdRateReview /> Crear Opinión
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="button button-wide"
+                    onClick={() => navigate(`/platos?id=${restaurante.id}`)}
+                  >
+                    <MdLocalDining /> Ver Platos
+                  </button>
+                  <button className="button button-wide" onClick={() => { setcreateModalVisiblePlato(true); setIdRestaurante(restaurante.id); }}>
+                    <MdRestaurant /> Crear plato
+                  </button>
+                </td>
+                <td>
+                  <button className="button-edit" onClick={() => {
+                    setSelectedRestaurante(restaurante);
+                    setEditNombre(restaurante.nombre);
+                    setEditLatitud(restaurante.latitud);
+                    setEditLongitud(restaurante.longitud);
+                    setEditCiudad(restaurante.ciudad);
+                    setEditModalVisible(true);
+                  }}><MdEdit /></button>
+                  <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
+                    <MdDelete />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {addSiteModalVisible && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Añadir Sitios Turísticos</h2>
+            <label>
+              Radio de búsqueda en kilómetros:
+              <input type="number" value={radio} onChange={event => setRadio(event.target.value)} />
+            </label>
+            <label>
+              Máxima cantidad de Sitios Turísticos:
+              <input type="number" value={maximoSitios} onChange={event => setMaximoSitios(event.target.value)} />
+            </label>
+            <p></p>
+            <button className="button" onClick={() => handleAddSite(idRestaurante)}>Añadir</button>
+            <button className="button" onClick={() => {
+              setRadio(0);
+              setMaximoSitios(0);
+              setAddSiteModalVisible(false);
+            }}>Cancelar</button>
+          </div>
+        </div>
+      )}
+      {opinionModalVisible && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Nueva Valoración</h2>
+            <div className="star-rating">
+              <StarRatings
+                rating={rating}
+                starRatedColor="gold"
+                changeRating={changeRating}
+                numberOfStars={10}
+                name="rating"
+                starDimension="25px"
+                starSpacing="5px"
+                starHoverColor="gold"
+                starEmptyColor="gray"
+                half={true}
+              />
+            </div>
+            <textarea
+              rows="10"
+              cols="70"
+              placeholder="Escribe tu opinión aquí..."
+              value={opinionText}
+              onChange={(event) => setOpinionText(event.target.value)}
+            />
+            <p></p>
+            <button className="button" onClick={handleOpinion}>Valorar</button>
+            <button className="button" onClick={() => {
+              setOpinionText("");
+              setRating(0);
+              setOpinionModalVisible(false);
+            }}>Cancelar</button>
+          </div>
+        </div>
+      )}
+
+      {createModalVisiblePlato && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Crear un nuevo plato</h2>
+            <label>
+              Nombre:
+              <input type="text" name="nombre" value={nombre} onChange={event => setNombre(event.target.value)} />
+            </label>
+            <label>
+              Descripción:
+              <textarea name="descripcion" value={descripcion} onChange={event => setDescripcion(event.target.value)} />
+            </label>
+            <label>
+              Precio:
+              <input type="number" name="precio" value={precio} onChange={event => setPrecio(event.target.value)} />
+            </label>
+            <label>
+              Disponibilidad:
+              <select name="disponibilidad" value={disponibilidad} onChange={event => setDisponibilidad(event.target.value === 'true')}>
+                <option value={true}>Disponible</option>
+                <option value={false}>No disponible</option>
+              </select>
+            </label>
+            <p></p>
+            <button className="button" onClick={handleCreatePlato}>Crear</button>
+            <button className="button" onClick={handleCreatePlatoClose}>Cancelar</button>
+          </div>
+        </div>
+      )}
+      {editModalVisible && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Editar Restaurante</h2>
+            <label>
+              Nombre:
+              <input type="text" name="nombre" value={editNombre} onChange={event => setEditNombre(event.target.value)} />
+            </label>
+            <label>
+              Ciudad:
+              <input type="text" name="ciudad" value={editCiudad} onChange={event => setEditCiudad(event.target.value)} />
+            </label>
+            <label>
+              Latitud:
+              <input type="text" name="latitud" value={editLatitud} onChange={event => setEditLatitud(event.target.value)} />
+            </label>
+            <label>
+              Longitud:
+              <input type="text" name="longitud" value={editLongitud} onChange={event => setEditLongitud(event.target.value)} />
+            </label>
+            <p></p>
+            <button className="button" onClick={handleEdit}>Guardar Cambios</button>
+            <button className="button" onClick={() => setEditModalVisible(false)}>Cancelar</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default ListaDeRestaurantes;

@@ -5,6 +5,7 @@ public class ResumenRestaurante {
 	private String nombre;
 	private double latitud;
 	private double longitud;
+	private String ciudad;
 	private int numeroPlatos;
 	private int numeroSitiosTuristicos;
 	private double calificacionMedia;
@@ -53,6 +54,12 @@ public class ResumenRestaurante {
 		this.calificacionMedia = calificacionMedia;
 	}
 	
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 	@Override
 	public String toString() {
 		return "ResumenRestaurante [id=" + id + ", nombre=" + nombre + ", latitud=" + latitud + ", longitud=" + longitud

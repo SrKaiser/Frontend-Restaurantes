@@ -19,7 +19,7 @@ public class RepositorioRestauranteMemoria implements IRepositorioRestaurante{
 	private final Map<String, Restaurante> restaurantes = new HashMap<>();
 	
 	@Override
-	public String create(String nombre, double latitud, double longitud, String gestorId) {
+	public String create(String nombre, double latitud, double longitud, String ciudad, String gestorId) {
 		UUID uuid = UUID.randomUUID();
 		String id = uuid.toString();
         Restaurante restaurante = new Restaurante(id, nombre, latitud, longitud);
@@ -30,7 +30,7 @@ public class RepositorioRestauranteMemoria implements IRepositorioRestaurante{
 	}
 
 	@Override
-	public boolean update(String idRestaurante, String nombre, double latitud, double longitud) throws EntidadNoEncontrada {
+	public boolean update(String idRestaurante, String nombre, double latitud, double longitud, String ciudad) throws EntidadNoEncontrada {
 		Restaurante restaurante = findById(idRestaurante);
 	    restaurante.setNombre(nombre);
 	    restaurante.setLatitud(latitud);

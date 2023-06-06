@@ -9,6 +9,23 @@ const AltaRestaurante = () => {
     const [longitud, setLongitud] = useState("");
   
     const enviarDatos = async () => {
+      if (!nombre || nombre.trim() === "") {
+        alert("El nombre del restaurante es obligatorio.");
+        return;
+      }
+      if (!ciudad || ciudad.trim() === "") {
+        alert("La ciudad del restaurante es obligatorio.");
+        return;
+      }
+      if (!latitud || latitud <= -90 || latitud >= 90) {
+        alert("La coordenada de latitud del restaurante es obligatorio y debe tener un valor entre -90 y 90.");
+        return;
+      }
+      if (!longitud || longitud <= -180 || longitud >= 180) {
+        alert("La coordenada de longitud del restaurante es obligatorio y debe tener un valor entre -180 y 180.");
+        return;
+      }
+
       fetch(`http://localhost:8090/restaurantes/`, {
         method: 'POST',
         headers: {
@@ -17,7 +34,8 @@ const AltaRestaurante = () => {
         body: JSON.stringify({
           nombre: nombre,
           latitud: latitud,
-          longitud: longitud
+          longitud: longitud,
+          ciudad: ciudad,
         })
       })
       .then(response => {

@@ -163,7 +163,7 @@ public class ServicioRestaurante implements IServicioRestaurante {
     }
 
 	@Override
-	public String altaRestaurante(String nombre, double latitud, double longitud, String idGestor) {
+	public String altaRestaurante(String nombre, double latitud, double longitud, String ciudad, String idGestor) {
 		if (nombre == null || nombre.trim().isEmpty()) {
 			throw new IllegalArgumentException("El nombre no puede ser null o vacío");
 		}
@@ -173,13 +173,16 @@ public class ServicioRestaurante implements IServicioRestaurante {
 		if (longitud < -180 || longitud > 180) {
 			throw new IllegalArgumentException("La longitud debe estar entre -180 y 180");
 		}
+		if (ciudad == null || ciudad.trim().isEmpty()) {
+			throw new IllegalArgumentException("La ciudad no puede ser null o vacío");
+		}
 
-		return repositorioRestaurante.create(nombre, latitud, longitud, idGestor);
+		return repositorioRestaurante.create(nombre, latitud, longitud, ciudad, idGestor);
 
 	}
 
 	@Override
-	public boolean actualizarRestaurante(String idRestaurante, String nombre, double latitud, double longitud)
+	public boolean actualizarRestaurante(String idRestaurante, String nombre, double latitud, double longitud, String ciudad)
 			throws RepositorioException, EntidadNoEncontrada {
 		if (nombre == null || nombre.trim().isEmpty()) {
 			throw new IllegalArgumentException("El nombre no puede ser null o vacío");
@@ -190,7 +193,10 @@ public class ServicioRestaurante implements IServicioRestaurante {
 		if (longitud < -180 || longitud > 180) {
 			throw new IllegalArgumentException("La longitud debe estar entre -180 y 180");
 		}
-		return repositorioRestaurante.update(idRestaurante, nombre, latitud, longitud);
+		if (ciudad == null || ciudad.trim().isEmpty()) {
+			throw new IllegalArgumentException("La ciudad no puede ser null o vacío");
+		}
+		return repositorioRestaurante.update(idRestaurante, nombre, latitud, longitud, ciudad);
 	}
 
 	@Override
