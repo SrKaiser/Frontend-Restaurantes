@@ -1,0 +1,68 @@
+.titulo {
+  text-align: center;
+  font-size: 32px;
+  color: #080808;
+  margin-bottom: 20px;
+}
+
+.opiniones-table {
+  width: 70%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.opiniones-table th,
+.opiniones-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.opiniones-table th {
+  background-color: #273fca;
+  color: white;
+}
+
+.opiniones-table td {
+  background-color: white;
+  color: black;
+}
+
+.edit-button,
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.button-delete {
+  background-color: #a51010;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+.button-delete:disabled {
+  background-color: #888;
+  color: #ccc;
+  padding: 4px 8px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: not-allowed;
+}
+
+
+.button-delete:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #a51010;
+}

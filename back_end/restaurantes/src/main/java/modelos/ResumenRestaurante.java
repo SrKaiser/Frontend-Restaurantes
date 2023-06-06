@@ -6,6 +6,7 @@ public class ResumenRestaurante {
 	private double latitud;
 	private double longitud;
 	private String ciudad;
+	private String fechaAlta;
 	private int numeroPlatos;
 	private int numeroSitiosTuristicos;
 	private double calificacionMedia;
@@ -60,6 +61,14 @@ public class ResumenRestaurante {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+
+	public String getFechaAlta() {
+		return fechaAlta;
+	}
+	public void setFechaAlta(String fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+	
 	@Override
 	public String toString() {
 		return "ResumenRestaurante [id=" + id + ", nombre=" + nombre + ", latitud=" + latitud + ", longitud=" + longitud

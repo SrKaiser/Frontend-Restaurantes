@@ -2,9 +2,6 @@ package servicios;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
@@ -110,19 +107,19 @@ public class ServicioRestaurante implements IServicioRestaurante {
 							JsonObject valoracionObj = obj.getJsonObject("NuevaValoracion");
 							String correoElectronico = valoracionObj.getString("CorreoElectronico");
 							String fechaStr = valoracionObj.getString("Fecha");
-							LocalDateTime fecha;
-							try {
-								DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-								fecha = LocalDateTime.parse(fechaStr, formatter);
-							} catch (DateTimeParseException e) {
-								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-								fecha = LocalDateTime.parse(fechaStr, formatter);
-							}
+//							LocalDateTime fecha;
+//							try {
+//								DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+//								fecha = LocalDateTime.parse(fechaStr, formatter);
+//							} catch (DateTimeParseException e) {
+//								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//								fecha = LocalDateTime.parse(fechaStr, formatter);
+//							}
 
 							int calificacion = valoracionObj.getInt("Calificacion");
 							String comentario = valoracionObj.getString("Comentario");
 
-							Valoracion valoracion = new Valoracion(correoElectronico, fecha, calificacion, comentario);
+							Valoracion valoracion = new Valoracion(correoElectronico, fechaStr, calificacion, comentario);
 
 							EventoNuevaValoracion evento = new EventoNuevaValoracion(idOpinion, valoracion,
 									numValoraciones, calificacionMedia);
@@ -163,7 +160,7 @@ public class ServicioRestaurante implements IServicioRestaurante {
     }
 
 	@Override
-	public String altaRestaurante(String nombre, double latitud, double longitud, String ciudad, String idGestor) {
+	public String altaRestaurante(String nombre, double latitud, double longitud, String ciudad, String fecha, String idGestor) {
 		if (nombre == null || nombre.trim().isEmpty()) {
 			throw new IllegalArgumentException("El nombre no puede ser null o vacío");
 		}
@@ -177,12 +174,12 @@ public class ServicioRestaurante implements IServicioRestaurante {
 			throw new IllegalArgumentException("La ciudad no puede ser null o vacío");
 		}
 
-		return repositorioRestaurante.create(nombre, latitud, longitud, ciudad, idGestor);
+		return repositorioRestaurante.create(nombre, latitud, longitud, ciudad, fecha, idGestor);
 
 	}
 
 	@Override
-	public boolean actualizarRestaurante(String idRestaurante, String nombre, double latitud, double longitud, String ciudad)
+	public boolean actualizarRestaurante(String idRestaurante, String nombre, double latitud, double longitud, String ciudad, String fecha)
 			throws RepositorioException, EntidadNoEncontrada {
 		if (nombre == null || nombre.trim().isEmpty()) {
 			throw new IllegalArgumentException("El nombre no puede ser null o vacío");
@@ -196,7 +193,7 @@ public class ServicioRestaurante implements IServicioRestaurante {
 		if (ciudad == null || ciudad.trim().isEmpty()) {
 			throw new IllegalArgumentException("La ciudad no puede ser null o vacío");
 		}
-		return repositorioRestaurante.update(idRestaurante, nombre, latitud, longitud, ciudad);
+		return repositorioRestaurante.update(idRestaurante, nombre, latitud, longitud, ciudad, fecha);
 	}
 
 	@Override

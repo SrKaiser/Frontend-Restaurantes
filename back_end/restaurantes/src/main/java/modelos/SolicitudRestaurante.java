@@ -5,11 +5,14 @@ public class SolicitudRestaurante {
 	private double latitud;
 	private double longitud;
 	private String ciudad;
+	private String fecha;
 	
-	public SolicitudRestaurante(String nombre, double latitud, double longitud, String ciudad) {
+	public SolicitudRestaurante(String nombre, double latitud, double longitud, String ciudad, String fecha) {
 		this.nombre = nombre;
 		this.latitud = latitud;
 		this.longitud = longitud;
+		this.ciudad = ciudad;
+		this.fecha = fecha;
 	}
 	
 	public SolicitudRestaurante() {}
@@ -45,6 +48,15 @@ public class SolicitudRestaurante {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	
 	
 	
 }

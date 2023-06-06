@@ -15,11 +15,11 @@ public class PruebasBasicas {
 	public static void main(String[] args) throws Exception {
 		IServicioRestaurante serv = FactoriaServicios.getServicio(IServicioRestaurante.class);
 		// Prueba de alta de restaurantes
-		String id = serv.altaRestaurante("Goiko", 40.42039145624014, -3.6996503622016954, "Cartagena", "César");
-		String id2 = serv.altaRestaurante("McDonalds", 37.25241153058483, -3.6102678802605594, "Cartagena", "César");
+		String id = serv.altaRestaurante("Goiko", 40.42039145624014, -3.6996503622016954, "Cartagena", "César", "29-06-2001");
+		String id2 = serv.altaRestaurante("McDonalds", 37.25241153058483, -3.6102678802605594, "Cartagena", "César", "29-06-2001");
 		
 		// Prueba de actualizar restaurante
-		serv.actualizarRestaurante(id, "Burger", 42.347384117579004, -3.699256208170313, "Murcia");
+		serv.actualizarRestaurante(id, "Burger", 42.347384117579004, -3.699256208170313, "Murcia", "24-10-2001");
 		
 		// Prueba de obtener los sitios turisticos próximos de un restaurante
 		System.out.println("Sitios Turisticos:");

@@ -17,6 +17,8 @@ public class Restaurante {
 	private double longitud;
 	@JsonProperty("ciudad")
 	private String ciudad;
+	@JsonProperty("fechaAlta")
+	private String fechaAlta;
 	@JsonProperty("sitiosTuristicos")
 	private List<SitioTuristico> sitiosTuristicos;
 	@JsonProperty("platos")
@@ -150,6 +152,14 @@ public class Restaurante {
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	public String getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(String fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 
 	@Override

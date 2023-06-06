@@ -2,9 +2,11 @@ package servicios;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
@@ -52,65 +54,45 @@ public class ServicioOpinionesRetrofit implements IServicioOpiniones {
 		}
 	}
 
-//	@Override
-//	public List<Valoracion> obtenerValoraciones(String idOpinion) {
-//
-//		Call<ResponseBody> obtenerValoracionesCall = api.obtenerValoraciones(idOpinion);
-//
-//		try {
-//			Response<ResponseBody> response = obtenerValoracionesCall.execute();
-//			System.out.println(response.code());
-//			String responseBody = response.body().string();
-//			System.out.println(responseBody);
-//
-//			JsonReader jsonReader = Json.createReader(new StringReader(responseBody));
-//			JsonArray jsonArray = jsonReader.readArray();
-//			jsonReader.close();
-//
-//			List<Valoracion> valoraciones = new ArrayList<>();
-//			for (int i = 0; i < jsonArray.size(); i++) {
-//				JsonObject jsonObject = jsonArray.getJsonObject(i);
-//				Valoracion valoracion = new Valoracion();
-//
-//				valoracion.setCorreoElectronico(jsonObject.getString("correoElectronico"));
-//
-//				String fechaStr = jsonObject.getString("fecha");
-//				valoracion.setFecha(fecha);
-//
-//				valoracion.setCalificacion(jsonObject.getInt("calificacion"));
-//
-//				valoracion.setComentario(jsonObject.getString("comentario"));
-//
-//				valoraciones.add(valoracion);
-//				return valoraciones;
-//			}
-//			return valoraciones;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//
-//	}
-	
+	@SuppressWarnings("unused")
 	@Override
 	public List<Valoracion> obtenerValoraciones(String idOpinion) {
 
-		Call<List<Valoracion>> obtenerValoracionesCall = api.obtenerValoraciones(idOpinion);
+		Call<ResponseBody> obtenerValoracionesCall = api.obtenerValoraciones(idOpinion);
 
 		try {
-		    Response<List<Valoracion>> response = obtenerValoracionesCall.execute();
-		    System.out.println(response.code());
-		    if(response.body() != null) {
-	            System.out.println(response.body().toString());
-	        }
+			Response<ResponseBody> response = obtenerValoracionesCall.execute();
+			System.out.println(response.code());
+			String responseBody = response.body().string();
+			System.out.println(responseBody);
 
-		    List<Valoracion> valoraciones = response.body();
+			JsonReader jsonReader = Json.createReader(new StringReader(responseBody));
+			JsonArray jsonArray = jsonReader.readArray();
+			jsonReader.close();
 
-		    return valoraciones;
+			List<Valoracion> valoraciones = new ArrayList<>();
+			for (int i = 0; i < jsonArray.size(); i++) {
+				JsonObject jsonObject = jsonArray.getJsonObject(i);
+				Valoracion valoracion = new Valoracion();
+
+				valoracion.setCorreoElectronico(jsonObject.getString("correoElectronico"));
+
+				String fechaStr = jsonObject.getString("fecha");
+				valoracion.setFecha(fechaStr);
+
+				valoracion.setCalificacion(jsonObject.getInt("calificacion"));
+
+				valoracion.setComentario(jsonObject.getString("comentario"));
+
+				valoraciones.add(valoracion);
+				return valoraciones;
+			}
+			return valoraciones;
 		} catch (IOException e) {
-		    e.printStackTrace();
-		    return null;
+			e.printStackTrace();
+			return null;
 		}
 
 	}
+
 }

@@ -40,9 +40,9 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 	}
 
 	@Override
-	public String create(String nombre, double latitud, double longitud, String ciudad, String idGestor) {
-		Document doc = new Document("nombre", nombre).append("latitud", latitud).append("longitud", longitud).append("ciudad", ciudad)
-				.append("idGestor", idGestor);
+	public String create(String nombre, double latitud, double longitud, String ciudad, String fecha, String idGestor) {
+		Document doc = new Document("nombre", nombre).append("latitud", latitud).append("longitud", longitud)
+				.append("ciudad", ciudad).append("fecha", fecha).append("idGestor", idGestor);
 		restauranteCollection.insertOne(doc);
 		ObjectId id = doc.getObjectId("_id");
 		return id.toHexString();
@@ -50,7 +50,7 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 	}
 
 	@Override
-	public boolean update(String idRestaurante, String nombre, double latitud, double longitud, String ciudad)
+	public boolean update(String idRestaurante, String nombre, double latitud, double longitud, String ciudad, String fecha)
 			throws RepositorioException, EntidadNoEncontrada {
 		ObjectId objectId;
 		try {
@@ -61,7 +61,8 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 
 		long updatedCount = restauranteCollection
 				.updateOne(Filters.eq("_id", objectId), Updates.combine(Updates.set("nombre", nombre),
-						Updates.set("latitud", latitud), Updates.set("longitud", longitud), Updates.set("ciudad", ciudad)))
+						Updates.set("latitud", latitud), Updates.set("longitud", longitud), 
+						Updates.set("ciudad", ciudad), Updates.set("fecha", fecha)))
 				.getModifiedCount();
 		
 		if (updatedCount == 0) {
@@ -230,6 +231,7 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 		restaurante.setLatitud(doc.getDouble("latitud"));
 		restaurante.setLongitud(doc.getDouble("longitud"));
 		restaurante.setCiudad(doc.getString("ciudad"));
+	    restaurante.setFechaAlta(doc.getString("fecha"));
 		String idOpinion = doc.getString("idOpinion");
 		if (idOpinion != null)
 		{
@@ -288,6 +290,7 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 		    restaurante.setLatitud(doc.getDouble("latitud"));
 		    restaurante.setLongitud(doc.getDouble("longitud"));
 		    restaurante.setCiudad(doc.getString("ciudad"));
+		    restaurante.setFechaAlta(doc.getString("fecha"));
 		    restaurante.setNumeroValoraciones(doc.getInteger("numeroValoraciones"));
 		    restaurante.setGestorId(doc.getString("idGestor"));
 		    restaurante.setOpinionId(doc.getString("idOpinion"));
@@ -353,6 +356,7 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 				restaurante.setNombre(doc.getString("nombre"));
 				restaurante.setLatitud(doc.getDouble("latitud"));
 				restaurante.setLongitud(doc.getDouble("longitud"));
+				restaurante.setFechaAlta(doc.getString("fecha"));
 				restaurante.setCiudad(doc.getString("ciudad"));
 				if (doc.getDouble("calificacionMedia") != null) {
 					restaurante.setCalificacionMedia(doc.getDouble("calificacionMedia"));

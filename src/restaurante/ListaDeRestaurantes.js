@@ -58,8 +58,18 @@ function ListaDeRestaurantes() {
       return;
     }
 
+    if (radio > 20) {
+      alert("El radio máximo es 20km");
+      return;
+    }
+
     if (!maximoSitios || maximoSitios <= 0) {
       alert("Los sitios máximos es obligatorio y debe ser mayor que 0.");
+      return;
+    }
+
+    if (maximoSitios > 500) {
+      alert("La cantidad máxima de sitios que puedes solicitar es de 500");
       return;
     }
 
@@ -201,8 +211,27 @@ function ListaDeRestaurantes() {
   const [editCiudad, setEditCiudad] = useState("");
   const [editLatitud, setEditLatitud] = useState("");
   const [editLongitud, setEditLongitud] = useState("");
+  const [editFechaAlta, setEditFechaAlta] = useState("");
+
 
   const handleEdit = () => {
+
+    // Verifica si la fecha es válida antes de intentar convertirla en un objeto Date
+    if (!editFechaAlta || editFechaAlta.trim() === "" || isNaN(new Date(editFechaAlta).getTime())) {
+      alert("La fecha de alta del restaurante es obligatoria y debe ser válida.");
+      return;
+    }
+    // Convertir la fecha a un objeto de fecha
+    const fechaObjeto = new Date(editFechaAlta);
+
+    // Obtener los componentes de la fecha
+    const anio = fechaObjeto.getFullYear();
+    const mes = String(fechaObjeto.getMonth() + 1).padStart(2, "0");
+    const dia = String(fechaObjeto.getDate()).padStart(2, "0");
+
+    // Formatear la fecha en el formato deseado
+    const fechaFormateada = `${anio}-${mes}-${dia}`;
+
     if (!editNombre || editNombre.trim() === "") {
       alert("El nombre del restaurante es obligatorio.");
       return;
@@ -219,6 +248,7 @@ function ListaDeRestaurantes() {
       alert("La coordenada de longitud del restaurante es obligatorio y debe tener un valor entre -180 y 180.");
       return;
     }
+
     fetch(`http://localhost:8090/restaurantes/${selectedRestaurante.id}/update-restaurante`, {
       method: 'PUT',
       headers: {
@@ -229,6 +259,7 @@ function ListaDeRestaurantes() {
         latitud: editLatitud,
         longitud: editLongitud,
         ciudad: editCiudad,
+        fecha: fechaFormateada,
       }),
     }).then(response => {
       if (response.ok) {
@@ -483,15 +514,17 @@ function ListaDeRestaurantes() {
                   </button>
                 </td>
                 <td>
-                <button className="button button-wide"> <MdAnnouncement/> Ver Incidencias </button>
+                  <button className="button button-wide"> <MdAnnouncement /> Ver Incidencias </button>
                 </td>
                 <td>
                   <button className="button-edit" onClick={() => {
+                    
                     setSelectedRestaurante(restaurante);
                     setEditNombre(restaurante.nombre);
                     setEditLatitud(restaurante.latitud);
                     setEditLongitud(restaurante.longitud);
                     setEditCiudad(restaurante.ciudad);
+                    setEditFechaAlta(restaurante.fechaAlta);
                     setEditModalVisible(true);
                   }}><MdEdit /></button>
                   <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
@@ -597,6 +630,10 @@ function ListaDeRestaurantes() {
             <label>
               Nombre:
               <input type="text" name="nombre" value={editNombre} onChange={event => setEditNombre(event.target.value)} />
+            </label>
+            <label>
+              Fecha de Alta:
+              <input type="date" name="fechaAlta" value={editFechaAlta} onChange={event => setEditFechaAlta(event.target.value)} />
             </label>
             <label>
               Ciudad:

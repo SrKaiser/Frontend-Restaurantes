@@ -31,9 +31,9 @@ namespace Opinion.Servicio
     {
         private IRepositorioOpinion _repositorioOpinion;
 
-        public ServicioOpinion( IRepositorioOpinion _repositorioOpinion)
+        public ServicioOpinion(IRepositorioOpinion _repositorioOpinion)
         {
-            this._repositorioOpinion =_repositorioOpinion;
+            this._repositorioOpinion = _repositorioOpinion;
         }
 
         public string RegistrarRecurso(string nombreRecurso)
@@ -41,6 +41,7 @@ namespace Opinion.Servicio
             OpinionModelo opinion = new OpinionModelo(nombreRecurso);
             return _repositorioOpinion.Create(opinion);
         }
+
 
         public bool AñadirValoracion(string idOpinion, Valoracion valoracion)
         {
@@ -53,9 +54,9 @@ namespace Opinion.Servicio
                 _repositorioOpinion.Update(opinion);
 
                 // Notificar evento reserva creada
-                        
+
                 // 1. Crear el evento
-            
+
                 EventoNuevaValoracion evento = new EventoNuevaValoracion
                 {
                     IdOpinion = opinion.Id,
@@ -63,7 +64,7 @@ namespace Opinion.Servicio
                     NumValoraciones = opinion.GetNumeroValoraciones(),
                     CalificacionMedia = opinion.GetCalificacionMedia(),
                 };
-                
+
                 // 2. Notificarlo
                 string json = JsonConvert.SerializeObject(evento);
                 JObject jObject = JObject.Parse(json);
@@ -71,11 +72,11 @@ namespace Opinion.Servicio
 
                 return true;
             }
-            
+
             return false;
         }
 
-        
+
         protected void NotificarEvento(JObject evento)
         {
             try
