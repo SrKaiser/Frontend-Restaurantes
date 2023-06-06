@@ -32,14 +32,14 @@ public class PruebasBasicas {
 		serv.establecerSitiosTuristicosDestacados(id, sits);
 		
 		// Prueba de añadir platos a un restaurante
-		serv.añadirPlato(id, new Plato("a", "a", 15));
-		serv.añadirPlato(id, new Plato("b", "b", 15));
+		serv.añadirPlato(id, new Plato("a", "a", 15, true));
+		serv.añadirPlato(id, new Plato("b", "b", 15, true));
 		
 		// Prueba de borrar plato a un restaurante
 		serv.borrarPlato(id, "a");
 		
 		// Prueba de actualizar plato a un restaurante
-		serv.actualizarPlato(id, new Plato("a", "a", 20));
+		serv.actualizarPlato(id, new Plato("a", "a", 20, true));
 		
 		// Prueba de recuperar un restaurante
 		Restaurante rest = serv.recuperarRestaurante(id);
@@ -47,7 +47,7 @@ public class PruebasBasicas {
 		System.out.println(rest);
 		
 		// Prueba de borrar un restaurante
-		serv.añadirPlato(id2, new Plato("a", "a", 15));
+		serv.añadirPlato(id2, new Plato("a", "a", 15, true));
 		serv.borrarRestaurante(id2);
 		
 		// Prueba de recuperar todos los restaurantes

@@ -133,7 +133,7 @@ public class PruebasRetrofitUnitarias {
 	@Test
     public void pruebaAddPlato() {
         String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
-        Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5);
+        Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5, true);
         servicioRetrofit.addPlato(idRestaurante, nuevoPlato);
         
         Restaurante restaurante = servicioRetrofit.obtenerRestaurante(idRestaurante);
@@ -156,9 +156,9 @@ public class PruebasRetrofitUnitarias {
 	@Test
     public void pruebaActualizarPlato() {
         String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
-        Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5);
+        Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5, true);
         servicioRetrofit.addPlato(idRestaurante, nuevoPlato);
-        Plato platoActualizado = new Plato("Plato 1", "Descripción actualizada", 15.0);
+        Plato platoActualizado = new Plato("Plato 1", "Descripción actualizada", 15.0, true);
         servicioRetrofit.updatePlato(idRestaurante, platoActualizado);
         
         Restaurante restaurante = servicioRetrofit.obtenerRestaurante(idRestaurante);
@@ -180,7 +180,7 @@ public class PruebasRetrofitUnitarias {
 	@Test
     public void pruebaBorrarPlato() {
         String idRestaurante = servicioRetrofit.crearRestaurante(new SolicitudRestaurante("Prueba", 10.0, 20.0));
-        Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5);
+        Plato nuevoPlato = new Plato("Plato 1", "Descripción", 12.5, true);
         servicioRetrofit.addPlato(idRestaurante, nuevoPlato);
         servicioRetrofit.removePlato(idRestaurante, "Plato 1");
         

@@ -40,6 +40,7 @@ function ListaDePlatos() {
     const [nombreNuevo, setNombre] = useState("");
     const [descripcionNueva, setDescripcion] = useState("");
     const [precioNuevo, setPrecio] = useState(0);
+    const [disponibilidadNueva, setDisponibilidad] = useState(true);
 
     const handleEdit = () => {
 
@@ -61,29 +62,22 @@ function ListaDePlatos() {
                 nombre: nombreNuevo,
                 descripcion: finalDescripcion,
                 precio: precioNuevo,
+                disponibilidad: disponibilidadNueva,
             }),
         }).then(response => {
             if (response.ok) {
-                setRestaurante((prevState) => {
-                    const platosActualizados = prevState.platos.map((plato) => {
-                        if (plato.nombre === nombreNuevo) {
-                            return {
-                                ...plato,
-                                descripcion: descripcionNueva,
-                                precio: precioNuevo,
-                            };
-                        }
-                        return plato;
-                    });
-
-                    return {
-                        ...prevState,
-                        platos: platosActualizados,
-                    };
-                });
+                fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
+                  .then(response => response.json())
+                  .then(data => {
+                    setRestaurante(data);
+                  })
+                  .catch(error => {
+                    throw new Error('Error al obtener la lista de platos actualizada');
+                  });
+                  
                 handleEditClose();
                 alert("Plato actualizado con éxito");
-            } else {
+              } else {
                 throw new Error('Error al editar el plato');
             }
         });
@@ -92,6 +86,7 @@ function ListaDePlatos() {
     const handleEditClose = () => {
         setDescripcion("");
         setPrecio(0);
+        setDisponibilidad(true);
         setEditModalVisible(false);
     };
 
@@ -104,6 +99,7 @@ function ListaDePlatos() {
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Precio</th>
+                        <th>Disponibilidad</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -113,11 +109,13 @@ function ListaDePlatos() {
                             <td>{plato.nombre}</td>
                             <td>{plato.descripcion}</td>
                             <td>{plato.precio}</td>
+                            <td>{plato.disponibilidad ? 'Disponible' : 'No disponible'}</td>
                             <td>
                                 <button className="button-edit" onClick={() => {
                                     setDescripcion(plato.descripcion);
                                     setPrecio(plato.precio);
                                     setNombre(plato.nombre);
+                                    setDisponibilidad(plato.disponibilidad);
                                     setEditModalVisible(true);
                                 }}><MdEdit /></button>
                                 <button className="button-delete" onClick={() => handleDelete(plato.nombre)}><MdDelete /></button>
@@ -141,6 +139,13 @@ function ListaDePlatos() {
                         <label>
                             Precio:
                             <input type="number" name="precio" value={precioNuevo} onChange={event => setPrecio(event.target.value)} />
+                        </label>
+                        <label>
+                            Disponibilidad:
+                            <select name="disponibilidad" value={disponibilidadNueva} onChange={event => setDisponibilidad(event.target.value === 'true')}>
+                                <option value={true}>Disponible</option>
+                                <option value={false}>No disponible</option>
+                            </select>
                         </label>
                         <p></p>
                         <button className="button" onClick={() => handleEdit()}>Actualizar</button>

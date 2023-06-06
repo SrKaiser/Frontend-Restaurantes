@@ -69,7 +69,7 @@ public class PruebasUnitarias {
 	@Test
 	public void testAddPlato() throws RepositorioException, EntidadNoEncontrada {
 		String id = servicio.altaRestaurante("Restaurante Test", 10.0, 20.0, "César");
-		Plato plato = new Plato("Plato Test", "Descripcion Test", 10.0);
+		Plato plato = new Plato("Plato Test", "Descripcion Test", 10.0, true);
 		boolean resultado = servicio.añadirPlato(id, plato);
 		Assert.assertTrue(resultado);
 		Restaurante restaurante = servicio.recuperarRestaurante(id);
@@ -82,7 +82,7 @@ public class PruebasUnitarias {
 	@Test
 	public void testRemovePlato() throws RepositorioException, EntidadNoEncontrada {
 		String id = servicio.altaRestaurante("Restaurante Test", 10.0, 20.0, "César");
-		Plato plato = new Plato("Plato Test", "Descripcion Test", 10.0);
+		Plato plato = new Plato("Plato Test", "Descripcion Test", 10.0, true);
 		servicio.añadirPlato(id, plato);
 		boolean resultado = servicio.borrarPlato(id, "Plato Test");
 		Assert.assertTrue(resultado);
@@ -94,9 +94,9 @@ public class PruebasUnitarias {
 	@Test
 	public void testUpdatePlato() throws RepositorioException, EntidadNoEncontrada {
 		String id = servicio.altaRestaurante("Restaurante Test", 10.0, 20.0, "César");
-		Plato plato = new Plato("Plato Test", "Descripcion Test", 10.0);
+		Plato plato = new Plato("Plato Test", "Descripcion Test", 10.0, true);
 		servicio.añadirPlato(id, plato);
-		Plato platoActualizado = new Plato("Plato Test", "Descripcion Actualizada", 20.0);
+		Plato platoActualizado = new Plato("Plato Test", "Descripcion Actualizada", 20.0, true);
 		boolean resultado = servicio.actualizarPlato(id, platoActualizado);
 		Assert.assertTrue(resultado);
 		Restaurante restaurante = servicio.recuperarRestaurante(id);
@@ -109,9 +109,9 @@ public class PruebasUnitarias {
 	@Test
 	public void testListarRestaurantes() throws RepositorioException, EntidadNoEncontrada {
 		String id1 = servicio.altaRestaurante("Restaurante 1", 10.0, 20.0, "César");
-		servicio.añadirPlato(id1, new Plato("Plato Test 1", "Descripcion Test 1", 10.0));
+		servicio.añadirPlato(id1, new Plato("Plato Test 1", "Descripcion Test 1", 10.0, true));
 		String id2 = servicio.altaRestaurante("Restaurante 2", 30.0, 40.0, "César");
-		servicio.añadirPlato(id2, new Plato("Plato Test 2", "Descripcion Test 2", 20.0));
+		servicio.añadirPlato(id2, new Plato("Plato Test 2", "Descripcion Test 2", 20.0, true));
 		List<ResumenRestaurante> restaurantes = servicio.recuperarTodosRestaurantes();
 		Assert.assertEquals(2, restaurantes.size());
 		Assert.assertEquals("Restaurante 1", restaurantes.get(0).getNombre());
@@ -201,7 +201,7 @@ public class PruebasUnitarias {
 
 	@Test(expected = EntidadNoEncontrada.class)
 	public void testAñadirPlatoRestauranteNoEncontrado() throws EntidadNoEncontrada, RepositorioException {
-		Plato plato = new Plato("Plato Test", "Descripción Test", 10.0);
+		Plato plato = new Plato("Plato Test", "Descripción Test", 10.0, true);
 		servicio.añadirPlato("ID inexistente", plato);
 	}
 
@@ -212,7 +212,7 @@ public class PruebasUnitarias {
 
 	@Test(expected = EntidadNoEncontrada.class)
 	public void testUpdatePlatoRestauranteNoEncontrado() throws EntidadNoEncontrada, RepositorioException {
-		Plato plato = new Plato("Plato Test", "Descripción Test", 10.0);
+		Plato plato = new Plato("Plato Test", "Descripción Test", 10.0, true);
 		servicio.actualizarPlato("ID inexistente", plato);
 	}
 

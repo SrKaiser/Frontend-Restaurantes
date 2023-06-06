@@ -131,7 +131,8 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 		
 	    
 		Document platoDoc = new Document().append("nombre", plato.getNombre())
-				.append("descripcion", plato.getDescripcion()).append("precio", plato.getPrecio());
+				.append("descripcion", plato.getDescripcion()).append("precio", plato.getPrecio())
+				.append("disponibilidad", plato.isDisponibilidad());
 		long createdCount = restauranteCollection
 				.updateOne(Filters.eq("_id", objectId), Updates.push("platos", platoDoc)).getModifiedCount();
 
@@ -184,7 +185,7 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 		}
 		
 		Document platoDoc = new Document().append("nombre", plato.getNombre())
-				.append("descripcion", plato.getDescripcion()).append("precio", plato.getPrecio());
+				.append("descripcion", plato.getDescripcion()).append("precio", plato.getPrecio()).append("disponibilidad", plato.isDisponibilidad());
 		long updatedCount = restauranteCollection.updateOne(
 				Filters.and(Filters.eq("_id", objectId),
 						Filters.elemMatch("platos", Filters.eq("nombre", plato.getNombre()))),
@@ -246,6 +247,7 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 				plato.setNombre(platoDoc.getString("nombre"));
 				plato.setDescripcion(platoDoc.getString("descripcion"));
 				plato.setPrecio(platoDoc.getDouble("precio"));
+				plato.setDisponibilidad(platoDoc.getBoolean("disponibilidad"));
 				platos.add(plato);
 			}
 		}

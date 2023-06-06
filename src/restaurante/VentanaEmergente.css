@@ -21,7 +21,8 @@
 }
 
 .edit-modal input,
-.edit-modal textarea {
+.edit-modal textarea,
+.edit-modal select {
     width: 100%;
     margin-top: 0.5em;
     padding: 8px;

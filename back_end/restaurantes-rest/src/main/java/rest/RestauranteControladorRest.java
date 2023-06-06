@@ -204,8 +204,8 @@ public class RestauranteControladorRest {
         @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Parámetros no válidos")
     })
     @Consumes(MediaType.APPLICATION_JSON)
-    // curl -i -X POST -H "Content-Type: application/json" -d '{"nombre": "Plato1", "descripcion": "Descripcion1", "precio": 10.0}' http://localhost:8080/api/restaurantes/ID_DEL_RESTAURANTE/platos
-    // curl -i -X POST -H "Content-Type: application/json" -d "{\"nombre\": \"Plato1\", \"descripcion\": \"Descripcion1\", \"precio\": 10.0}" http://localhost:8080/api/restaurantes/ID_DEL_RESTAURANTE/platos
+    // curl -i -X POST -H "Content-Type: application/json" -d '{"nombre": "Plato1", "descripcion": "Descripcion1", "precio": 10.0}' http://localhost:8080/api/restaurantes/647eddecab0552796934fabc/platos
+    // curl -i -X POST -H "Content-Type: application/json" -d "{\"nombre\": \"Plato1\", \"descripcion\": \"Descripcion1\", \"precio\": 10.0}" http://localhost:8080/api/restaurantes/647eddecab0552796934fabc/platos
     // curl -i -X POST -H "Authorization: Bearer %JWT%" -H "Content-Type: application/json" -d "{\"nombre\": \"Plato1\", \"descripcion\": \"Descripcion1\", \"precio\": 10.0}" http://localhost:8090/restaurantes/ID_DEL_RESTAURANTE/platos
     public Response addPlato(@ApiParam(value = "ID del restaurante", required = true) @PathParam("id") String idRestaurante,
                              @ApiParam(value = "Plato a agregar", required = true) Plato plato) {

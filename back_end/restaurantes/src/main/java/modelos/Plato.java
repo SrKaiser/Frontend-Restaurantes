@@ -15,10 +15,14 @@ public class Plato {
 	@JsonProperty("precio")
 	private double precio;
 	
-	public Plato(String nombre, String descripcion, double precio) {
+	@JsonProperty("disponibilidad")
+	private boolean disponibilidad;
+	
+	public Plato(String nombre, String descripcion, double precio, boolean disponibilidad) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
+		this.disponibilidad = disponibilidad;
 	}
 	
 	public Plato() {}
@@ -45,6 +49,14 @@ public class Plato {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+
+	public boolean isDisponibilidad() {
+		return disponibilidad;
+	}
+
+	public void setDisponibilidad(boolean disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
 
 	@Override
