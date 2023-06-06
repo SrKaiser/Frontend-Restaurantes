@@ -23,7 +23,7 @@ public class PruebasBasicas {
 		
 		// Prueba de obtener los sitios turisticos próximos de un restaurante
 		System.out.println("Sitios Turisticos:");
-		List<SitioTuristico> sits = serv.obtenerSitiosTuristicosProximos(id);
+		List<SitioTuristico> sits = serv.obtenerSitiosTuristicosProximos(id, 5, 10);
 		for(SitioTuristico s : sits) {
 			System.out.println(s);
 		}

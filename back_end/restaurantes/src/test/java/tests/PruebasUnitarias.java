@@ -52,14 +52,14 @@ public class PruebasUnitarias {
 	@Test
 	public void testFindSitiosTuristicosProximos() throws RepositorioException, EntidadNoEncontrada {
 		String id = servicio.altaRestaurante("Restaurante Test", 40.42039145624014, -3.6996503622016954, "César");
-		List<SitioTuristico> sitiosTuristicos = servicio.obtenerSitiosTuristicosProximos(id);
+		List<SitioTuristico> sitiosTuristicos = servicio.obtenerSitiosTuristicosProximos(id, 10, 5);
 		Assert.assertNotNull(sitiosTuristicos);
 	}
 
 	@Test
 	public void testSetSitiosTuristicosDestacados() throws RepositorioException, EntidadNoEncontrada {
 		String id = servicio.altaRestaurante("Restaurante Test", 40.42039145624014, -3.6996503622016954, "César");
-		List<SitioTuristico> sitiosTuristicos = servicio.obtenerSitiosTuristicosProximos(id);
+		List<SitioTuristico> sitiosTuristicos = servicio.obtenerSitiosTuristicosProximos(id, 10, 5);
 		boolean resultado = servicio.establecerSitiosTuristicosDestacados(id, sitiosTuristicos);
 		Assert.assertTrue(resultado);
 		Restaurante restaurante = servicio.recuperarRestaurante(id);
@@ -165,7 +165,7 @@ public class PruebasUnitarias {
 	@Test(expected = EntidadNoEncontrada.class)
 	public void testObtenerSitiosTuristicosProximosRestauranteNoEncontrado()
 			throws EntidadNoEncontrada, RepositorioException {
-		servicio.obtenerSitiosTuristicosProximos("ID inexistente");
+		servicio.obtenerSitiosTuristicosProximos("ID inexistente", 10 ,5);
 	}
 
 	@Test(expected = RepositorioException.class)

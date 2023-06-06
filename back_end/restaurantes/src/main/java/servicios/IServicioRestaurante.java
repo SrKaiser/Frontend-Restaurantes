@@ -16,7 +16,7 @@ public interface IServicioRestaurante {
 	
 	boolean actualizarRestaurante(String id, String nombre, double latitud, double longitud) throws RepositorioException, EntidadNoEncontrada;
 	
-	List<SitioTuristico> obtenerSitiosTuristicosProximos(String idRestaurante) throws RepositorioException, EntidadNoEncontrada;
+	List<SitioTuristico> obtenerSitiosTuristicosProximos(String idRestaurante, int radius, int maxRows) throws RepositorioException, EntidadNoEncontrada;
 	
 	boolean establecerSitiosTuristicosDestacados(String idRestaurante, List<SitioTuristico> sitiosTuristicos) throws RepositorioException, EntidadNoEncontrada;
 	

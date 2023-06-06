@@ -71,13 +71,13 @@ public class RepositorioRestauranteMongoDB implements IRepositorioRestaurante {
 	}
 
 	@Override
-	public List<SitioTuristico> findSitiosTuristicosProximos(String idRestaurante)
+	public List<SitioTuristico> findSitiosTuristicosProximos(String idRestaurante, int radius, int maxRows)
 			throws RepositorioException, EntidadNoEncontrada {
 		ServicioSitiosTuristicos servSitiosTuristicos = new ServicioSitiosTuristicos();
 		Restaurante r = getCoordenadas(idRestaurante);
 		List<SitioTuristico> listaSitiosTuristicos = new LinkedList<>();
 		try {
-			listaSitiosTuristicos = servSitiosTuristicos.obtenerSitios(r.getLatitud(), r.getLongitud());
+			listaSitiosTuristicos = servSitiosTuristicos.obtenerSitios(r.getLatitud(), r.getLongitud(), radius, maxRows);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

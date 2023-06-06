@@ -194,9 +194,9 @@ public class ServicioRestaurante implements IServicioRestaurante {
 	}
 
 	@Override
-	public List<SitioTuristico> obtenerSitiosTuristicosProximos(String idRestaurante)
+	public List<SitioTuristico> obtenerSitiosTuristicosProximos(String idRestaurante, int radius, int maxRows)
 			throws RepositorioException, EntidadNoEncontrada {
-		return repositorioRestaurante.findSitiosTuristicosProximos(idRestaurante);
+		return repositorioRestaurante.findSitiosTuristicosProximos(idRestaurante,  radius,  maxRows);
 	}
 
 	@Override

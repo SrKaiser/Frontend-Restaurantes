@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdDelete, MdRateReview, MdLocalDining, MdPlace, MdAddLocation, MdRemoveRedEye, MdRestaurant, MdEdit } from 'react-icons/md';
 import "./ListaDeRestaurantes.css";
-import "./CrearOpinion.css";
-import "../plato/EditarPlato.css";
+import "./VentanaEmergente.css";
 import StarRatings from 'react-star-ratings';
 
 const getCookie = (name) => {
@@ -36,8 +35,42 @@ function ListaDeRestaurantes() {
       });
   }, []); // Este array vacío significa que useEffect se ejecutará solo una vez, cuando el componente se monte.
 
+
+  /* Para controlar la adición de sitios turísticos */
+  const [addSiteModalVisible, setAddSiteModalVisible] = useState(false);
+  const [radio, setRadio] = useState(0);
+  const [maximoSitios, setMaximoSitios] = useState(0);
+
+  const handleAddSite = (restauranteId) => {
+    fetch(`http://localhost:8090/restaurantes/${restauranteId}/sitios-turisticos?radio=${radio}&maxRows=${maximoSitios}`)
+      .then(response => response.json())
+      .then(sitiosTuristicos => {
+        fetch(`http://localhost:8090/restaurantes/${restauranteId}/sitios-turisticos`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sitiosTuristicos),
+        }).then(response => {
+          if (response.ok) {
+            alert("Sitios turísticos añadidos con éxito");
+          } else {
+            throw new Error('Error al añadir los sitios turísticos');
+          }
+        });
+      })
+      .catch(error => console.error('Ha habido un error:', error))
+      .finally(() => {
+        // Limpiar el estado y cerrar la modal al terminar
+        setRadio(0);
+        setMaximoSitios(0);
+        setAddSiteModalVisible(false);
+      });
+  };
+
+
   /* Para controlar la creación de una Opinión */
-  const [modalVisible, setModalVisible] = useState(false);
+  const [opinionModalVisible, setOpinionModalVisible] = useState(false);
   const [idRestaurante, setIdRestaurante] = useState();
   const [rating, setRating] = useState(0);
   const [opinionText, setOpinionText] = useState("");
@@ -71,8 +104,8 @@ function ListaDeRestaurantes() {
             if (response.ok) {
               // Actualizar la lista de restaurantes si la valoración se añadió correctamente
               fetch('http://localhost:8090/restaurantes')
-              .then(response => response.json())
-              .then(data => setRestaurantes(data));
+                .then(response => response.json())
+                .then(data => setRestaurantes(data));
               alert("Opinión añadida con éxito");
             } else {
               throw new Error(`Error al añadir la valoración: ${response.status}`);
@@ -84,7 +117,7 @@ function ListaDeRestaurantes() {
         // Limpiar el estado y cerrar el modal al terminar
         setOpinionText("");
         setRating(0);
-        setModalVisible(false);
+        setOpinionModalVisible(false);
       });
   };
 
@@ -121,9 +154,42 @@ function ListaDeRestaurantes() {
     setPrecio(0);
     setNombre("");
     setCreateModalVisible(false);
-};
+  };
 
-  /* Para borrar un restaurante*/
+  /* Para editar un restaurante */
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [selectedRestaurante, setSelectedRestaurante] = useState(null);
+  const [editNombre, setEditNombre] = useState("");
+  const [editCiudad, setEditCiudad] = useState("");
+  const [editLatitud, setEditLatitud] = useState("");
+  const [editLongitud, setEditLongitud] = useState("");
+
+  const handleEdit = () => {
+    fetch(`http://localhost:8090/restaurantes/${selectedRestaurante.id}/update-restaurante`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nombre: editNombre,
+        latitud: editLatitud,
+        longitud: editLongitud,
+      }),
+    }).then(response => {
+      if (response.ok) {
+        fetch('http://localhost:8090/restaurantes')
+          .then(response => response.json())
+          .then(data => setRestaurantes(data));
+        alert("Restaurante editado con éxito");
+      } else {
+        throw new Error('Error al editar el restaurante');
+      }
+    });
+    setEditModalVisible(false);
+  };
+
+
+  /* Para borrar un restaurante */
   const deleteRestaurante = async (restauranteId) => {
     try {
       const response = await fetch(`http://localhost:8090/restaurantes/${restauranteId}`, {
@@ -197,15 +263,19 @@ function ListaDeRestaurantes() {
                 <td>{restaurante.nombre}</td>
                 <td>{restaurante.calificacionMedia}</td>
                 <td>
-                  <button className="button button-wide"><MdPlace /> Ver Sitios Turísticos</button>
-                  <button className="button button-wide"><MdAddLocation /> Añadir Sitios Turísticos</button>
+                  <button className="button button-wide" onClick={() => navigate(`/sitios-turisticos?id=${restaurante.id}`)}>
+                    <MdPlace /> Ver Sitios Turísticos
+                  </button>
+                  <button className="button button-wide" onClick={() => { setAddSiteModalVisible(true); setIdRestaurante(restaurante.id); }}>
+                    <MdAddLocation /> Añadir Sitios Turísticos
+                  </button>
                 </td>
                 <td>
                   <button className="button button-wide" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
                     <MdRemoveRedEye /> Ver Opiniones
                   </button>
                   <button className="button button-wide" onClick={() => {
-                    setModalVisible(true);
+                    setOpinionModalVisible(true);
                     setIdRestaurante(restaurante.id);
                   }}>
                     <MdRateReview /> Crear Opinión
@@ -218,12 +288,18 @@ function ListaDeRestaurantes() {
                   >
                     <MdLocalDining /> Ver Platos
                   </button>
-                  <button className="button button-wide" onClick={() => {setCreateModalVisible(true); setIdRestaurante(restaurante.id);}}>
-                    <MdRestaurant  /> Crear plato
+                  <button className="button button-wide" onClick={() => { setCreateModalVisible(true); setIdRestaurante(restaurante.id); }}>
+                    <MdRestaurant /> Crear plato
                   </button>
                 </td>
                 <td>
-                  <button className="button-edit"><MdEdit /></button>
+                  <button className="button-edit" onClick={() => {
+                    setSelectedRestaurante(restaurante);
+                    setEditNombre(restaurante.nombre);
+                    setEditLatitud(restaurante.latitud);
+                    setEditLongitud(restaurante.longitud);
+                    setEditModalVisible(true);
+                  }}><MdEdit /></button>
                   <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
                     <MdDelete />
                   </button>
@@ -233,33 +309,64 @@ function ListaDeRestaurantes() {
           </tbody>
         </table>
       </div>
-      {modalVisible &&
-        <div className="overlay">
-          <div className="modal">
-            <h2>Registra una opinión</h2>
-            <StarRatings
-              rating={rating}
-              starRatedColor="gold"
-              changeRating={changeRating}
-              numberOfStars={10}
-              name='rating'
-              starDimension="25px"
-              starSpacing="5px"
-              starHoverColor="gold"
-              starEmptyColor="gray"
-              half={true}
-            />
+      {addSiteModalVisible && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Añadir Sitios Turísticos</h2>
+            <label>
+              Radio de búsqueda en kilómetros:
+              <input type="number" value={radio} onChange={event => setRadio(event.target.value)} />
+            </label>
+            <label>
+              Máxima cantidad de Sitios Turísticos:
+              <input type="number" value={maximoSitios} onChange={event => setMaximoSitios(event.target.value)} />
+            </label>
             <p></p>
-            <textarea className="textarea" rows="10" cols="70" placeholder="Escribe tu opinión aquí..." value={opinionText} onChange={event => setOpinionText(event.target.value)} />
-            <button className="button" onClick={() => handleOpinion(idRestaurante)}>Enviar Opinión</button>
+            <button className="button" onClick={() => handleAddSite(idRestaurante)}>Añadir</button>
             <button className="button" onClick={() => {
-              setOpinionText("");
-              setRating(0);
-              setModalVisible(false);
+              setRadio(0);
+              setMaximoSitios(0);
+              setAddSiteModalVisible(false);
             }}>Cancelar</button>
           </div>
         </div>
-      }
+      )}
+      {opinionModalVisible && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Nueva Valoración</h2>
+            <div className="star-rating">
+              <StarRatings
+                rating={rating}
+                starRatedColor="gold"
+                changeRating={changeRating}
+                numberOfStars={10}
+                name="rating"
+                starDimension="25px"
+                starSpacing="5px"
+                starHoverColor="gold"
+                starEmptyColor="gray"
+                half={true}
+              />
+            </div>
+            <textarea
+              rows="10"
+              cols="70"
+              placeholder="Escribe tu opinión aquí..."
+              value={opinionText}
+              onChange={(event) => setOpinionText(event.target.value)}
+            />
+            <p></p>
+            <button className="button" onClick={handleOpinion}>Valorar</button>
+            <button className="button" onClick={() => {
+              setOpinionText("");
+              setRating(0);
+              setOpinionModalVisible(false);
+            }}>Cancelar</button>
+          </div>
+        </div>
+      )}
+
       {createModalVisible && (
         <div className="edit-modal-overlay">
           <div className="edit-modal">
@@ -278,9 +385,33 @@ function ListaDeRestaurantes() {
             </label>
             <p></p>
             <button className="button" onClick={handleCreate}>Crear</button>
-            <button className="button" onClick={() => {
-              handleCreateClose();
-            }}>Cancelar</button>
+            <button className="button" onClick={handleCreateClose}>Cancelar</button>
+          </div>
+        </div>
+      )}
+      {editModalVisible && (
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2>Editar Restaurante</h2>
+            <label>
+              Nombre:
+              <input type="text" name="nombre" value={editNombre} onChange={event => setEditNombre(event.target.value)} />
+            </label>
+            <label>
+              Ciudad:
+              <input type="text" name="latitud" value={editCiudad} onChange={event => setEditCiudad(event.target.value)} />
+            </label>
+            <label>
+              Latitud:
+              <input type="text" name="latitud" value={editLatitud} onChange={event => setEditLatitud(event.target.value)} />
+            </label>
+            <label>
+              Longitud:
+              <input type="text" name="longitud" value={editLongitud} onChange={event => setEditLongitud(event.target.value)} />
+            </label>
+            <p></p>
+            <button className="button" onClick={handleEdit}>Guardar Cambios</button>
+            <button className="button" onClick={() => setEditModalVisible(false)}>Cancelar</button>
           </div>
         </div>
       )}

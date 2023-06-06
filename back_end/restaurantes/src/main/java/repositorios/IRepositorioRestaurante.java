@@ -21,7 +21,7 @@ public interface IRepositorioRestaurante{
     
 	boolean delete(String id) throws RepositorioException, EntidadNoEncontrada;
 	
-	List<SitioTuristico> findSitiosTuristicosProximos(String idRestaurante) throws RepositorioException, EntidadNoEncontrada;
+	List<SitioTuristico> findSitiosTuristicosProximos(String idRestaurante, int radius, int maxRows) throws RepositorioException, EntidadNoEncontrada;
 	
     boolean setSitiosTuristicosDestacados(String idRestaurante, List<SitioTuristico> sitiosTuristicos) throws RepositorioException, EntidadNoEncontrada;
     

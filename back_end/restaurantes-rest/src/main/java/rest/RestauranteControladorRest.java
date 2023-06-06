@@ -12,6 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -152,14 +153,13 @@ public class RestauranteControladorRest {
         @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "Restaurante no encontrado"),
         @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "ID no válido")
     })
-    // curl -i -X GET http://localhost:8080/api/restaurantes/ID_DEL_RESTAURANTE/sitios-turisticos
+    // curl -i -X GET http://localhost:8080/api/restaurantes/ID_DEL_RESTAURANTE/sitios-turisticos?radius=VALOR_RADIO&maxRows=VALOR_MAXROWS
     // curl -i -X GET -H "Authorization: Bearer %JWT%" http://localhost:8090/restaurantes/ID_DEL_RESTAURANTE/sitios-turisticos
-    public Response obtenerSitiosTuristicosCercanos(@ApiParam(value = "ID del restaurante para buscar sitios turísticos cercanos", required = true) @PathParam("id") String idRestaurante) {
+    public Response obtenerSitiosTuristicosCercanos(@ApiParam(value = "ID del restaurante para buscar sitios turísticos cercanos", required = true) @PathParam("id") String idRestaurante,  @QueryParam("radio") Integer radius, @QueryParam("maxRows") Integer maxRows) {
         
-    	System.out.println(idRestaurante);
     	List<SitioTuristico> sitiosTuristicos;
 		try {
-			sitiosTuristicos = servicioRestaurante.obtenerSitiosTuristicosProximos(idRestaurante);
+			sitiosTuristicos = servicioRestaurante.obtenerSitiosTuristicosProximos(idRestaurante, radius, maxRows);
 			 return Response.ok(sitiosTuristicos).build();
 		} catch (RepositorioException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("ID no válido").build();

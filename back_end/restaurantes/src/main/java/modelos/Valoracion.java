@@ -1,18 +1,24 @@
 package modelos;
 
 
+import java.io.IOException;
 import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class Valoracion {
 	
-	@JsonProperty("correoElectronico")
     private String correoElectronico;
-	@JsonProperty("fecha")
-    private LocalDateTime fecha;
-    @JsonProperty("calificacion")
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+	private LocalDateTime fecha;
     private int calificacion;
-    @JsonProperty("comentario")
     private String comentario;
 
     public Valoracion(String correoElectronico, int calificacion) {
@@ -69,5 +75,24 @@ public class Valoracion {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+    
+    public static class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
+        @Override
+        public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+            throws IOException {
+            String dateString = jsonParser.getValueAsString();
+            TemporalAccessor temporalAccessor = DateTimeFormatter.ISO_DATE_TIME.parse(dateString);
+            return LocalDateTime.from(temporalAccessor);
+        }
+    }
+
+
+	@Override
+	public String toString() {
+		return "Valoracion [correoElectronico=" + correoElectronico + ", fecha=" + fecha + ", calificacion="
+				+ calificacion + ", comentario=" + comentario + "]";
+	}
+    
+    
 }
 

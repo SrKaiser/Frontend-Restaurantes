@@ -41,12 +41,12 @@ public class RepositorioRestauranteMemoria implements IRepositorioRestaurante{
 	}
 	
 	@Override
-	public List<SitioTuristico> findSitiosTuristicosProximos(String idRestaurante) throws EntidadNoEncontrada {
+	public List<SitioTuristico> findSitiosTuristicosProximos(String idRestaurante, int radius, int maxRows) throws EntidadNoEncontrada {
 		ServicioSitiosTuristicos servSitiosTuristicos = new ServicioSitiosTuristicos();
 		Restaurante restaurante = findById(idRestaurante);
 	    List<SitioTuristico> listaSitiosTuristicos = new LinkedList<>();
 	    try {
-	        listaSitiosTuristicos = servSitiosTuristicos.obtenerSitios(restaurante.getLatitud(), restaurante.getLongitud());
+	        listaSitiosTuristicos = servSitiosTuristicos.obtenerSitios(restaurante.getLatitud(), restaurante.getLongitud(),  radius,  maxRows);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

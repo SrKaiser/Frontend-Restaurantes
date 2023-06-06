@@ -18,7 +18,7 @@
     display: block;
     margin-top: 1em;
     font-weight: bold;
-  }
+}
 
 .edit-modal input,
 .edit-modal textarea {
@@ -27,8 +27,8 @@
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    font-family: "Arial", sans-serif; 
-  }
+    font-family: "Arial", sans-serif;
+}
 
 .edit-modal button {
     margin-top: 1em;
@@ -57,3 +57,16 @@
     cursor: pointer;
 }
 
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    /* añade un margen en la parte inferior */
+  }
+  
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+  }

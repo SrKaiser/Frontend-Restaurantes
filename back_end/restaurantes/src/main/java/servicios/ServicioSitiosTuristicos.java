@@ -21,8 +21,8 @@ import modelos.SitioTuristico;
 
 public class ServicioSitiosTuristicos {
 	
-	public List<SitioTuristico> obtenerSitios(double latitud, double longitud) throws Exception {
-		List<String> titulos = obtenerTitulos(latitud, longitud);
+	public List<SitioTuristico> obtenerSitios(double latitud, double longitud, int radius, int maxRows) throws Exception {
+		List<String> titulos = obtenerTitulos(latitud, longitud, radius, maxRows);
 		for (int i = 0; i < titulos.size(); i++) {
 			titulos.set(i, titulos.get(i).replace(" ", "_"));
 		}
@@ -82,7 +82,7 @@ public class ServicioSitiosTuristicos {
 		return sitios;
 	}
 	
-	private List<String> obtenerTitulos(double latitud, double longitud) throws Exception {
+	private List<String> obtenerTitulos(double latitud, double longitud, int radius, int maxRows) throws Exception {
 		// 1. Obtener una factoría
 		DocumentBuilderFactory factoria = DocumentBuilderFactory.newInstance();
 		// 2. Pedir a la factoría la construcción del analizador
@@ -90,7 +90,7 @@ public class ServicioSitiosTuristicos {
 		// 3. Analizar el documento
 		String API = "http://api.geonames.org/findNearbyWikipedia?";
 		String parameters = "lang=es&lat=" + latitud + "&lng=" + longitud
-				+ "&radius=10&username=arso";
+				+ "&radius="+ radius +"&maxRows="+ maxRows +"&username=arso";
 		URL url = new URL(API + parameters);
 		Document documento = analizador.parse(url.openStream());
 		List<String> titulos = consultarTitulos(documento);

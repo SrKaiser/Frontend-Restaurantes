@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import './ListaDePlatos.css';
-import './EditarPlato.css';
+import '../restaurante/VentanaEmergente.css';
 
 function ListaDePlatos() {
     const location = useLocation();
@@ -18,7 +18,8 @@ function ListaDePlatos() {
     }, [restauranteId]);
 
     const handleDelete = (platoNombre) => {
-        fetch(`http://localhost:8090/restaurantes/${restauranteId}/platos/${platoNombre}`, {
+        let platoNombreEncoded = encodeURIComponent(platoNombre);
+        fetch(`http://localhost:8090/restaurantes/${restauranteId}/platos/${platoNombreEncoded}`, {
             method: 'DELETE',
         }).then(response => {
             if (response.ok) {
