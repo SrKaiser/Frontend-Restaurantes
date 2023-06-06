@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MdDelete, MdRateReview, MdLocalDining, MdPlace, MdAddLocation, MdRemoveRedEye, MdRestaurant, MdEdit } from 'react-icons/md';
+import { MdDelete, MdRateReview, MdLocalDining, MdPlace, MdAddLocation, MdRemoveRedEye, MdRestaurant, MdEdit, MdAnnouncement } from 'react-icons/md';
 import "./ListaDeRestaurantes.css";
 import "./VentanaEmergente.css";
 import StarRatings from 'react-star-ratings';
@@ -443,6 +443,7 @@ function ListaDeRestaurantes() {
               <th>Sitios Turísticos</th>
               <th>Opiniones</th>
               <th>Platos</th>
+              <th>Incidencias</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -480,6 +481,9 @@ function ListaDeRestaurantes() {
                   <button className="button button-wide" onClick={() => { setcreateModalVisiblePlato(true); setIdRestaurante(restaurante.id); }}>
                     <MdRestaurant /> Crear plato
                   </button>
+                </td>
+                <td>
+                <button className="button button-wide"> <MdAnnouncement/> Ver Incidencias </button>
                 </td>
                 <td>
                   <button className="button-edit" onClick={() => {

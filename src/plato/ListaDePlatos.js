@@ -18,8 +18,9 @@ function ListaDePlatos() {
     }, [restauranteId]);
 
     const handleDelete = (platoNombre) => {
-        let platoNombreEncoded = encodeURIComponent(platoNombre);
-        fetch(`http://localhost:8090/restaurantes/${restauranteId}/platos/${platoNombreEncoded}`, {
+        const platoNombreSinEspacios = platoNombre.replace(/\s/g, '_');
+        console.log(platoNombreSinEspacios);
+        fetch(`http://localhost:8090/restaurantes/${restauranteId}/platos/${platoNombreSinEspacios}`, {
             method: 'DELETE',
         }).then(response => {
             if (response.ok) {
@@ -67,17 +68,17 @@ function ListaDePlatos() {
         }).then(response => {
             if (response.ok) {
                 fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
-                  .then(response => response.json())
-                  .then(data => {
-                    setRestaurante(data);
-                  })
-                  .catch(error => {
-                    throw new Error('Error al obtener la lista de platos actualizada');
-                  });
-                  
+                    .then(response => response.json())
+                    .then(data => {
+                        setRestaurante(data);
+                    })
+                    .catch(error => {
+                        throw new Error('Error al obtener la lista de platos actualizada');
+                    });
+
                 handleEditClose();
                 alert("Plato actualizado con éxito");
-              } else {
+            } else {
                 throw new Error('Error al editar el plato');
             }
         });
@@ -100,6 +101,7 @@ function ListaDePlatos() {
                         <th>Descripción</th>
                         <th>Precio</th>
                         <th>Disponibilidad</th>
+                        <th>Incidencia</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -110,6 +112,7 @@ function ListaDePlatos() {
                             <td>{plato.descripcion}</td>
                             <td>{plato.precio}</td>
                             <td>{plato.disponibilidad ? 'Disponible' : 'No disponible'}</td>
+                            <td> <button className="buttonPlatos">Crear Incidencia</button></td>
                             <td>
                                 <button className="button-edit" onClick={() => {
                                     setDescripcion(plato.descripcion);

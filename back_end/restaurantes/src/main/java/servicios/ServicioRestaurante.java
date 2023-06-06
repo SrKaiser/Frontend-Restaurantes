@@ -241,6 +241,7 @@ public class ServicioRestaurante implements IServicioRestaurante {
 	@Override
 	public boolean borrarPlato(String idRestaurante, String nombrePlato)
 			throws RepositorioException, EntidadNoEncontrada {
+		System.out.println(nombrePlato);
 		if (nombrePlato == null || nombrePlato.trim().isEmpty()) {
 			throw new IllegalArgumentException("El nombre del plato no puede ser null o vacío");
 		}

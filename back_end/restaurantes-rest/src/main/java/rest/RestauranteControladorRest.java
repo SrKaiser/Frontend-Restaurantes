@@ -233,14 +233,16 @@ public class RestauranteControladorRest {
         @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "Restaurante no encontrado"),
         @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Parámetros no válidos")
     })
-    // curl -i -X DELETE http://localhost:8080/api/restaurantes/ID_DEL_RESTAURANTE/platos/NOMBRE_DEL_PLATO
+    // curl -i -X DELETE http://localhost:8080/api/restaurantes/647eddecab0552796934fabc/platos/Cottotn Cot
     // curl -i -X DELETE -H "Authorization: Bearer %JWT%" http://localhost:8090/restaurantes/6466e57672b4e20cddb3e8a3/platos/Plato1
     public Response removePlato(@ApiParam(value = "ID del restaurante", required = true) @PathParam("id") String idRestaurante,
                                 @ApiParam(value = "Nombre del plato a eliminar", required = true) @PathParam("nombrePlato") String nombrePlato) {
         
+    	String nombrePlatoSinGuionesBajos = nombrePlato.replace("_", " ");
+    	System.out.println(nombrePlatoSinGuionesBajos);
     	boolean resultado;
 		try {
-			resultado = servicioRestaurante.borrarPlato(idRestaurante, nombrePlato);
+			resultado = servicioRestaurante.borrarPlato(idRestaurante, nombrePlatoSinGuionesBajos);
 			return Response.ok(resultado).build();
 		} catch (RepositorioException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("ID no válido").build();
