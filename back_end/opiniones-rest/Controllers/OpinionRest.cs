@@ -63,7 +63,7 @@ namespace OpinionApi.Controllers
 
         [HttpPost("{idOpinion}/addValoracion")]
         // curl -i -X POST -H "Content-Type: application/json" -d '{"correoElectronico": "usuario@example.com", "calificacion": 5, "comentario": "Excelente recurso"}' https://localhost:7054/api/opiniones/64669b4edb5db81ba23b9fab/addValoracion
-        // curl -i -X POST -H "Content-Type: application/json" -d "{\"correoElectronico\": \"usuario@example.com\", \"calificacion\": 5, \"comentario\": \"Excelente recurso\"}" https://localhost:7054/api/opiniones/6466e5b0e85de7e43e4723d2/addValoracion
+        // curl -i -X POST -H "Content-Type: application/json" -d "{\"correoElectronico\": \"usuario@example.com\", \"calificacion\": 5, \"comentario\": \"Excelente recurso\"}" https://localhost:7054/api/opiniones/647eddf13d510cd2ddff878f/addValoracion
         public ActionResult<bool> addValoracion(string idOpinion, [FromBody] Valoracion valoracion)
         {
             var entidad = _servicio.ObtenerOpinion(idOpinion);

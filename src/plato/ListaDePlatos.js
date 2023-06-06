@@ -42,6 +42,16 @@ function ListaDePlatos() {
     const [precioNuevo, setPrecio] = useState(0);
 
     const handleEdit = () => {
+
+        if (!precioNuevo || precioNuevo <= 0) {
+            alert("El precio del plato es obligatorio y debe ser mayor que 0.");
+            return;
+        }
+
+        let finalDescripcion = descripcionNueva;
+        if (!finalDescripcion || finalDescripcion.trim() === "") {
+            finalDescripcion = "Sin descripción.";
+        }
         fetch(`http://localhost:8090/restaurantes/${restauranteId}/update-plato`, {
             method: 'PUT',
             headers: {
@@ -49,28 +59,28 @@ function ListaDePlatos() {
             },
             body: JSON.stringify({
                 nombre: nombreNuevo,
-                descripcion: descripcionNueva,
+                descripcion: finalDescripcion,
                 precio: precioNuevo,
             }),
         }).then(response => {
             if (response.ok) {
                 setRestaurante((prevState) => {
                     const platosActualizados = prevState.platos.map((plato) => {
-                      if (plato.nombre === nombreNuevo) {
-                        return {
-                          ...plato,
-                          descripcion: descripcionNueva,
-                          precio: precioNuevo,
-                        };
-                      }
-                      return plato;
+                        if (plato.nombre === nombreNuevo) {
+                            return {
+                                ...plato,
+                                descripcion: descripcionNueva,
+                                precio: precioNuevo,
+                            };
+                        }
+                        return plato;
                     });
-          
+
                     return {
-                      ...prevState,
-                      platos: platosActualizados,
+                        ...prevState,
+                        platos: platosActualizados,
                     };
-                  });
+                });
                 handleEditClose();
                 alert("Plato actualizado con éxito");
             } else {

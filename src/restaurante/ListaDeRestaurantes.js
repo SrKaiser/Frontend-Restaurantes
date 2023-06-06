@@ -27,7 +27,6 @@ function ListaDeRestaurantes() {
         return response.json();
       })
       .then(data => {
-        console.log('Data recibida:', data);
         setRestaurantes(data);
       })
       .catch(error => {
@@ -42,6 +41,16 @@ function ListaDeRestaurantes() {
   const [maximoSitios, setMaximoSitios] = useState(0);
 
   const handleAddSite = (restauranteId) => {
+    if (!radio || radio <= 0) {
+      alert("El radio es obligatorio y debe ser mayor que 0.");
+      return;
+    }
+
+    if (!maximoSitios || maximoSitios <= 0) {
+      alert("Los sitios máximos es obligatorio y debe ser mayor que 0.");
+      return;
+    }
+
     fetch(`http://localhost:8090/restaurantes/${restauranteId}/sitios-turisticos?radio=${radio}&maxRows=${maximoSitios}`)
       .then(response => response.json())
       .then(sitiosTuristicos => {
@@ -80,9 +89,9 @@ function ListaDeRestaurantes() {
   }
 
   // Función que se ejecuta cuando el botón "Enviar Opinión" se hace clic
-  const handleOpinion = (restauranteId) => {
+  const handleOpinion = () => {
     // Obtener los datos del restaurante
-    fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
+    fetch(`http://localhost:8090/restaurantes/${idRestaurante}`)
       .then(response => response.json())
       .then(restaurante => {
         const opinionId = restaurante.opinionId;
@@ -128,6 +137,22 @@ function ListaDeRestaurantes() {
   const [precio, setPrecio] = useState(0);
 
   const handleCreate = () => {
+
+    if (!nombre || nombre.trim() === "") {
+      alert("El nombre del plato es obligatorio.");
+      return;
+    }
+    
+    if (!precio || precio <= 0) {
+      alert("El precio del plato es obligatorio y debe ser mayor que 0.");
+      return;
+    }
+
+    let finalDescripcion = descripcion;
+    if (!finalDescripcion || finalDescripcion.trim() === "") {
+      finalDescripcion = "Sin descripción.";
+    }
+
     fetch(`http://localhost:8090/restaurantes/${idRestaurante}/platos`, {
       method: 'POST',
       headers: {
@@ -135,7 +160,7 @@ function ListaDeRestaurantes() {
       },
       body: JSON.stringify({
         nombre: nombre,
-        descripcion: descripcion,
+        descripcion: finalDescripcion,
         precio: precio,
       }),
     }).then(response => {
@@ -165,6 +190,22 @@ function ListaDeRestaurantes() {
   const [editLongitud, setEditLongitud] = useState("");
 
   const handleEdit = () => {
+    if (!editNombre || editNombre.trim() === "") {
+      alert("El nombre del restaurante es obligatorio.");
+      return;
+    }
+    if (!editCiudad || editCiudad.trim() === "") {
+      alert("La ciudad del restaurante es obligatorio.");
+      return;
+    }
+    if (!editLatitud || editLatitud <= -90 || editLatitud >= 90) {
+      alert("La coordenada de latitud del restaurante es obligatorio y debe tener un valor entre -90 y 90.");
+      return;
+    }
+    if (!editLongitud || editLongitud <= -180 || editLongitud >= 180) {
+      alert("La coordenada de longitud del restaurante es obligatorio y debe tener un valor entre -180 y 180.");
+      return;
+    }
     fetch(`http://localhost:8090/restaurantes/${selectedRestaurante.id}/update-restaurante`, {
       method: 'PUT',
       headers: {
