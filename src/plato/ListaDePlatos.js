@@ -113,7 +113,7 @@ function ListaDePlatos() {
                 id_restaurante: restauranteId,
                 nombre_restaurante: restaurante.nombre,
                 cliente: user,
-                plato: platoIncidencia,
+                plato: platoIncidencia.nombre,
                 descripcion: comentarioIncidencia
             }),
         }).then(response => {
