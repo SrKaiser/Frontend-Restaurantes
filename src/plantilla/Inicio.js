@@ -7,7 +7,7 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-const Inicio = ({ isAuthenticated, setIsAuthenticated }) => {
+const Inicio = ({ isAuthenticated, setIsAuthenticated, handleLogin, handleLogout }) => {
 
     useEffect(() => {
         fetch('http://localhost:8090/login/oauth2/code/github', {
@@ -31,12 +31,6 @@ const Inicio = ({ isAuthenticated, setIsAuthenticated }) => {
         });
     }, []);
 
-
-    const handleLogin = () => {
-        window.location = "http://localhost:8090/oauth2/authorization/github";
-        
-    }
-
     return (
         <div className="inicio">
             <div className="content">
@@ -46,12 +40,11 @@ const Inicio = ({ isAuthenticated, setIsAuthenticated }) => {
                 {!isAuthenticated ?
                     <button onClick={handleLogin} className="loginButton">Iniciar Sesión</button>
                     :
-                    <button onClick={() => setIsAuthenticated(false)} className="loginButton">Cerrar Sesión</button>
-
+                    <button onClick={handleLogout} className="loginButton">Cerrar Sesión</button>
                 }
             </div>
         </div>
-    );
+    );    
 };
 
 

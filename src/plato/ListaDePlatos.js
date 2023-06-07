@@ -128,8 +128,8 @@ function ListaDePlatos() {
                 </tbody>
             </table>
             {editModalVisible && (
-                <div className="edit-modal-overlay">
-                    <div className="edit-modal">
+                <div className="ventana-overlay">
+                    <div className="ventana">
                         <h2>Editar</h2>
                         <label>
                             Nombre:

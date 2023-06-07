@@ -2,12 +2,21 @@ header {
     background-color: #007BFF;
     color: white;
     padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+header .top-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
 }
 
+header .bottom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
 
 nav ul {
     font-weight: bold;
@@ -20,25 +29,50 @@ nav ul {
 nav a {
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-nav ul ul {
-    display: none;
-    position: absolute;
-    background-color: white;
-    list-style: none;
-    padding: 10px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+nav a:hover {
+    color: #3d19a1;
 }
 
-nav ul ul li {
-    margin: 10px 0;
+.user-section {
+    display: flex;
+    align-items: center;
 }
 
-nav ul ul li a {
-    color: black;
+.user-section a {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
 }
 
-nav ul li:hover > ul {
-    display: block;
+.icon {
+    margin-right: 8px;
+    font-size: 32px;
+}
+
+.header-button {
+    background-color: #007BFF;
+    color: white;
+    text-align: end;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border: none;
+}
+
+.header-button:hover {
+    color: #3d19a1;
+    border: none;
+}
+
+h1 img {
+    height: 50px;
+    margin-right: 16px;
 }

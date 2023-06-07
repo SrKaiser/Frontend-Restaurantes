@@ -6,4 +6,6 @@ footer {
     padding: 20px;  
     text-align: center;
     height: 90px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }

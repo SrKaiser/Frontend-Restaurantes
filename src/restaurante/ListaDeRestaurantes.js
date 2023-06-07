@@ -399,70 +399,82 @@ function ListaDeRestaurantes() {
   });
 
   return (
-    <div className="container">
+    <div className="container-lista">
       <h3 > Búsqueda por filtros </h3>
-      <div className="container">
-        <div className="filters-container">
-          <div className="filter-inputs">
-            <div className="row">
-              <label htmlFor="nombre-parcial-input">Nombre:</label>
-              <input
-                id="nombre-parcial-input"
-                type="text"
-                value={nombreParcial}
-                onChange={handleNombreParcialChange}
-              />
-              <label htmlFor="filtro-ciudad-input">Ciudad:</label>
-              <select id="filtro-ciudad-input" value={ciudadParcial} onChange={handleCiudadParcialChange}>
-                <option value="">Todas</option>
-                {ciudades.map((ciudad, index) => (
-                  <option key={index} value={ciudad}>{ciudad}</option>
-                ))}
-              </select>
-              <label htmlFor="filtro-valoracion-input">Valoración mínima:</label>
-              <div className="range-container">
+      <div className="filters-container">
+        <div className="filter-inputs">
+          <div className="row">
+            <div className="column">
+              <div className="filter-row">
+                <label htmlFor="nombre-parcial-input">Nombre:</label>
                 <input
-                  id="filtro-valoracion-input"
-                  type="range"
-                  min="0"
-                  max="10"
-                  step="1"
-                  value={valoracionParcial}
-                  onChange={handleValoracionChange}
+                  id="nombre-parcial-input"
+                  type="text"
+                  value={nombreParcial}
+                  onChange={handleNombreParcialChange}
                 />
-                <span className="range-value">{valoracionParcial}</span>
+              </div>
+              <div className="filter-row">
+                <label htmlFor="filtro-ciudad-input">Ciudad:</label>
+                <select id="filtro-ciudad-input" value={ciudadParcial} onChange={handleCiudadParcialChange}>
+                  <option value="">Todas</option>
+                  {ciudades.map((ciudad, index) => (
+                    <option key={index} value={ciudad}>{ciudad}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="filter-row">
+                <label htmlFor="filtro-valoracion-input">Valoración mínima:</label>
+                <div className="range-container">
+                  <input
+                    id="filtro-valoracion-input"
+                    type="range"
+                    min="0"
+                    max="10"
+                    step="1"
+                    value={valoracionParcial}
+                    onChange={handleValoracionChange}
+                  />
+                  <span className="range-value">{valoracionParcial}</span>
+                </div>
               </div>
             </div>
-            <h3>Filtro por coordenadas</h3>
-            <div className="row">
-              <label htmlFor="busqueda-latitud-input">Latitud de búsqueda:</label>
-              <input
-                id="busqueda-latitud-input"
-                type="number"
-                value={busquedaLatitud}
-                onChange={event => setBusquedaLatitud(Number(event.target.value))}
-              />
-              <label htmlFor="busqueda-longitud-input">Longitud de búsqueda:</label>
-              <input
-                id="busqueda-longitud-input"
-                type="number"
-                value={busquedaLongitud}
-                onChange={event => setBusquedaLongitud(Number(event.target.value))}
-              />
-              <label htmlFor="busqueda-radio-input">Radio de búsqueda (Km):</label>
-              <input
-                id="busqueda-radio-input"
-                type="number"
-                value={busquedaRadio}
-                onChange={event => setBusquedaRadio(Number(event.target.value))}
-              />
+            <div className="column">
+              <div className="filter-row">
+                <label htmlFor="busqueda-latitud-input">Latitud de búsqueda:</label>
+                <input
+                  id="busqueda-latitud-input"
+                  type="number"
+                  value={busquedaLatitud}
+                  onChange={event => setBusquedaLatitud(Number(event.target.value))}
+                />
+              </div>
+              <div className="filter-row">
+                <label htmlFor="busqueda-longitud-input">Longitud de búsqueda:</label>
+                <input
+                  id="busqueda-longitud-input"
+                  type="number"
+                  value={busquedaLongitud}
+                  onChange={event => setBusquedaLongitud(Number(event.target.value))}
+                />
+              </div>
+              <div className="filter-row">
+                <label htmlFor="busqueda-radio-input">Radio de búsqueda (Km):</label>
+                <input
+                  id="busqueda-radio-input"
+                  type="number"
+                  value={busquedaRadio}
+                  onChange={event => setBusquedaRadio(Number(event.target.value))}
+                />
+              </div>
             </div>
-            <div className="row">
-              <button className="filter-button" onClick={handleFiltroClick}>Filtrar</button>
-            </div>
+          </div>
+          <div className="row">
+            <button className="filter-button" onClick={handleFiltroClick}>Filtrar</button>
           </div>
         </div>
       </div>
+
 
 
       <div className="table-container">
@@ -481,21 +493,21 @@ function ListaDeRestaurantes() {
           <tbody>
             {restaurantesFiltrados.map((restaurante, index) => (
               <tr key={index}>
-                <td>{restaurante.nombre}</td>
+                <td className="td-bold">{restaurante.nombre}</td>
                 <td>{restaurante.calificacionMedia}</td>
                 <td>
-                  <button className="button button-wide" onClick={() => navigate(`/sitios-turisticos?id=${restaurante.id}`)}>
+                  <button className="list-button" onClick={() => navigate(`/sitios-turisticos?id=${restaurante.id}`)}>
                     <MdPlace /> Ver Sitios Turísticos
                   </button>
-                  <button className="button button-wide" onClick={() => { setAddSiteModalVisible(true); setIdRestaurante(restaurante.id); }}>
+                  <button className="list-button" onClick={() => { setAddSiteModalVisible(true); setIdRestaurante(restaurante.id); }}>
                     <MdAddLocation /> Añadir Sitios Turísticos
                   </button>
                 </td>
                 <td>
-                  <button className="button button-wide" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
+                  <button className="list-button" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
                     <MdRemoveRedEye /> Ver Opiniones
                   </button>
-                  <button className="button button-wide" onClick={() => {
+                  <button className="list-button" onClick={() => {
                     setOpinionModalVisible(true);
                     setIdRestaurante(restaurante.id);
                   }}>
@@ -504,21 +516,21 @@ function ListaDeRestaurantes() {
                 </td>
                 <td>
                   <button
-                    className="button button-wide"
+                    className="list-button"
                     onClick={() => navigate(`/platos?id=${restaurante.id}`)}
                   >
                     <MdLocalDining /> Ver Platos
                   </button>
-                  <button className="button button-wide" onClick={() => { setcreateModalVisiblePlato(true); setIdRestaurante(restaurante.id); }}>
+                  <button className="list-button" onClick={() => { setcreateModalVisiblePlato(true); setIdRestaurante(restaurante.id); }}>
                     <MdRestaurant /> Crear plato
                   </button>
                 </td>
                 <td>
-                  <button className="button button-wide"> <MdAnnouncement /> Ver Incidencias </button>
+                  <button className="list-button"> <MdAnnouncement /> Ver Incidencias </button>
                 </td>
                 <td>
                   <button className="button-edit" onClick={() => {
-                    
+
                     setSelectedRestaurante(restaurante);
                     setEditNombre(restaurante.nombre);
                     setEditLatitud(restaurante.latitud);
@@ -537,8 +549,8 @@ function ListaDeRestaurantes() {
         </table>
       </div>
       {addSiteModalVisible && (
-        <div className="edit-modal-overlay">
-          <div className="edit-modal">
+        <div className="ventana-overlay">
+          <div className="ventana">
             <h2>Añadir Sitios Turísticos</h2>
             <label>
               Radio de búsqueda en kilómetros:
@@ -559,8 +571,8 @@ function ListaDeRestaurantes() {
         </div>
       )}
       {opinionModalVisible && (
-        <div className="edit-modal-overlay">
-          <div className="edit-modal">
+        <div className="ventana-overlay">
+          <div className="ventana">
             <h2>Nueva Valoración</h2>
             <div className="star-rating">
               <StarRatings
@@ -595,8 +607,8 @@ function ListaDeRestaurantes() {
       )}
 
       {createModalVisiblePlato && (
-        <div className="edit-modal-overlay">
-          <div className="edit-modal">
+        <div className="ventana-overlay">
+          <div className="ventana">
             <h2>Crear un nuevo plato</h2>
             <label>
               Nombre:
@@ -624,8 +636,8 @@ function ListaDeRestaurantes() {
         </div>
       )}
       {editModalVisible && (
-        <div className="edit-modal-overlay">
-          <div className="edit-modal">
+        <div className="ventana-overlay">
+          <div className="ventana">
             <h2>Editar Restaurante</h2>
             <label>
               Nombre:

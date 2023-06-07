@@ -2,33 +2,56 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ isAuthenticated }) => {
+import { MdHome, MdAdd, MdRestaurant, MdHelp, MdAccountCircle } from "react-icons/md";
+
+const Header = ({ isAuthenticated, handleLogin, handleLogout }) => {
 
     return (
         <header>
-            <h1>DishDiscover</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Inicio</Link>
-                    </li>
-                    {isAuthenticated && (
-                    <li>
-                        <Link to="/altaRestaurante" >Alta Restaurante</Link>
-                    </li>
+            <div className="top-header">
+                <h1>
+                    <img src="logo.png" alt="DishDiscover logo" />
+                    DishDiscover
+                </h1>
+                <div className="user-section">
+                    {isAuthenticated ? (
+                        <>
+                            <MdAccountCircle className="icon" />
+                            <button onClick={handleLogout} className="header-button">Cerrar sesión</button>
+                        </>
+                    ) : (
+                        <>
+                             <button onClick={handleLogin} className="header-button">Iniciar sesión</button>
+                        </>
                     )}
-                    {isAuthenticated && (
-                    <li>
-                        <Link to="/restaurantes" >Lista de Restaurantes</Link>
-                    </li>
-                    )}
-                    <li>
-                        <a href="/Ayuda/Ayuda.html">Obtener ayuda</a>
-                    </li>
-                </ul>
-            </nav>
+                </div>
+            </div>
+            <div className="bottom-header">
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/"><MdHome /> Inicio</Link>
+                        </li>
+                        {isAuthenticated && (
+                            <li>
+                                <Link to="/altaRestaurante"><MdAdd /> Alta Restaurante</Link>
+                            </li>
+                        )}
+                        {isAuthenticated && (
+                            <li>
+                                <Link to="/restaurantes"><MdRestaurant /> Lista de Restaurantes</Link>
+                            </li>
+                        )}
+                        <li>
+                            <a href="/Ayuda/Ayuda.html"><MdHelp /> Obtener ayuda</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </header>
     );
 };
 
 export default Header;
+
+

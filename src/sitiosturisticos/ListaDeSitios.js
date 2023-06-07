@@ -25,7 +25,7 @@ function ListaDeSitios() {
         <Table>
           <TableHead>
             <TableRow>
-              {/* Añade los encabezados de la tabla si es necesario */}
+              {}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -45,8 +45,8 @@ function ListaDeSitios() {
                         <MdKeyboardArrowDown />
                       </IconButton>
                     </TableCell>
-                    <TableCell component="th" scope="row" className="titulo-sitio">
-                      {sitio.titulo.replace(/_/g, ' ')}
+                    <TableCell component="th" scope="row" >
+                      <Typography className="titulo-sitio"> {sitio.titulo.replace(/_/g, ' ')} </Typography>
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -59,7 +59,7 @@ function ListaDeSitios() {
                           <Table size="small" aria-label="purchases">
                             <TableBody>
                               <TableRow key={sitio.titulo} className="table-row">
-                                <TableCell component="th" scope="row" className="table-cell">
+                                <TableCell component="th" scope="row">
                                   <Typography variant="body2" className="resumen-text">
                                     {sitio.resumen}
                                   </Typography>
@@ -73,7 +73,7 @@ function ListaDeSitios() {
                           <Table size="small" aria-label="purchases">
                             <TableBody>
                               <TableRow key={sitio.titulo} className="table-row">
-                                <TableCell className="table-cell">
+                                <TableCell>
                                   {sitio.categorias.map((categoria, index) => (
                                     <React.Fragment key={index}>
                                       <Typography variant="body2" className="categorias-text">
@@ -92,7 +92,7 @@ function ListaDeSitios() {
                           <Table size="small" aria-label="purchases">
                             <TableBody>
                               <TableRow key={sitio.titulo} className="table-row">
-                                <TableCell className="table-cell">
+                                <TableCell>
                                   {sitio.enlaces.map((enlace, index) => (
                                     <React.Fragment key={index}>
                                       <Typography variant="body2" className="enlaces-text">
@@ -111,7 +111,7 @@ function ListaDeSitios() {
                           <Table size="small" aria-label="purchases">
                             <TableBody>
                               <TableRow key={sitio.titulo} className="table-row">
-                                <TableCell className="table-cell">
+                                <TableCell>
                                   {sitio.imagenes.map((imagen, index) => (
                                     <React.Fragment key={index}>
                                       <Typography variant="body2" className="imagenes-text">

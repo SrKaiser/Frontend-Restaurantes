@@ -1,4 +1,4 @@
-.edit-modal {
+.ventana {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -9,20 +9,20 @@
     border-radius: 8px;
 }
 
-.edit-modal textarea {
+.ventana textarea {
     resize: none;
     width: 100%;
 }
 
-.edit-modal label {
+.ventana label {
     display: block;
     margin-top: 1em;
     font-weight: bold;
 }
 
-.edit-modal input,
-.edit-modal textarea,
-.edit-modal select {
+.ventana input,
+.ventana textarea,
+.ventana select {
     width: 100%;
     margin-top: 0.5em;
     padding: 8px;
@@ -31,11 +31,11 @@
     font-family: "Arial", sans-serif;
 }
 
-.edit-modal button {
+.ventana button {
     margin-top: 1em;
 }
 
-.edit-modal-overlay {
+.ventana-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -44,19 +44,23 @@
     background: rgba(0, 0, 0, 0.6);
 }
 
-.edit-modal button {
-    background-color: #1bd4d4;
+.ventana button {
+    background-color: #007BFF;
     border: none;
     color: white;
     padding: 10px 24px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
 }
+
+.ventana button:hover {
+    background-color: #273fca;
+    color: white;
+  }
 
 
 .star-rating {
@@ -64,7 +68,6 @@
     justify-content: center;
     padding: 10px;
     margin-bottom: 15px;
-    /* añade un margen en la parte inferior */
   }
   
   .star {

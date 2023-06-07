@@ -1,6 +1,6 @@
 .titulo {
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   color: #080808;
   margin-bottom: 20px;
 }
@@ -13,29 +13,28 @@
 
 .platos-table th,
 .platos-table td {
-  border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  border-bottom: 3px solid #ddd;
 }
 
 .buttonPlatos {
-  background-color: #4775d8;
+  background-color: #007BFF;
   border: none;
   color: white;
   padding: 10px 24px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
 
 .buttonPlatos:hover {
-  background-color: white;
-  color: black;
-  border: 2px solid #36aec4;
+  background-color: #273fca;
+  color: white;
 }
 
 .platos-table th {
@@ -78,12 +77,10 @@
 
 .button-edit:hover {
   background-color: white;
-  color: black;
-  border: 2px solid #4CAF50;
+  color:#4CAF50;
 }
 
 .button-delete:hover {
   background-color: white;
-  color: black;
-  border: 2px solid #a51010;
+  color: #a51010;
 }

@@ -11,21 +11,34 @@ import Inicio from "./plantilla/Inicio";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const handleLogin = () => {
+    window.location = "http://localhost:8090/oauth2/authorization/github";
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
   return (
-    <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Router>
-      <Header isAuthenticated={isAuthenticated} />
-        <main style={{flex: '1 0 auto'}}>
+        <Header isAuthenticated={isAuthenticated} 
+                handleLogin={handleLogin} 
+                handleLogout={handleLogout}  />
+        <main style={{ flex: '1 0 auto' }}>
           <Routes>
             <Route path="/platos" element={<ListaDePlatos />} />
             <Route path="/altaRestaurante" element={<AltaRestaurante />} />
             <Route path="/restaurantes" element={<ListaDeRestaurantes />} />
-            <Route path="/sitios-turisticos" element={<ListaDeSitios/>} />
-            <Route path="/opiniones" element={<ValoracionesRestaurante/>} />
-            <Route path="/" element={<Inicio isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/sitios-turisticos" element={<ListaDeSitios />} />
+            <Route path="/opiniones" element={<ValoracionesRestaurante />} />
+            <Route path="/" element={<Inicio 
+                setIsAuthenticated={setIsAuthenticated} 
+                isAuthenticated={isAuthenticated} 
+                handleLogin={handleLogin} 
+                handleLogout={handleLogout} />} />
           </Routes>
         </main>
-        <Footer style={{flexShrink: '0'}}/>
+        <Footer style={{ flexShrink: '0' }} />
       </Router>
     </div>
   );
