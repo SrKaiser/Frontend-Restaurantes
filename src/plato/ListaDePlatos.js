@@ -73,10 +73,19 @@ function ListaDePlatos() {
             }),
         }).then(response => {
             if (response.ok) {
-                handleIncidenciaClose();
-                alert("Incidencia registrada con éxito");
+                fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setRestaurante(data);
+                    })
+                    .catch(error => {
+                        throw new Error('Error al obtener la lista de platos actualizada');
+                    });
+
+                handleEditClose();
+                alert("Plato actualizado con éxito");
             } else {
-                throw new Error('Error al crear la incidencia');
+                throw new Error('Error al editar el plato');
             }
         });
     };
@@ -88,7 +97,7 @@ function ListaDePlatos() {
         setEditModalVisible(false);
     };
 
-    /* Para controlar la edicion de un plato*/
+    /* Para controlar la creacion de una incidencia*/
     const [crearIncidenciaVisible, setIncidenciaModalVisible] = useState(false);
     const [comentarioIncidencia, setComentarioIncidencia] = useState("");
     const [platoIncidencia, setPlatoIncidencia] = useState([]);
@@ -109,19 +118,10 @@ function ListaDePlatos() {
             }),
         }).then(response => {
             if (response.ok) {
-                fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        setRestaurante(data);
-                    })
-                    .catch(error => {
-                        throw new Error('Error al obtener la lista de platos actualizada');
-                    });
-
-                handleEditClose();
-                alert("Plato actualizado con éxito");
+                handleIncidenciaClose();
+                alert("Incidencia registrada con éxito");
             } else {
-                throw new Error('Error al editar el plato');
+                throw new Error('Error al crear la incidencia');
             }
         });
     };

@@ -526,7 +526,7 @@ function ListaDeRestaurantes() {
                   </button>
                 </td>
                 <td>
-                  <button className="list-button"> <MdAnnouncement /> Ver Incidencias </button>
+                  <button className="list-button" onClick={() => { window.location = "http://localhost:8091/incidencias/rest1";}}> <MdAnnouncement /> Ver Incidencias </button>
                 </td>
                 <td>
                   <button className="button-edit" onClick={() => {
