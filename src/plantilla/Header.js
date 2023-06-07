@@ -9,7 +9,7 @@ const Header = ({ isAuthenticated, handleLogin, handleLogout }) => {
     return (
         <header>
             <div className="top-header">
-                <h1>
+                <h1 className="h1">
                     <img src="logo.png" alt="DishDiscover logo" />
                     DishDiscover
                 </h1>

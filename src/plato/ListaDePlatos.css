@@ -18,6 +18,15 @@
   border-bottom: 3px solid #ddd;
 }
 
+.platos-table tr {
+  display: contents;
+}
+
+.platos-table th {
+  background-color: #273fca;
+  color: white;
+}
+
 .buttonPlatos {
   background-color: #007BFF;
   border: none;
@@ -37,50 +46,33 @@
   color: white;
 }
 
-.platos-table th {
-  background-color: #273fca;
-  color: white;
-}
+@media screen and (max-width: 500px) {
 
-.edit-button,
-.delete-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
+  .titulo {
+    font-size: 16px;
+  }
 
-.button-edit {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 4px 8px;
-  text-align: center;
-  display: inline-block;
-  font-size: 20px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
+  .platos-table {
+    width: 90%;
+  }
 
-.button-delete {
-  background-color: #a51010;
-  border: none;
-  color: white;
-  padding: 4px 8px;
-  text-align: center;
-  display: inline-block;
-  font-size: 20px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
+  .platos-table th,
+  .platos-table td {
+    padding: 5px;
+    font-size: 8px;
+  }
 
-.button-edit:hover {
-  background-color: white;
-  color:#4CAF50;
-}
+  .buttonPlatos {
+    padding: 5px 10px;
+    font-size: 8px;
+  }
 
-.button-delete:hover {
-  background-color: white;
-  color: #a51010;
+  .button-edit {
+    font-size: 10px;
+  }
+
+  .button-delete {
+    font-size: 10px;
+  }
+
 }

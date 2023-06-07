@@ -5,8 +5,9 @@
     transform: translate(-50%, -50%);
     background: white;
     padding: 2em;
-    width: 40%;
+    width: 90%; 
     border-radius: 8px;
+    max-width: 400px; 
 }
 
 .ventana textarea {
@@ -74,3 +75,28 @@
     font-size: 24px;
     cursor: pointer;
   }
+
+  /* Media Queries */
+@media screen and (max-width: 500px) {
+    .ventana {
+        padding: 1em;
+        width: 80%;
+    }
+    .ventana h2 {
+        font-size: 1.2em; 
+    }
+    .ventana label {
+        font-size: 0.9em;
+    }
+
+    .ventana input,
+    .ventana textarea,
+    .ventana select {
+        width: 95%;
+        font-size: 0.8em; 
+    }
+    .ventana button {
+        font-size: 0.9em; 
+        padding: 8px 20px;
+    }
+}
