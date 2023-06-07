@@ -4,10 +4,10 @@ const descripcion = document.querySelector('#descripcion');
 
 btnAgregar.addEventListener('click', function() {
     const pathParts = window.location.pathname.split('/');
-    const id_restaurante = pathParts[2];  // Suponiendo que id_restaurante es la tercera parte de la ruta.
-    const nombre_restaurante = pathParts[3];  // Suponiendo que nombre_restaurante es la cuarta parte de la ruta.
-    const cliente = pathParts[4];  // Suponiendo que cliente es la quinta parte de la ruta.
-    const plato = pathParts[5];  // Suponiendo que plato es la sexta parte de la ruta.
+    const id_restaurante = pathParts[2];
+    const nombre_restaurante = pathParts[3];
+    const cliente = pathParts[4];
+    const plato = pathParts[5];
     
     fetch('/submit_incidencia', {
         method: 'POST',

@@ -34,11 +34,13 @@ app.post('/submit_incidencia', async function(req, res){
     const {id_restaurante, nombre_restaurante, cliente, plato, descripcion} = req.body
     try {
         await agregarIncidencia(id_restaurante, nombre_restaurante, cliente, plato, descripcion)
+        res.sendStatus(200);
     } catch (err) {
         console.log(err);
         res.status(500).send('Error al agregar la incidencia');
     }
 })
+
 
 
 app.get('/incidencias/:id_restaurante', async function(req, res){
