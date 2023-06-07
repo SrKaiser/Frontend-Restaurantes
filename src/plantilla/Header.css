@@ -3,10 +3,6 @@ header {
     color: white;
     padding: 20px;
     font-family: 'Roboto', sans-serif;
-    display: grid;
-    grid-template-areas: 
-        "logo user"
-        "nav nav";
 }
 
 header .h1{
@@ -14,14 +10,12 @@ header .h1{
 }
 
 header .top-header {
-    grid-area: logo;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 header .bottom-header {
-    grid-area: nav;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +41,6 @@ nav a:hover {
 }
 
 .user-section {
-    grid-area: user;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -93,10 +86,6 @@ h1 img {
 @media screen and (max-width: 500px) {
     header {
         font-size: 12px;
-        grid-template-areas: 
-            "logo"
-            "user"
-            "nav";
     }
 
     .icon {
