@@ -1,7 +1,7 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Collapse, Box, IconButton, Typography } from '@material-ui/core';
-import { MdKeyboardArrowDown } from 'react-icons/md';
+import { MdKeyboardArrowDown, MdArrowBack } from 'react-icons/md';
 import './ListaDeSitios.css';
 
 function ListaDeSitios() {
@@ -9,6 +9,8 @@ function ListaDeSitios() {
   const restauranteId = new URLSearchParams(location.search).get("id");
   const [restaurante, setRestaurante] = useState([]);
   const [open, setOpen] = useState({});
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
@@ -21,6 +23,7 @@ function ListaDeSitios() {
   return (
     <div className="lista-container">
       <TableContainer className="tabla-container">
+      <button  className='volver-button' onClick={ () => {navigate('/restaurantes');}}> < MdArrowBack className='arrow-icon' /> Volver</button>
       <h2 className="titulo-sitios">{`Sitios Turísticos Cercanos a ${restaurante.nombre}`}</h2>
         <Table>
           <TableHead>

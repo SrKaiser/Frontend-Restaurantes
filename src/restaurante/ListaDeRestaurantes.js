@@ -27,8 +27,10 @@ function ListaDeRestaurantes() {
   const navigate = useNavigate();
 
   const [restaurantes, setRestaurantes] = useState([]);
+  const [role, setRole] = useState('');
 
   useEffect(() => {
+    setRole(getCookie('role'));
     const url = 'http://localhost:8090/restaurantes';
 
     fetch(url)
@@ -487,7 +489,7 @@ function ListaDeRestaurantes() {
               <th>Opiniones</th>
               <th>Platos</th>
               <th>Incidencias</th>
-              <th>Acciones</th>
+              {role !== 'CLIENTE' && ( <th>Acciones</th> )}
             </tr>
           </thead>
           <tbody>
@@ -499,9 +501,11 @@ function ListaDeRestaurantes() {
                   <button className="list-button" onClick={() => navigate(`/sitios-turisticos?id=${restaurante.id}`)}>
                     <MdPlace /> Ver Sitios Turísticos
                   </button>
-                  <button className="list-button" onClick={() => { setAddSiteModalVisible(true); setIdRestaurante(restaurante.id); }}>
-                    <MdAddLocation /> Añadir Sitios Turísticos
-                  </button>
+                  {role !== 'CLIENTE' && (
+                    <button className="list-button" onClick={() => { setAddSiteModalVisible(true); setIdRestaurante(restaurante.id); }}>
+                      <MdAddLocation /> Añadir Sitios Turísticos
+                    </button>
+                  )}
                 </td>
                 <td>
                   <button className="list-button" onClick={() => navigate(`/opiniones?id=${restaurante.id}`)}>
@@ -521,27 +525,34 @@ function ListaDeRestaurantes() {
                   >
                     <MdLocalDining /> Ver Platos
                   </button>
-                  <button className="list-button" onClick={() => { setcreateModalVisiblePlato(true); setIdRestaurante(restaurante.id); }}>
-                    <MdRestaurant /> Crear plato
-                  </button>
+                  {role !== 'CLIENTE' && (
+                    <button className="list-button" onClick={() => { setcreateModalVisiblePlato(true); setIdRestaurante(restaurante.id); }}>
+                      <MdRestaurant /> Crear plato
+                    </button>
+                  )}
                 </td>
                 <td>
-                  <button className="list-button" onClick={() => { window.location = `http://localhost:8091/incidencias/${restaurante.id}`;}}> <MdAnnouncement /> Ver Incidencias </button>
+                  <button className="list-button" onClick={() => { window.location = `http://localhost:8091/incidencias/${restaurante.id}`; }}> <MdAnnouncement /> Ver Incidencias </button>
                 </td>
                 <td>
-                  <button className="button-edit" onClick={() => {
-
-                    setSelectedRestaurante(restaurante);
-                    setEditNombre(restaurante.nombre);
-                    setEditLatitud(restaurante.latitud);
-                    setEditLongitud(restaurante.longitud);
-                    setEditCiudad(restaurante.ciudad);
-                    setEditFechaAlta(restaurante.fechaAlta);
-                    setEditModalVisible(true);
-                  }}><MdEdit /></button>
-                  <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
-                    <MdDelete />
-                  </button>
+                  {role !== 'CLIENTE' && (
+                    <button className="button-edit" onClick={() => {
+                      setSelectedRestaurante(restaurante);
+                      setEditNombre(restaurante.nombre);
+                      setEditLatitud(restaurante.latitud);
+                      setEditLongitud(restaurante.longitud);
+                      setEditCiudad(restaurante.ciudad);
+                      setEditFechaAlta(restaurante.fechaAlta);
+                      setEditModalVisible(true);
+                    }}>
+                      <MdEdit />
+                    </button>
+                  )}
+                  {role !== 'CLIENTE' && (
+                    <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
+                      <MdDelete />
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

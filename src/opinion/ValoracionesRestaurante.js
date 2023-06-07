@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate  } from 'react-router-dom';
+import { MdArrowBack } from 'react-icons/md';
 import './ValoracionesRestaurante.css'
 
 function ValoracionesRestaurante() {
@@ -19,8 +20,11 @@ function ValoracionesRestaurante() {
       });
   }, [restauranteId]);  
 
+  const navigate = useNavigate();
+
   return (
     <div>
+      <button  className='volver-button' onClick={ () => {navigate('/restaurantes');}}> < MdArrowBack className='arrow-icon' /> Volver</button>
       <h1 className="titulo">Opiniones de {restaurante.nombre}</h1>
       <table className="opiniones-table">
         <thead>

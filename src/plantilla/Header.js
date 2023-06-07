@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
 import { MdHome, MdAdd, MdRestaurant, MdHelp, MdAccountCircle } from "react-icons/md";
 
-const Header = ({ isAuthenticated, handleLogin, handleLogout }) => {
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+  
+const Header = ({ isAuthenticated, handleLogin}) => {
+    const [role, setRole] = useState('');
 
+    useEffect(() => {
+        setRole(getCookie('role'));
+    },);
     return (
         <header>
             <div className="top-header">
@@ -31,7 +41,7 @@ const Header = ({ isAuthenticated, handleLogin, handleLogout }) => {
                         <li>
                             <Link to="/"><MdHome /> Inicio</Link>
                         </li>
-                        {isAuthenticated && (
+                        {isAuthenticated && role !== 'CLIENTE' && (
                             <li>
                                 <Link to="/altaRestaurante"><MdAdd /> Alta Restaurante</Link>
                             </li>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { MdEdit, MdDelete } from 'react-icons/md';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { MdEdit, MdDelete, MdArrowBack} from 'react-icons/md';
 import './ListaDePlatos.css';
 import '../restaurante/VentanaEmergente.css';
 
@@ -14,8 +14,12 @@ function ListaDePlatos() {
     const location = useLocation();
     const restauranteId = new URLSearchParams(location.search).get("id");
     const [restaurante, setRestaurante] = useState([]);
+    const [role, setRole] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
+        setRole(getCookie('role'));
         fetch(`http://localhost:8090/restaurantes/${restauranteId}`)
             .then(response => response.json())
             .then(data => {
@@ -134,6 +138,7 @@ function ListaDePlatos() {
 
     return (
         <div>
+            <button  className='volver-button' onClick={ () => {navigate('/restaurantes');}}> < MdArrowBack className='arrow-icon' /> Volver</button>
             <h1 className="titulo">Platos de {restaurante.nombre}</h1>
             <table className="platos-table">
                 <thead>
@@ -143,7 +148,7 @@ function ListaDePlatos() {
                         <th>Precio</th>
                         <th>Disponibilidad</th>
                         <th>Incidencia</th>
-                        <th>Acciones</th>
+                        {role !== 'CLIENTE' && ( <th>Acciones</th> )}
                     </tr>
                 </thead>
                 <tbody>
@@ -158,14 +163,16 @@ function ListaDePlatos() {
                                 setIncidenciaModalVisible(true);
                             }}>Crear Incidencia</button></td>
                             <td>
+                            {role !== 'CLIENTE' && (
                                 <button className="button-edit" onClick={() => {
                                     setDescripcion(plato.descripcion);
                                     setPrecio(plato.precio);
                                     setNombre(plato.nombre);
                                     setDisponibilidad(plato.disponibilidad);
                                     setEditModalVisible(true);
-                                }}><MdEdit /></button>
-                                <button className="button-delete" onClick={() => handleDelete(plato.nombre)}><MdDelete /></button>
+                                }}><MdEdit /></button> )}
+                             {role !== 'CLIENTE' && (
+                                <button className="button-delete" onClick={() => handleDelete(plato.nombre)}><MdDelete /></button> )}
                             </td>
                         </tr>
                     ))}

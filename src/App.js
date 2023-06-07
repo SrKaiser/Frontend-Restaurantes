@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AltaRestaurante from "./restaurante/AltaRestaurante";
 import ListaDeRestaurantes from "./restaurante/ListaDeRestaurantes"
@@ -15,15 +15,17 @@ function App() {
     window.location = "http://localhost:8090/oauth2/authorization/github";
   };
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-  };
+  useEffect(() => {
+    if (localStorage.getItem('isAuthenticated') === 'true') {
+        setIsAuthenticated(true);
+    }
+}, []);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Router>
         <Header isAuthenticated={isAuthenticated} 
-                handleLogin={handleLogin} 
-                handleLogout={handleLogout}  />
+                handleLogin={handleLogin}   />
         <main style={{ flex: '1 0 auto' }}>
           <Routes>
             <Route path="/platos" element={<ListaDePlatos />} />
@@ -34,8 +36,7 @@ function App() {
             <Route path="/" element={<Inicio 
                 setIsAuthenticated={setIsAuthenticated} 
                 isAuthenticated={isAuthenticated} 
-                handleLogin={handleLogin} 
-                handleLogout={handleLogout} />} />
+                handleLogin={handleLogin}  />} />
           </Routes>
         </main>
         <Footer style={{ flexShrink: '0' }} />

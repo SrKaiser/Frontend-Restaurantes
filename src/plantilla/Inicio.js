@@ -7,7 +7,7 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-const Inicio = ({ isAuthenticated, setIsAuthenticated, handleLogin, handleLogout }) => {
+const Inicio = ({ isAuthenticated, setIsAuthenticated, handleLogin }) => {
 
     useEffect(() => {
         fetch('http://localhost:8090/login/oauth2/code/github', {
@@ -24,12 +24,24 @@ const Inicio = ({ isAuthenticated, setIsAuthenticated, handleLogin, handleLogout
             console.log('User:', user);
             console.log('Role:', role);
             setIsAuthenticated(true);
+            localStorage.setItem('isAuthenticated', 'true');
             return response;
         }) 
         .catch((error) => {
             console.error('Ha habido un error:', error);
         });
     }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem('isAuthenticated') === 'true') {
+            setIsAuthenticated(true);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.setItem('isAuthenticated', 'false');
+        setIsAuthenticated(false);
+      };
 
     return (
         <div className="inicio">

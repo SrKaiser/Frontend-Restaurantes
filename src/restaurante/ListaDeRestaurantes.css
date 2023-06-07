@@ -169,6 +169,30 @@
     color: #a51010;
   }
 
+  .volver-button { 
+    background-color: #C3ACCE;
+    color: white;
+    padding: 10px 24px;
+    font-size: 16px;
+    margin: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border: none;
+    margin-left: 30px;
+    border-radius: 20px;
+  }
+  
+  .arrow-icon {
+    font-size: 16px;
+    margin-right: 5px;
+    
+  }
+  
+  .volver-button:hover {
+    background-color: #65596b;
+    color: white;
+  }
+
   /* Media Queries */
 @media screen and (max-width: 500px) {
 
