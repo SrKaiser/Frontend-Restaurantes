@@ -1,0 +1,10 @@
+html 
+    head
+        title= titulo
+        link(rel="stylesheet", href="estilos.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    body 
+        div.container
+            each incidencia in incidencias
+                div.incidencia
+                    p= `${incidencia.plato} -- ${incidencia.description} -- ${incidencia.cliente} -- ${incidencia.fecha}`

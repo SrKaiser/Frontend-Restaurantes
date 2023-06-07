@@ -1,0 +1,14 @@
+html 
+    head
+        title= titulo
+        link(rel="stylesheet", href="estilos.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    body 
+        div.container
+            p= `Restaurante: ${id_restaurante}, Cliente: ${cliente}, Plato: ${plato}`
+            textarea(id="descripcion", placeholder="Descripción de la incidencia")
+            button(id="btn_agregar") Aceptar
+            button(id="btn_cancelar") Cancelar
+    script(src="/funciones.js")
+
+
