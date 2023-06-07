@@ -23,12 +23,12 @@
 }
 
 .platos-table th {
-  background-color: #273fca;
+  background-color: #4E148C;
   color: white;
 }
 
 .buttonPlatos {
-  background-color: #007BFF;
+  background-color: #613DC1;
   border: none;
   color: white;
   padding: 10px 24px;
@@ -42,7 +42,7 @@
 }
 
 .buttonPlatos:hover {
-  background-color: #273fca;
+  background-color: #2b1c55;
   color: white;
 }
 

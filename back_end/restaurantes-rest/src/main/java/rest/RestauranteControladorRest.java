@@ -347,7 +347,7 @@ public class RestauranteControladorRest {
     
 
 	@GET
-    @Secured(AvailableRoles.GESTOR)
+	@Secured({AvailableRoles.GESTOR, AvailableRoles.CLIENTE})
     @Path("/{id}/valoraciones")
     @ApiOperation(value = "Recupera todas las valoraciones para un restaurante por ID", response = Valoracion.class, responseContainer = "List")
     @ApiResponses(value = {

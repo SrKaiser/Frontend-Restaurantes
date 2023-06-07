@@ -49,14 +49,14 @@
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: #007BFF;
+  background-color: #613DC1;
   color: white;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .submit-button:hover {
-  background-color: #273fca;
+  background-color: #2b1c55;
 }
 
 /* Media Queries */

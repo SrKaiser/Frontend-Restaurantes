@@ -85,7 +85,6 @@ public class ServicioOpinionesRetrofit implements IServicioOpiniones {
 				valoracion.setComentario(jsonObject.getString("comentario"));
 
 				valoraciones.add(valoracion);
-				return valoraciones;
 			}
 			return valoraciones;
 		} catch (IOException e) {

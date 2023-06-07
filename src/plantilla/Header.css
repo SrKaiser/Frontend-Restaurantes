@@ -1,5 +1,5 @@
 header {
-    background-color: #007BFF;
+    background-color: #726DA8;
     color: white;
     padding: 20px;
     font-family: 'Roboto', sans-serif;
@@ -37,7 +37,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #3d19a1;
+    color: #4b486d;
 }
 
 .user-section {
@@ -60,7 +60,7 @@ nav a:hover {
 }
 
 .header-button {
-    background-color: #007BFF;
+    background-color: transparent;
     color: white;
     text-align: end;
     text-decoration: none;
@@ -73,7 +73,7 @@ nav a:hover {
 }
 
 .header-button:hover {
-    color: #3d19a1;
+    color: #4b486d;
     border: none;
 }
 
