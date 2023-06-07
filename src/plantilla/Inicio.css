@@ -49,3 +49,17 @@
     background-color: #025582; 
 }
 
+/* Media Queries */
+@media screen and (max-width: 500px) {
+    .content {
+        padding: 20px;
+    }
+
+    .content h2, .content p {
+        font-size: 0.8em;
+    }
+
+    .loginButton {
+        padding: 8px 16px;
+    }
+}

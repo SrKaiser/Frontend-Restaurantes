@@ -133,4 +133,71 @@
     color: white;
   }
 
+  .button-edit {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
   
+  .button-delete {
+    background-color: #a51010;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .button-edit:hover {
+    background-color: white;
+    color:#4CAF50;
+  }
+  
+  .button-delete:hover {
+    background-color: white;
+    color: #a51010;
+  }
+
+  /* Media Queries */
+@media screen and (max-width: 500px) {
+
+  .filter-inputs .row {
+      flex-direction: column;
+  }
+
+  .filter-inputs .row .column {
+      flex-basis: 100%;
+  }
+
+  .table {
+      width: 100%;
+  }
+
+  .filter-inputs .filter-row label,
+  .filter-inputs .filter-row input,
+  .filter-inputs .filter-row select {
+      flex-basis: 100%;
+      margin-bottom: 10px;
+  }
+
+  .list-button {
+      width: 100%;
+  }
+
+  .table th,
+  .table td {
+      padding: 5px;
+      font-size: 12px;
+  }
+}
