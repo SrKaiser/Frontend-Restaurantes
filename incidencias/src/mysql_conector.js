@@ -21,8 +21,8 @@ const conectar = () => {
     });
 };
 
-const agregarIncidencia = (id_restaurante, cliente, plato, description) => {
-    const sql = `INSERT INTO incidencias (id_incidencia, id_restaurante, cliente, plato, description) VALUES (NULL, "${id_restaurante}", "${cliente}", "${plato}", "${description}")`
+const agregarIncidencia = (id_restaurante, nombre_restaurante, cliente, plato, description) => {
+    const sql = `INSERT INTO incidencias (id_incidencia, id_restaurante, nombre_restaurante, cliente, plato, description) VALUES (NULL, "${id_restaurante}", "${nombre_restaurante}", "${cliente}", "${plato}", "${description}")`
     return new Promise((resolve, reject) => {
         conector.query(sql, function(err, result, filed){
             if(err) reject(err);

@@ -5,11 +5,10 @@ const descripcion = document.querySelector('#descripcion');
 btnAgregar.addEventListener('click', function() {
     const pathParts = window.location.pathname.split('/');
     const id_restaurante = pathParts[2];  // Suponiendo que id_restaurante es la tercera parte de la ruta.
-    const cliente = pathParts[3];  // Suponiendo que cliente es la cuarta parte de la ruta.
-    const plato = pathParts[4];  // Suponiendo que plato es la quinta parte de la ruta.
+    const nombre_restaurante = pathParts[3];  // Suponiendo que nombre_restaurante es la cuarta parte de la ruta.
+    const cliente = pathParts[4];  // Suponiendo que cliente es la quinta parte de la ruta.
+    const plato = pathParts[5];  // Suponiendo que plato es la sexta parte de la ruta.
     
-    console.log(id_restaurante, cliente, plato); // Solo para comprobar si los valores son correctos.
-
     fetch('/submit_incidencia', {
         method: 'POST',
         headers: {
@@ -17,6 +16,7 @@ btnAgregar.addEventListener('click', function() {
         },
         body: JSON.stringify({
             id_restaurante: id_restaurante,
+            nombre_restaurante: nombre_restaurante,
             cliente: cliente,
             plato: plato,
             descripcion: descripcion.value
