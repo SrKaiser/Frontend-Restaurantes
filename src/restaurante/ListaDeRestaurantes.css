@@ -193,6 +193,7 @@
 
   .list-button {
       width: 100%;
+      font-size: 12px;
   }
 
   .table th,
@@ -200,4 +201,5 @@
       padding: 5px;
       font-size: 12px;
   }
+
 }

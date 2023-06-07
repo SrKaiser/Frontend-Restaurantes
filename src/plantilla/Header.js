@@ -17,7 +17,6 @@ const Header = ({ isAuthenticated, handleLogin, handleLogout }) => {
                     {isAuthenticated ? (
                         <>
                             <MdAccountCircle className="icon" />
-                            <button onClick={handleLogout} className="header-button">Cerrar sesión</button>
                         </>
                     ) : (
                         <>
