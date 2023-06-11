@@ -19,13 +19,15 @@ namespace OpinionApi.Controllers
 
         [HttpGet("obtenerOpiniones")]
         // curl -i -X GET https://localhost:7054/api/opiniones/obtenerOpiniones
+        // curl -i -X GET -H "Authorization: Bearer %JWT%" http://localhost:8090/opiniones/obtenerOpiniones
         public ActionResult<List<OpinionModelo>> Get()
         {
             return _servicio.ObtenerOpiniones();
         }
 
         [HttpGet("{idOpinion}", Name = "GetOpinion")]
-        // curl -i -X GET https://localhost:7054/api/opiniones/{idOpinion}
+        // curl -i -X GET https://localhost:7054/api/opiniones/ID_DE_LA_OPINION
+        // curl -i -X GET -H "Authorization: Bearer %JWT%" http://localhost:8090/opiniones/ID_DE_LA_OPINION
         public ActionResult<OpinionModelo> Get(string idOpinion)
         {
             var entidad = _servicio.ObtenerOpinion(idOpinion);
@@ -39,7 +41,7 @@ namespace OpinionApi.Controllers
         }
 
         [HttpGet("{idOpinion}/valoraciones")]
-        // curl -i -X GET https://localhost:7054/api/opiniones/{idOpinion}/valoraciones
+        // curl -i -X GET https://localhost:7054/api/opiniones/ID_DE_LA_OPINION/valoraciones
         public ActionResult<List<Valoracion>> GetValoraciones(string idOpinion)
         {
             var entidad = _servicio.ObtenerOpinion(idOpinion);
@@ -62,8 +64,8 @@ namespace OpinionApi.Controllers
         }
 
         [HttpPost("{idOpinion}/addValoracion")]
-        // curl -i -X POST -H "Content-Type: application/json" -d '{"correoElectronico": "usuario@example.com", "calificacion": 5, "comentario": "Excelente recurso"}' https://localhost:7054/api/opiniones/64669b4edb5db81ba23b9fab/addValoracion
-        // curl -i -X POST -H "Content-Type: application/json" -d "{\"correoElectronico\": \"usuario@example.com\", \"calificacion\": 5, \"comentario\": \"Excelente recurso\"}" https://localhost:7054/api/opiniones/647eddf13d510cd2ddff878f/addValoracion
+        // curl -i -X POST -H "Content-Type: application/json" -d "{\"correoElectronico\": \"usuario@example.com\", \"calificacion\": 5, \"comentario\": \"Excelente recurso\"}" http://localhost:7054/api/opiniones/ID_DE_LA_OPINION/addValoracion
+        // curl -i -X POST -H "Authorization: Bearer %JWT%" -H "Content-Type: application/json" -d "{\"correoElectronico\": \"usuario@example.com\", \"calificacion\": 5, \"comentario\": \"Excelente recurso\"}" http://localhost:8090/opiniones/ID_DE_LA_OPINION/addValoracion
         public ActionResult<bool> AddValoracion(string idOpinion, [FromBody] Valoracion valoracion)
         {
             var entidad = _servicio.ObtenerOpinion(idOpinion);
@@ -75,11 +77,12 @@ namespace OpinionApi.Controllers
 
             _servicio.AñadirValoracion(idOpinion, valoracion);
 
-            return NoContent();
+            return Ok(true);
         }
 
         [HttpDelete("{idOpinion}")]
-        // curl -X DELETE https://localhost:7054/api/opiniones/{idOpinion}
+        // curl -i -X DELETE https://localhost:7054/api/opiniones/ID_DE_LA_OPINION
+        // curl -i -X DELETE -H "Authorization: Bearer %JWT%" http://localhost:8090/opiniones/ID_DE_LA_OPINION
         public ActionResult<bool> Delete(string idOpinion)
         {
             var actividad = _servicio.ObtenerOpinion(idOpinion);
@@ -91,7 +94,8 @@ namespace OpinionApi.Controllers
 
             _servicio.EliminarOpinion(idOpinion);
 
-            return NoContent();
+            return Ok(true);
+
         }
 
 
