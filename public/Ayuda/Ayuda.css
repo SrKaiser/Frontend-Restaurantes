@@ -1,70 +1,257 @@
 /* Estilos generales */
 * {
-    box-sizing: border-box;
-  }
-  
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Estilos para el contenedor principal */
-  .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-  }
-  
-  /* Estilos para el encabezado */
-  header {
-    background-color: #007BFF;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  header h1 {
-    margin: 0;
-  }
-  
-  header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  header nav ul li {
-    display: inline-block;
-    margin-left: 20px;
-  }
-  
-  header nav ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Estilos para el contenido principal */
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden; 
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+  color: #333;
+}
+
+
+.content-heading {
+  font-size: 28px;
+  color: #726DA8;
+  margin-bottom: 20px;
+}
+
+.accordion .card {
+  margin-bottom: 10px;
+}
+
+.accordion .card-header {
+  background-color: #f7f7f7;
+  border: none;
+  padding: 15px;
+}
+
+.accordion .card-header .btn {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.accordion .card-body {
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+form .form-group {
+  margin-bottom: 15px;
+}
+
+form .form-group label {
+  font-weight: bold;
+}
+
+form .form-group .form-control {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+form .btn {
+  background-color: #726DA8;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form .btn:hover {
+  background-color: #4b486d;
+}
+
+/* Estilos para el contenedor principal */
+.container-fluid {  
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
   .main-content {
-    flex-grow: 1;
-    padding: 20px;
+    padding: 10px;
+    height: 101vh;
   }
-  
-  .main-content h2 {
-    margin-bottom: 20px;
+
+  .container-fluid {
+    max-width: 100%;
   }
-  
-  /* Estilos para el pie de página */
+
+  .content-heading {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  form .form-group label,
+  form .form-group input,
+  form .form-group textarea,
+  form .btn,
+  .accordion .card-header .btn,
+  .accordion .card-body {
+    font-size: 14px;
+  }
+
+}
+
+/* Estilos para el header */
+
+header {
+  background-color: #726DA8;
+  color: white;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+header .h1 {
+  font-size: 32px;
+}
+
+header .top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .bottom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+nav ul {
+  font-weight: bold;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #4b486d;
+}
+
+.user-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-section a {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 48px;
+}
+
+.header-button {
+  background-color: transparent;
+  color: white;
+  text-align: end;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border: none;
+}
+
+.header-button:hover {
+  color: #4b486d;
+  border: none;
+}
+
+h1 img {
+  height: 50px;
+  margin-right: 16px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 500px) {
+  header {
+    font-size: 12px;
+  }
+
+  .icon {
+    margin-right: 8px;
+    font-size: 36px;
+  }
+
+  h1 img {
+    height: 25px;
+    margin-right: 8px;
+  }
+
+  header .h1 {
+    font-size: 22px;
+  }
+
+
+  .header-button {
+    font-size: 13px;
+  }
+
+
+  .top-header,
+  .user-section,
+  .bottom-header {
+    justify-content: center;
+  }
+}
+
+/* Estilos para el pie de página */
+footer {
+  background-color: #726DA8;
+  color: white;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+  height: 120px;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 500px) {
   footer {
-    background-color: #007BFF;
-    color: white;
-    box-sizing: border-box;
-    padding: 20px;
-    text-align: center;
-    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    height: auto;
   }
-  
+}

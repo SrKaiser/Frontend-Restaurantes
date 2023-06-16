@@ -4,34 +4,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Obtener ayuda</title>
+  <title>Ayuda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="Ayuda.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-fluid m-0 p-0">
     <header>
-      <h1>DishDiscover</h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Inicio</a>
-          </li>
-          <li>
-            <a href="/altaRestaurante">Alta Restaurante</a>
-          </li>
-          <li>
-            <a href="/listaRestaurante">Lista Restaurante</a>
-          </li>
-        </ul>
-      </nav>
+      <div class="top-header">
+        <h1 class="h1">
+          <img src="../logo.png" alt="DishDiscover logo" />
+          DishDiscover
+        </h1>
+      </div>
+      <div class="bottom-header">
+        <nav>
+          <ul>
+            <li>
+              <a href="/"><i class="fas fa-home"></i> Inicio</a>
+            </li>
+            <!--  
+            <li>
+              <a href="/altaRestaurante"><i class="fas fa-plus"></i> Alta Restaurante</a>
+            </li>
+            <li>
+              <a href="/restaurantes"><i class="fas fa-utensils"></i> Lista de Restaurantes</a>
+            </li>
+            -->
+            <li>
+              <a href="/Ayuda/Ayuda.html"><i class="fas fa-question-circle"></i> Obtener ayuda</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <div class="main-content">
       <div class="row">
         <div class="col">
-          <h2>Preguntas frecuentes</h2>
+          <h2 class="content-heading">Preguntas frecuentes</h2>
           <div class="accordion" id="accordionFAQ">
             <div class="card">
               <div class="card-header" id="headingOne">
@@ -51,8 +65,8 @@
             <div class="card">
               <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
                     Pregunta 2
                   </button>
                 </h5>
@@ -66,7 +80,7 @@
           </div>
         </div>
         <div class="col">
-          <h2>Contacto</h2>
+          <h2 class="content-heading">Contacto</h2>
           <form>
             <div class="form-group">
               <label for="name">Nombre:</label>
