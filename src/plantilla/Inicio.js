@@ -25,6 +25,8 @@ const Inicio = ({ isAuthenticated, setIsAuthenticated, handleLogin }) => {
             console.log('Role:', role);
             setIsAuthenticated(true);
             localStorage.setItem('isAuthenticated', 'true');
+            document.cookie = `isAuthenticated=${isAuthenticated};path=/`;
+            document.cookie = `role=${role};path=/`;
             return response;
         }) 
         .catch((error) => {

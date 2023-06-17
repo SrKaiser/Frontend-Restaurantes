@@ -68,13 +68,17 @@ public class ResumenRestaurante {
 	public void setFechaAlta(String fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
-	
 	@Override
 	public String toString() {
 		return "ResumenRestaurante [id=" + id + ", nombre=" + nombre + ", latitud=" + latitud + ", longitud=" + longitud
-				+ ", numeroPlatos=" + numeroPlatos + ", numeroSitiosTuristicos=" + numeroSitiosTuristicos
-				+ ", calificacionMedia=" + calificacionMedia + "]";
+				+ ", ciudad=" + ciudad + ", fechaAlta=" + fechaAlta + ", numeroPlatos=" + numeroPlatos
+				+ ", numeroSitiosTuristicos=" + numeroSitiosTuristicos + ", calificacionMedia=" + calificacionMedia
+				+ "]";
 	}
+	
+	
+	
+	
 	
 	
 	

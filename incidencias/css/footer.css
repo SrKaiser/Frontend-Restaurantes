@@ -1,0 +1,22 @@
+footer {
+    background-color: #726DA8;
+    color: white;
+    box-sizing: border-box; 
+    width: 100%;  
+    padding: 20px;  
+    text-align: center;
+    height: 90px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
+}
+
+/* Media Queries */
+@media screen and (max-width: 500px) {
+    footer {
+        font-size: 14px;
+        padding: 10px;
+        height: auto;
+    }
+}

@@ -1,11 +1,67 @@
 html 
     head
         title= titulo
-        link(rel="stylesheet", href="estilos.css")
+        link(rel="stylesheet", href="/header.css")
+        link(rel="stylesheet", href="/footer.css")
+        link(rel="stylesheet", href="/incidencias.css")
+        link(rel="stylesheet", href="/index.css")
         link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
     body
-        h1= titulo
-        div.container
-            each incidencia in incidencias
-                div.incidencia
-                    p= `${incidencia.plato} -- ${incidencia.description} -- ${incidencia.cliente} -- ${incidencia.fecha}`
+        header
+            div.top-header
+                h1.h1
+                    img(src="/logo.png", alt="DishDiscover logo")
+                    | DishDiscover
+                div.user-section
+                    if isAuthenticated
+                        i.material-icons(style=`font-size: 48px;`) 
+                            | account_circle
+                    else
+                        button(onClick=handleLogin, class="header-button") Iniciar sesión
+            div.bottom-header
+                nav
+                    ul
+                        li
+                            a(href="http://localhost:3000/") 
+                                i.material-icons(style=`font-size: 16px;`) 
+                                    | home
+                                | Inicio
+                        if isAuthenticated && role !== 'CLIENTE'
+                            li
+                                a(href="http://localhost:3000/altaRestaurante") 
+                                    i.material-icons(style=`font-size: 16px;`) 
+                                        | add
+                                    | Alta Restaurante
+                        if isAuthenticated
+                            li
+                                a(href="http://localhost:3000/restaurantes") 
+                                    i.material-icons(style=`font-size: 16px;`) 
+                                        | restaurant
+                                    | Lista de Restaurantes
+                        li
+                            a(href="http://localhost:3000/Ayuda/Ayuda.html")
+                                i.material-icons(style=`font-size: 16px;`) 
+                                    | help
+                                | Obtener ayuda
+        div.main-content
+            button.volver-button(onclick=`window.location.href='http://localhost:3000/restaurantes';`)
+                span(class="material-icons", style="font-size: 16px;")= "arrow_back"
+                | Volver
+            h1.titulo= titulo
+            div.container
+                table.incidencias-table
+                    thead
+                        tr
+                            th Plato
+                            th Descripción
+                            th Cliente
+                            th Fecha
+                    tbody
+                        each incidencia in incidencias
+                            tr
+                                td= incidencia.plato
+                                td= incidencia.description
+                                td= incidencia.cliente
+                                td= incidencia.fecha.toLocaleString('es-ES')
+        footer
+            p=` 2023 Todos los derechos reservados - César Pagán Villafañe / Ángel Tomás Perea Nieto. FIUM`

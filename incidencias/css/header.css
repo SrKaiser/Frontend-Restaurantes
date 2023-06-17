@@ -1,0 +1,113 @@
+header {
+    background-color: #726DA8;
+    color: white;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+header .h1{
+    font-size: 32px;
+}
+
+header .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .bottom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+nav ul {
+    font-weight: bold;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #4b486d;
+}
+
+.user-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-section a {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+.material-icons {
+    margin-right: 8px;
+}
+
+.header-button {
+    background-color: transparent;
+    color: white;
+    text-align: end;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border: none;
+}
+
+.header-button:hover {
+    color: #4b486d;
+    border: none;
+}
+
+h1 img {
+    height: 50px;
+    margin-right: 16px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 500px) {
+    header {
+        font-size: 12px;
+    }
+
+    .material-icons {
+        margin-right: 8px;
+        font-size: 36px;
+    }
+
+    h1 img {
+        height: 25px;
+        margin-right: 8px;
+    }
+
+    header .h1{
+        font-size: 22px;
+    }
+    
+
+    .header-button {
+        font-size: 13px;
+    }
+
+
+    .top-header, .user-section, .bottom-header {
+        justify-content: center;
+    }
+}

@@ -1,6 +1,12 @@
 import express from 'express' //importamos Express
+import cookieParser from 'cookie-parser'
 import { conectar, agregarIncidencia, obtenerIncidencias } from './src/mysql_conector.js'
 const app = express() //Iniciamos Express
+
+//Configuración de archivos estaticos
+app.use(express.static('./vistas'))
+app.use(express.static('./src'))
+app.use(express.static('./css'))
 
 //Iniciamos servidor
 app.listen('8091', function(){
@@ -8,14 +14,11 @@ app.listen('8091', function(){
     conectar()
 })
 
-//Configuracion de pug
+//Configuración de pug
 app.set('views', './vistas')
 app.set('view engine', 'pug')
 
-//configuracion de archivos estaticos
-app.use(express.static('./vistas'))
-app.use(express.static('./src'))
-app.use(express.static('./css'))
+app.use(cookieParser());
 
 app.get('/agregar_incidencia/:id_restaurante/:nombre_restaurante/:cliente/:plato', function(req, res){
     res.render('agregar_incidencia', {
@@ -50,7 +53,10 @@ app.get('/incidencias/:id_restaurante', async function(req, res){
         if(incidencias.length > 0) {
             titulo += (' de '+incidencias[0].nombre_restaurante);
         }
-        res.render('incidencias', {titulo: titulo, incidencias: incidencias});
+         // Obtén las cookies de isAuthenticated y role
+         const { isAuthenticated, role } = req.cookies;
+         // Pásalas a tu vista junto con los otros datos
+         res.render('incidencias', {titulo: titulo, incidencias: incidencias, isAuthenticated, role});
     } catch (err) {
         console.log(err);
         res.status(500).send('Error al obtener las incidencias');
