@@ -2,7 +2,7 @@ import mysql from 'mysql'
 
 const conector = mysql.createConnection(
     {
-        host: 'localhost',
+        host: 'host.docker.internal',
         user: 'root',
         password: '',
         database: 'grupo_incidencias'

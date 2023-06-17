@@ -2,15 +2,15 @@
 FROM maven:3.8.1-jdk-11 AS build
 
 WORKDIR /app-base/
-COPY restaurantes/pom.xml .
+COPY back_end/restaurantes/pom.xml .
 RUN mvn -e -B dependency:resolve
-COPY restaurantes/src ./src
+COPY back_end/restaurantes/src ./src
 RUN mvn install
 
 WORKDIR /app/
-COPY restaurantes-rest/pom.xml .
+COPY back_end/restaurantes-rest/pom.xml .
 RUN mvn -e -B dependency:resolve
-COPY restaurantes-rest/src ./src
+COPY back_end/restaurantes-rest/src ./src
 RUN mvn clean package shade:shade
 
 # Crear imagen para ejecutar la aplicación

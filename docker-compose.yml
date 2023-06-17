@@ -24,15 +24,10 @@ services:
     ports:
       - 5193:5193
       - 7054:7054
-    environment:
-      - MONGODB_CONNECTION_STRING=mongodb://mongo:27017
-
-  mongo:
-    image: mongo:latest
-    volumes:
-      - mongodb_data_container:/data/db
+  
+  incidencias:
+    build:
+      context: .
+      dockerfile: Dockerfile-incidencias
     ports:
-      - 27017:27017
-      
-volumes:
-  mongodb_data_container:
+      - 8091:8091
