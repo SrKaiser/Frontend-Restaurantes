@@ -164,15 +164,13 @@ function ListaDePlatos() {
                             }}>Crear Incidencia</button></td>
                             <td>
                             {role !== 'CLIENTE' && (
-                                <button className="button-edit" onClick={() => {
-                                    setDescripcion(plato.descripcion);
-                                    setPrecio(plato.precio);
-                                    setNombre(plato.nombre);
-                                    setDisponibilidad(plato.disponibilidad);
-                                    setEditModalVisible(true);
-                                }}><MdEdit /></button> )}
-                             {role !== 'CLIENTE' && (
-                                <button className="button-delete" onClick={() => handleDelete(plato.nombre)}><MdDelete /></button> )}
+                                <><button className="button-edit" onClick={() => {
+                                        setDescripcion(plato.descripcion);
+                                        setPrecio(plato.precio);
+                                        setNombre(plato.nombre);
+                                        setDisponibilidad(plato.disponibilidad);
+                                        setEditModalVisible(true);
+                                    } }><MdEdit /></button><button className="button-delete" onClick={() => handleDelete(plato.nombre)}><MdDelete /></button></> )}
                             </td>
                         </tr>
                     ))}

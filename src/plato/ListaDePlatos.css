@@ -18,10 +18,6 @@
   border-bottom: 3px solid #ddd;
 }
 
-.platos-table tr {
-  display: contents;
-}
-
 .platos-table th {
   background-color: #4E148C;
   color: white;

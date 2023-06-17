@@ -60,8 +60,8 @@ function ListaDeRestaurantes() {
       return;
     }
 
-    if (radio > 20) {
-      alert("El radio máximo es 20km");
+    if (radio > 15) {
+      alert("El radio máximo es 15km");
       return;
     }
 
@@ -88,7 +88,7 @@ function ListaDeRestaurantes() {
           if (response.ok) {
             alert("Sitios turísticos añadidos con éxito");
           } else {
-            throw new Error('Error al añadir los sitios turísticos');
+            alert("La búsqueda en el servicio dio problemas, por favor ajusta los valores");
           }
         });
       })
@@ -536,7 +536,7 @@ function ListaDeRestaurantes() {
                 </td>
                 <td>
                   {role !== 'CLIENTE' && (
-                    <button className="button-edit" onClick={() => {
+                    <><button className="button-edit" onClick={() => {
                       setSelectedRestaurante(restaurante);
                       setEditNombre(restaurante.nombre);
                       setEditLatitud(restaurante.latitud);
@@ -544,14 +544,11 @@ function ListaDeRestaurantes() {
                       setEditCiudad(restaurante.ciudad);
                       setEditFechaAlta(restaurante.fechaAlta);
                       setEditModalVisible(true);
-                    }}>
+                    } }>
                       <MdEdit />
-                    </button>
-                  )}
-                  {role !== 'CLIENTE' && (
-                    <button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
-                      <MdDelete />
-                    </button>
+                    </button><button className="button-delete" onClick={() => deleteRestaurante(restaurante.id)}>
+                        <MdDelete />
+                    </button></>
                   )}
                 </td>
               </tr>
