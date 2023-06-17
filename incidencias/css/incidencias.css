@@ -41,6 +41,12 @@
     border-radius: 20px;
 }
 
+.arrow-icon {
+    font-size: 2px;
+    margin-right: 5px;
+  
+}
+
 .volver-button:hover {
     background-color: #65596b;
     color: white;
@@ -60,6 +66,16 @@
     .incidencias-table td {
         padding: 5px;
         font-size: 8px;
+    }
+
+    .arrow-icon {
+        font-size: 12px;
+        margin-right: 2px;
+    }
+
+    .volver-button {
+        font-size: 12px;
+        padding: 8px 16px;
     }
 
 }

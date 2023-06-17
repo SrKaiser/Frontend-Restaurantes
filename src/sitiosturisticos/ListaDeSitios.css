@@ -57,3 +57,13 @@
 .table-collapse {
   margin-top: 1em;
 }
+
+@media screen and (max-width: 500px) {
+
+  .titulo-sitios {
+    font-size: 20px;
+  }
+
+
+
+}

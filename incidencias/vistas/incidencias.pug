@@ -1,6 +1,7 @@
 html 
     head
         title= titulo
+        meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/header.css")
         link(rel="stylesheet", href="/footer.css")
         link(rel="stylesheet", href="/incidencias.css")
@@ -14,7 +15,7 @@ html
                     | DishDiscover
                 div.user-section
                     if isAuthenticated
-                        i.material-icons(style=`font-size: 48px;`) 
+                        i.material-icons(class="account")
                             | account_circle
                     else
                         button(onClick=handleLogin, class="header-button") Iniciar sesión
@@ -23,30 +24,44 @@ html
                     ul
                         li
                             a(href="http://localhost:3000/") 
-                                i.material-icons(style=`font-size: 16px;`) 
+                                i.material-icons
                                     | home
                                 | Inicio
                         if isAuthenticated && role !== 'CLIENTE'
                             li
                                 a(href="http://localhost:3000/altaRestaurante") 
-                                    i.material-icons(style=`font-size: 16px;`) 
+                                    i.material-icons
                                         | add
                                     | Alta Restaurante
                         if isAuthenticated
                             li
                                 a(href="http://localhost:3000/restaurantes") 
-                                    i.material-icons(style=`font-size: 16px;`) 
+                                    i.material-icons
                                         | restaurant
                                     | Lista de Restaurantes
                         li
                             a(href="http://localhost:3000/Ayuda/Ayuda.html")
-                                i.material-icons(style=`font-size: 16px;`) 
+                                i.material-icons
                                     | help
                                 | Obtener ayuda
         div.main-content
             button.volver-button(onclick=`window.location.href='http://localhost:3000/restaurantes';`)
-                span(class="material-icons", style="font-size: 16px;")= "arrow_back"
+                span(class="material-icons arrow-icon")= "arrow_back"
                 | Volver
+            style.
+                @media screen and (max-width: 500px) {
+                    .arrow-icon {
+                        font-size: 12px;
+                        margin-right: 2px
+                    }
+                }
+
+                @media screen and (min-width: 501px) {
+                    .arrow-icon {
+                        font-size: 16px;
+                        margin-right: 5px;
+                    }
+                }
             h1.titulo= titulo
             div.container
                 table.incidencias-table
@@ -64,4 +79,4 @@ html
                                 td= incidencia.cliente
                                 td= incidencia.fecha.toLocaleString('es-ES')
         footer
-            p=` 2023 Todos los derechos reservados - César Pagán Villafañe / Ángel Tomás Perea Nieto. FIUM`
+            p=`© 2023 Todos los derechos reservados - César Pagán Villafañe / Ángel Tomás Perea Nieto. FIUM`

@@ -54,8 +54,13 @@ nav a:hover {
     font-family: 'Roboto', sans-serif;
 }
 
-.material-icons {
+i.material-icons {
+    font-size: 16px;
     margin-right: 8px;
+}
+
+i.account {
+    font-size: 48px;
 }
 
 .header-button {
@@ -87,9 +92,13 @@ h1 img {
         font-size: 12px;
     }
 
-    .material-icons {
-        margin-right: 8px;
-        font-size: 36px;
+    i.material-icons {
+        font-size: 12px;
+        margin-right: 6px;
+    }
+
+    i.account {
+        font-size: 32px;
     }
 
     h1 img {
