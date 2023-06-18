@@ -4,7 +4,7 @@
 /incidencias/node_modules
 
 # dependencies
-/node_modules
+/front_end/node_modules
 /.pnp
 .pnp.js
 

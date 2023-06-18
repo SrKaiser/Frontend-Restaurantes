@@ -26,7 +26,7 @@ public class ServicioOpinionesRetrofit implements IServicioOpiniones {
 	public ServicioOpinionesRetrofit() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new JavaTimeModule());
-		Retrofit retrofit = new Retrofit.Builder().baseUrl("http://localhost:5193/api/")
+		Retrofit retrofit = new Retrofit.Builder().baseUrl("http://opiniones-rest:5193/api/")
 				.addConverterFactory(JacksonConverterFactory.create(mapper)).build();
 
 		api = retrofit.create(OpinionesAPI.class);
